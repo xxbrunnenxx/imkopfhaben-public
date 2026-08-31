@@ -235,6 +235,49 @@ class App:
         
         self.show_message(title, item.get("note", ""), rgb=TAG_COLORS.get(tag, (0, 200, 100)))
 
+    def _send_recording(self, duration: float) -> None:
+        try:
+            self.record_proc.terminate()
+            _, stderr = self.record_proc.communicate(timeout=2)
+        except Exception as e:
+            stderr = None
+            log.error(f"arecord konnte nicht sauber beendet werden: {e}")
+        finally:
+            self.record_proc = None
+
+        if duration < 0.5:
+            self.show_dashboard()
+            return
+
+        if not RECORD_PATH.exists():
+            details = stderr.decode(errors="ignore")[:150] if stderr else "keine Aufnahmedatei erzeugt"
+            log.error(f"Aufnahme fehlgeschlagen: {details}")
+            self.show_message("Fehler", f"Aufnahme fehlgeschlagen:\n{details}", rgb=(255, 0, 0))
+            time.sleep(RESULT_DISPLAY_SEC)
+            self.show_dashboard()
+            return
+
+        self.show_message("Sende...", "Warte auf Pi 5 Brain...", rgb=(0, 180, 255))
+        try:
+            with open(RECORD_PATH, "rb") as f:
+                resp = requests.post(SERVER_URL, files={"file": f}, timeout=60)
+            resp.raise_for_status()
+            data = resp.json()
+        except requests.RequestException as e:
+            self.show_message("Fehler", f"Kraken nicht erreichbar:\n{str(e)[:120]}", rgb=(255, 0, 0))
+            time.sleep(RESULT_DISPLAY_SEC)
+            self.show_dashboard()
+            return
+
+        tag = data.get("tag", "Notiz")
+        note = data.get("note", "").strip() or "(leere Antwort)"
+        transcript = data.get("transcript", "")
+        self.archive.add(tag, note, transcript)
+
+        self.show_message(tag, note, rgb=TAG_COLORS.get(tag, (0, 255, 0)))
+        time.sleep(RESULT_DISPLAY_SEC)
+        self.show_dashboard()
+
     def _on_press(self) -> None:
         self.press_started_at = time.monotonic()
         if self.mode == "dashboard":
@@ -248,37 +291,16 @@ class App:
 
         # Aufnahme läuft -> Beenden und an Pi 5 senden
         if self.record_proc:
+            # Alles ab hier abgesichert: der Whisplay-Daemon (whisplay_client.py:_event_loop)
+            # schluckt jede Exception aus diesem Callback lautlos und ohne Log - ohne dieses
+            # try/except bleibt das Display bei einem Fehler fuer immer auf "Sende..." stehen.
             try:
-                self.record_proc.terminate()
-                _, stderr = self.record_proc.communicate(timeout=2)
-            except Exception:
-                pass
-            self.record_proc = None
-
-            if duration < 0.5:
-                self.show_dashboard()
-                return
-
-            self.show_message("Sende...", "Warte auf Pi 5 Brain...", rgb=(0, 180, 255))
-            try:
-                with open(RECORD_PATH, "rb") as f:
-                    resp = requests.post(SERVER_URL, files={"file": f}, timeout=60)
-                resp.raise_for_status()
-                data = resp.json()
-            except requests.RequestException as e:
-                self.show_message("Fehler", f"Kraken nicht erreichbar:\n{str(e)[:120]}", rgb=(255, 0, 0))
+                self._send_recording(duration)
+            except Exception as e:
+                log.error(f"Fehler beim Senden/Verarbeiten: {e}")
+                self.show_message("Fehler", f"Unerwarteter Fehler:\n{str(e)[:120]}", rgb=(255, 0, 0))
                 time.sleep(RESULT_DISPLAY_SEC)
                 self.show_dashboard()
-                return
-
-            tag = data.get("tag", "Notiz")
-            note = data.get("note", "").strip() or "(leere Antwort)"
-            transcript = data.get("transcript", "")
-            self.archive.add(tag, note, transcript)
-
-            self.show_message(tag, note, rgb=TAG_COLORS.get(tag, (0, 255, 0)))
-            time.sleep(RESULT_DISPLAY_SEC)
-            self.show_dashboard()
             return
 
         # Durchblättern
