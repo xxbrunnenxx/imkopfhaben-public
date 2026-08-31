@@ -157,7 +157,10 @@ def _main() -> int:
 
     print(f"Läuft — schreibt alle {a.intervall:.0f}s nach {a.datei}.")
     try:
-        naechste_schreibung = time.monotonic()
+        # Erst NACH dem ersten vollen Intervall neu schreiben - sonst
+        # ueberschreibt der erste Schleifendurchlauf die absichtliche
+        # 0.0-Startmarkierung sofort mit der echten Systemlaufzeit.
+        naechste_schreibung = time.monotonic() + a.intervall
         while laeuft:
             jetzt = time.monotonic()
             if jetzt >= naechste_schreibung:
