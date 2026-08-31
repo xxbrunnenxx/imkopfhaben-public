@@ -2,6 +2,12 @@
 
 Stand: 2026-08-31.
 
+## Hohe Prio
+
+- [ ] **Notizen gehen bei nicht erreichbarem Brain verloren** — `notebook/app.py` (`_send_recording`) macht genau einen synchronen `POST /process` mit 60s Timeout, ohne Retry oder Zwischenspeicherung. Ist Kraken/Brain nicht erreichbar, zeigt das Display 3s einen Fehler und geht zurück zum Dashboard — die Aufnahme selbst (`/tmp/note.wav`) bleibt zwar liegen, wird aber beim nächsten Tastendruck kommentarlos überschrieben. Keine Warteschlange, kein späteres Nachsenden. Braucht: lokale Warteschlange (z.B. WAV-Dateien mit Zeitstempel in einem Ordner behalten, bei jedem erfolgreichen Health-Check/Sendeversuch der Reihe nach abarbeiten), bis dahin ist ein Ausfall von Kraken während des Testzeitraums ein echter Datenverlust.
+
+## Übrige Punkte
+
 - [x] **Akku-Lerner-Modul einbauen** — `notebook/akku_lernen.py` (Vorbild: `barthal/akku_lernen.py` auf barthalomeus), läuft als eigener Dienst `imkopfhaben-notebook-akku-lerner.service`, Anzeige nur im Dashboard ("Akku: ..."), auf dem Gerät installiert und aktiv.
 - [x] **Autostart für `notebook/`** — `imkopfhaben-notebook.service` installiert und aktiviert, startet nach Reboot/Stromausfall wieder von selbst ins Dashboard.
 - [ ] **Display drehen** — `notebook/`: Anzeige läuft aktuell im Hochformat, muss auf Querformat (90°) gedreht werden.
