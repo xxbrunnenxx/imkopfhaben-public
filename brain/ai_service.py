@@ -30,7 +30,7 @@ def transcribe_audio(audio_path: str) -> str:
 def structure_with_llm(transcript: str) -> dict:
     if not transcript:
         return {
-            "tag": "Notiz",
+            "tag": "Unklar",
             "note": "Keine Sprache erkannt.",
             "transcript": ""
         }
@@ -38,11 +38,17 @@ def structure_with_llm(transcript: str) -> dict:
     prompt = f"""Transkript: "{transcript}"
 
 Aufgabe:
-1. Bestimme die passende Kategorie als 'tag': Wähle genau eines aus ["Todo", "Idee", "Notiz", "Termin", "Wichtig"].
+1. Bestimme die passende Kategorie als 'tag': Wähle genau eines aus ["Todo", "Idee", "Notiz", "Termin", "Wichtig", "Unklar"].
+   - "Wichtig" NUR bei einem echten Dringlichkeits- oder Warnsignal (z.B. Gesundheit, Sicherheit, eine explizite Frist wie "sofort"/"dringend").
+     Nicht einfach nehmen, weil der Ton auffällig, vulgär oder unklar ist.
+   - "Unklar" für alles, das kein erkennbarer, in sich sinnvoller Inhalt ist: einzelne
+     Wörter ohne Kontext, Fülllaute, Testphrasen ("Test", "Testnotiz"), Hintergrundrauschen,
+     abgehackte Fragmente. Im Zweifel lieber "Unklar" als eine der anderen Kategorien erzwingen.
 2. Fasse den Inhalt in 'note' prägnant zusammen (maximal 120 Zeichen).
    - Halte dich strikt an den Inhalt des Transkripts.
    - Erfinde keine zusätzlichen Informationen dazu.
    - Wenn das Transkript ein Spruch, Zitat oder Scherz ist, gib ihn sinngemäß als 'Notiz' oder 'Idee' wieder.
+   - Bei "Unklar": gib einfach das Transkript selbst zurück, ohne es zu interpretieren.
 
 Antworte ausschließlich im JSON-Format:
 {{"tag": "<KATEGORIE>", "note": "<ZUSAMMENFASSUNG>"}}"""

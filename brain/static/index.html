@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>imkopfhaben — Notizen</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --card: #181b22;
+    --card-border: #262b35;
+    --text: #e6e9ef;
+    --text-dim: #8b93a3;
+    --accent: #4fd1c5;
+    --danger: #ef5b5b;
+    --warn: #e0a94c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--card-border);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 5;
+  }
+  h1 { font-size: 1.1rem; margin: 0 0 10px 0; font-weight: 600; }
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  select, button {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  button:hover { border-color: var(--accent); }
+  button:disabled { opacity: 0.4; cursor: default; }
+  button.danger:hover { border-color: var(--danger); color: var(--danger); }
+  #status { color: var(--text-dim); font-size: 0.8rem; margin-left: auto; }
+  main { padding: 12px 20px 60px; max-width: 720px; margin: 0 auto; }
+  .note {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  .note input[type=checkbox] { margin-top: 4px; accent-color: var(--accent); }
+  .note-body { flex: 1; min-width: 0; }
+  .note-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+  .tag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .time { color: var(--text-dim); font-size: 0.75rem; }
+  .text { white-space: pre-wrap; word-break: break-word; }
+  .transcript { color: var(--text-dim); font-size: 0.78rem; margin-top: 4px; }
+  .note-actions { display: flex; gap: 6px; margin-top: 8px; }
+  .note-actions button { padding: 3px 8px; font-size: 0.75rem; }
+  textarea, .edit-select {
+    width: 100%;
+    background: #10131a;
+    color: var(--text);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 6px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+  #empty { color: var(--text-dim); text-align: center; padding: 40px 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>imkopfhaben — Notizen</h1>
+  <div class="toolbar">
+    <select id="filter">
+      <option value="">Alle Kategorien</option>
+    </select>
+    <button id="mergeBtn" disabled>Zusammenführen</button>
+    <button id="deleteBtn" class="danger" disabled>Löschen</button>
+    <button id="refreshBtn">Neu laden</button>
+    <span id="status"></span>
+  </div>
+</header>
+<main id="list"></main>
+
+<script>
+const TAG_COLORS = {
+  Todo: "#ff8c00", Aufgabe: "#ff8c00", Idee: "#3399ff", Notiz: "#3ecf8e",
+  Termin: "#e64ac9", Wichtig: "#e0453f", Unklar: "#7a8290",
+};
+
+let notes = [];
+let selected = new Set();
+
+async function laden() {
+  status("lade...");
+  const res = await fetch("/api/notes?limit=500");
+  notes = await res.json();
+  selected.clear();
+  fuelleFilter();
+  render();
+  status(`${notes.length} Notizen`);
+}
+
+function fuelleFilter() {
+  const kategorien = [...new Set(notes.map(n => n.category))].sort();
+  const cur = document.getElementById("filter").value;
+  const sel = document.getElementById("filter");
+  sel.innerHTML = '<option value="">Alle Kategorien</option>' +
+    kategorien.map(k => `<option value="${k}">${k}</option>`).join("");
+  sel.value = kategorien.includes(cur) ? cur : "";
+}
+
+function status(t) { document.getElementById("status").textContent = t; }
+
+function render() {
+  const filter = document.getElementById("filter").value;
+  const list = document.getElementById("list");
+  const sichtbar = filter ? notes.filter(n => n.category === filter) : notes;
+
+  if (sichtbar.length === 0) {
+    list.innerHTML = '<div id="empty">Keine Notizen.</div>';
+  } else {
+    list.innerHTML = sichtbar.map(noteHtml).join("");
+  }
+
+  document.querySelectorAll(".note input[type=checkbox]").forEach(cb => {
+    cb.addEventListener("change", () => {
+      const id = parseInt(cb.dataset.id);
+      if (cb.checked) selected.add(id); else selected.delete(id);
+      updateToolbar();
+    });
+  });
+  document.querySelectorAll("[data-edit]").forEach(b => b.addEventListener("click", () => beginEdit(parseInt(b.dataset.edit))));
+  document.querySelectorAll("[data-delete]").forEach(b => b.addEventListener("click", () => loeschen(parseInt(b.dataset.delete))));
+  updateToolbar();
+}
+
+function noteHtml(n) {
+  const farbe = TAG_COLORS[n.category] || "#7a8290";
+  return `
+    <div class="note" id="note-${n.id}">
+      <input type="checkbox" data-id="${n.id}" ${selected.has(n.id) ? "checked" : ""}>
+      <div class="note-body">
+        <div class="note-top">
+          <span class="tag" style="background:${farbe}22;color:${farbe}">${escapeHtml(n.category)}</span>
+          <span class="time">${escapeHtml(n.created_at)}</span>
+        </div>
+        <div class="text">${escapeHtml(n.body)}</div>
+        ${n.raw_transcript ? `<div class="transcript">„${escapeHtml(n.raw_transcript)}"</div>` : ""}
+        <div class="note-actions">
+          <button data-edit="${n.id}">Bearbeiten</button>
+          <button data-delete="${n.id}" class="danger">Löschen</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function escapeHtml(s) {
+  return (s || "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function updateToolbar() {
+  document.getElementById("deleteBtn").disabled = selected.size === 0;
+  document.getElementById("mergeBtn").disabled = selected.size < 2;
+}
+
+function beginEdit(id) {
+  const n = notes.find(x => x.id === id);
+  const el = document.getElementById(`note-${id}`);
+  const kategorien = Object.keys(TAG_COLORS);
+  el.querySelector(".note-body").innerHTML = `
+    <select class="edit-select" id="edit-cat-${id}">
+      ${kategorien.map(k => `<option value="${k}" ${k === n.category ? "selected" : ""}>${k}</option>`).join("")}
+    </select>
+    <textarea id="edit-body-${id}" rows="3">${escapeHtml(n.body)}</textarea>
+    <div class="note-actions">
+      <button data-save="${id}">Speichern</button>
+      <button data-cancel="${id}">Abbrechen</button>
+    </div>`;
+  el.querySelector(`[data-save="${id}"]`).addEventListener("click", () => speichern(id));
+  el.querySelector(`[data-cancel="${id}"]`).addEventListener("click", render);
+}
+
+async function speichern(id) {
+  const body = document.getElementById(`edit-body-${id}`).value;
+  const category = document.getElementById(`edit-cat-${id}`).value;
+  status("speichere...");
+  await fetch(`/api/notes/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ body, category }),
+  });
+  await laden();
+}
+
+async function loeschen(id) {
+  if (!confirm("Diese Notiz wirklich löschen?")) return;
+  status("lösche...");
+  await fetch(`/api/notes/${id}`, { method: "DELETE" });
+  await laden();
+}
+
+document.getElementById("deleteBtn").addEventListener("click", async () => {
+  if (!confirm(`${selected.size} Notiz(en) wirklich löschen?`)) return;
+  status("lösche...");
+  for (const id of selected) {
+    await fetch(`/api/notes/${id}`, { method: "DELETE" });
+  }
+  await laden();
+});
+
+document.getElementById("mergeBtn").addEventListener("click", async () => {
+  const ids = [...selected];
+  const ausgewaehlt = notes.filter(n => ids.includes(n.id));
+  const vorschlag = ausgewaehlt.map(n => n.body).join(" / ");
+  const text = prompt(`${ids.length} Notizen zusammenführen zu:`, vorschlag);
+  if (text === null) return;
+  status("führe zusammen...");
+  await fetch("/api/notes/merge", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ids, body: text }),
+  });
+  await laden();
+});
+
+document.getElementById("refreshBtn").addEventListener("click", laden);
+document.getElementById("filter").addEventListener("change", render);
+
+laden();
+</script>
+</body>
+</html>
