@@ -1,0 +1,15 @@
+[Unit]
+Description=imkopfhaben Notebook (Whisplay Client)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bob
+WorkingDirectory=/home/bob
+ExecStart=/usr/bin/python3 /home/bob/app.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
