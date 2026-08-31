@@ -11,6 +11,8 @@ from pathlib import Path
 import requests
 from PIL import Image, ImageDraw, ImageFont
 
+import akku_lernen
+
 # Whisplay Runtime einbinden
 RUNTIME_DIR = os.path.expanduser("~/Whisplay/runtime")
 if RUNTIME_DIR not in sys.path:
@@ -211,10 +213,13 @@ class App:
 
     def show_dashboard(self) -> None:
         c = self.archive.counts()
+        energie = akku_lernen.geschaetzte_energie()
+        akku_text = f"{energie:.0f}%" if energie is not None else "Baked!"
         body = (
             f"Todos: {c.get('Todo', 0) + c.get('Aufgabe', 0)}\n"
             f"Ideen: {c.get('Idee', 0)}\n"
-            f"Notizen: {c.get('Notiz', 0)}\n\n"
+            f"Notizen: {c.get('Notiz', 0)}\n"
+            f"Akku: {akku_text}\n\n"
             "Kurz halten: Sprechen\n"
             "Loslassen: Senden\n"
             "Lang halten: Blaettern"

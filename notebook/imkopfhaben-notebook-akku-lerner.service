@@ -1,0 +1,14 @@
+[Unit]
+Description=imkopfhaben Notebook Akku-Lerner
+After=multi-user.target
+
+[Service]
+Type=simple
+User=bob
+WorkingDirectory=/home/bob
+ExecStart=/usr/bin/python3 /home/bob/akku_lernen.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
