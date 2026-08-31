@@ -2,12 +2,10 @@
 
 Stand: 2026-08-31.
 
-## Hohe Prio
-
-- [ ] **Notizen gehen bei nicht erreichbarem Brain verloren** — `notebook/app.py` (`_send_recording`) macht genau einen synchronen `POST /process` mit 60s Timeout, ohne Retry oder Zwischenspeicherung. Ist Kraken/Brain nicht erreichbar, zeigt das Display 3s einen Fehler und geht zurück zum Dashboard — die Aufnahme selbst (`/tmp/note.wav`) bleibt zwar liegen, wird aber beim nächsten Tastendruck kommentarlos überschrieben. Keine Warteschlange, kein späteres Nachsenden. Braucht: lokale Warteschlange (z.B. WAV-Dateien mit Zeitstempel in einem Ordner behalten, bei jedem erfolgreichen Health-Check/Sendeversuch der Reihe nach abarbeiten), bis dahin ist ein Ausfall von Kraken während des Testzeitraums ein echter Datenverlust.
-
 ## Übrige Punkte
 
+- [x] **Notizen gehen bei nicht erreichbarem Brain verloren** — behoben: `notebook/app.py` verschiebt jede fertige Aufnahme in `~/notiz_warteschlange/` (Zeitstempel-Dateiname, `shutil.move` statt `Path.rename`, weil `/tmp` und `~` auf verschiedenen Geräten liegen — reines `rename()` scheiterte live mit "Invalid cross-device link"). `_verarbeite_warteschlange()` sendet ältestenzuerst, bricht beim ersten Fehlschlag ab. Zwei Trigger: sofort bei jedem neuen Tastendruck, plus alle 60s im Hintergrund (`run()`), solange das Dashboard steht. Ein `threading.Lock` verhindert, dass beide sich gleichzeitig an derselben Datei zu schaffen machen (live als Race Condition beobachtet: "No such file or directory", weil beide dieselbe Datei parallel verarbeitet haben). Live getestet: 3 Notizen bei totem Brain aufgenommen, alle sicher in der Warteschlange gelandet, nach Neustart des Brain automatisch nachgesendet, keine verloren.
+- [x] **Tastermodell überarbeitet** — von "halten = aufnehmen" auf Toggle umgestellt: kurz drücken = Aufnahme starten, nochmal drücken (egal wie lang) = beenden & senden, lang halten = Blättern rein/raus, im Blättern kurz = weiter (am Ende wieder von vorn). Nebenbei einen Bug gefixt, der das alte Blättern komplett unerreichbar gemacht hat (`_on_press` startete im Dashboard-Modus immer sofort eine Aufnahme, die Weiche für "lang halten" in `_on_release` kam nie dran).
 - [x] **Akku-Lerner-Modul einbauen** — `notebook/akku_lernen.py` (Vorbild: `barthal/akku_lernen.py` auf barthalomeus), läuft als eigener Dienst `imkopfhaben-notebook-akku-lerner.service`, Anzeige nur im Dashboard ("Akku: ..."), auf dem Gerät installiert und aktiv.
 - [x] **Autostart für `notebook/`** — `imkopfhaben-notebook.service` installiert und aktiviert, startet nach Reboot/Stromausfall wieder von selbst ins Dashboard.
 - [ ] **Display drehen** — `notebook/`: Anzeige läuft aktuell im Hochformat, muss auf Querformat (90°) gedreht werden.

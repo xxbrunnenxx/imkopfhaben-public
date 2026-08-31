@@ -2,8 +2,10 @@
 import json
 import logging
 import os
+import shutil
 import subprocess
 import sys
+import threading
 import time
 from datetime import datetime
 from pathlib import Path
@@ -30,6 +32,8 @@ log = logging.getLogger("imkopfhaben-app")
 SERVER_URL = "http://kraken.local:8000/process"
 RECORD_PATH = Path("/tmp/note.wav")
 ARCHIVE_PATH = Path.home() / "imkopfhaben_archive.json"
+QUEUE_DIR = Path.home() / "notiz_warteschlange"
+QUEUE_RETRY_SEC = 60.0
 
 FONT_PATH_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 FONT_PATH_REGULAR = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
@@ -45,6 +49,7 @@ RECORD_CMD = [
 ]
 
 RESULT_DISPLAY_SEC = 5.0
+LONG_PRESS_SEC = 0.6
 
 TAG_COLORS = {
     "Todo": (255, 120, 0),
@@ -123,6 +128,7 @@ class Archive:
 
 class App:
     def __init__(self):
+        QUEUE_DIR.mkdir(exist_ok=True)
         self.board = create_whisplay_hardware()
         self.board.set_backlight(70)
         self.archive = Archive(ARCHIVE_PATH)
@@ -133,6 +139,11 @@ class App:
         self.browse_index = 0
         self.press_started_at = 0.0
         self.record_proc = None
+        # Schuetzt die Warteschlange: Tastendruck-Callback (eigener Thread des
+        # Whisplay-Daemons) und der periodische Hintergrund-Retry in run()
+        # koennen sonst gleichzeitig dieselbe Datei verarbeiten/loeschen -
+        # live beobachtet als "No such file or directory" beim Oeffnen.
+        self._warteschlangen_lock = threading.Lock()
 
         # Callbacks registrieren
         self.board.on_button_press(self._on_press)
@@ -215,13 +226,18 @@ class App:
         c = self.archive.counts()
         energie = akku_lernen.geschaetzte_energie()
         akku_text = f"{energie:.0f}%" if energie is not None else "Baked!"
+        wartend = len(list(QUEUE_DIR.glob("*.wav")))
         body = (
             f"Todos: {c.get('Todo', 0) + c.get('Aufgabe', 0)}\n"
             f"Ideen: {c.get('Idee', 0)}\n"
             f"Notizen: {c.get('Notiz', 0)}\n"
-            f"Akku: {akku_text}\n\n"
-            "Kurz halten: Sprechen\n"
-            "Loslassen: Senden\n"
+            f"Akku: {akku_text}\n"
+        )
+        if wartend:
+            body += f"Warten auf Kraken: {wartend}\n"
+        body += (
+            "\nKurz druecken: Aufnehmen\n"
+            "Nochmal druecken: Senden\n"
             "Lang halten: Blaettern"
         )
         self.show_message("imkopfhaben", body, rgb=(0, 0, 0))
@@ -240,7 +256,14 @@ class App:
         
         self.show_message(title, item.get("note", ""), rgb=TAG_COLORS.get(tag, (0, 200, 100)))
 
-    def _send_recording(self, duration: float) -> None:
+    def _start_recording(self) -> None:
+        self.mode = "recording"
+        self.show_message("Hoere zu...", "Nochmal druecken zum\nBeenden & Senden.", rgb=(255, 0, 0))
+        if RECORD_PATH.exists():
+            RECORD_PATH.unlink()
+        self.record_proc = subprocess.Popen(RECORD_CMD, stderr=subprocess.PIPE)
+
+    def _stop_and_send(self) -> None:
         try:
             self.record_proc.terminate()
             _, stderr = self.record_proc.communicate(timeout=2)
@@ -250,81 +273,135 @@ class App:
         finally:
             self.record_proc = None
 
-        if duration < 0.5:
-            self.show_dashboard()
-            return
-
         if not RECORD_PATH.exists():
             details = stderr.decode(errors="ignore")[:150] if stderr else "keine Aufnahmedatei erzeugt"
             log.error(f"Aufnahme fehlgeschlagen: {details}")
             self.show_message("Fehler", f"Aufnahme fehlgeschlagen:\n{details}", rgb=(255, 0, 0))
             time.sleep(RESULT_DISPLAY_SEC)
+            self.mode = "dashboard"
             self.show_dashboard()
             return
+
+        # In die Warteschlange verschieben statt direkt zu senden - so geht bei
+        # nicht erreichbarem Brain nichts verloren, siehe OFFENE_PUNKTE.md.
+        # shutil.move statt Path.rename: /tmp ist tmpfs, das Home-Verzeichnis
+        # liegt auf der SD-Karte - ein reines rename() ueber Geraetegrenzen
+        # hinweg scheitert mit "Invalid cross-device link".
+        ziel = QUEUE_DIR / f"{datetime.now().strftime('%Y-%m-%d_%H%M%S_%f')}.wav"
+        shutil.move(str(RECORD_PATH), str(ziel))
 
         self.show_message("Sende...", "Warte auf Pi 5 Brain...", rgb=(0, 180, 255))
-        try:
-            with open(RECORD_PATH, "rb") as f:
-                resp = requests.post(SERVER_URL, files={"file": f}, timeout=60)
-            resp.raise_for_status()
-            data = resp.json()
-        except requests.RequestException as e:
-            self.show_message("Fehler", f"Kraken nicht erreichbar:\n{str(e)[:120]}", rgb=(255, 0, 0))
-            time.sleep(RESULT_DISPLAY_SEC)
-            self.show_dashboard()
-            return
+        self._verarbeite_warteschlange(frisch=ziel)
 
-        tag = data.get("tag", "Notiz")
-        note = data.get("note", "").strip() or "(leere Antwort)"
-        transcript = data.get("transcript", "")
-        self.archive.add(tag, note, transcript)
-
-        self.show_message(tag, note, rgb=TAG_COLORS.get(tag, (0, 255, 0)))
-        time.sleep(RESULT_DISPLAY_SEC)
+        self.mode = "dashboard"
         self.show_dashboard()
+
+    def _verarbeite_warteschlange(self, frisch: Path | None = None, blockierend: bool = True) -> None:
+        """Arbeitet die Warteschlange aeltestenzuerst ab (Dateiname beginnt mit
+        Zeitstempel, sortiert also richtig). Bricht beim ersten Fehlschlag ab -
+        damit bleibt die Reihenfolge erhalten und Kraken wird nicht mit
+        Wiederholungsversuchen fuer laengst faellige Dateien geflutet, sobald
+        er wieder da ist. `frisch` ist die Datei aus dem gerade laufenden
+        Tastendruck, falls es einer war - nur dafuer wird ein Ergebnis auf dem
+        Display gezeigt, der Rest laeuft still im Hintergrund.
+
+        `blockierend=False` (Hintergrund-Retry) laesst den Aufruf ausfallen,
+        statt zu warten, wenn der Tastendruck-Thread gerade selbst mitten in
+        der Warteschlange steckt - der naechste Zyklus in 60s holt es nach."""
+        if not self._warteschlangen_lock.acquire(blocking=blockierend):
+            return
+        try:
+            dateien = sorted(QUEUE_DIR.glob("*.wav"))
+            for index, pfad in enumerate(dateien):
+                try:
+                    with open(pfad, "rb") as f:
+                        resp = requests.post(SERVER_URL, files={"file": f}, timeout=60)
+                    resp.raise_for_status()
+                    data = resp.json()
+                except requests.RequestException as e:
+                    log.error(f"Warteschlange: {pfad.name} nicht gesendet: {e}")
+                    if pfad == frisch:
+                        verbleibend = len(dateien) - index
+                        self.show_message(
+                            "Gespeichert",
+                            f"Kraken nicht erreichbar,\nwird spaeter gesendet.\n({verbleibend} in der Warteschlange)",
+                            rgb=(255, 150, 0),
+                        )
+                        time.sleep(RESULT_DISPLAY_SEC)
+                    return
+
+                tag = data.get("tag", "Notiz")
+                note = data.get("note", "").strip() or "(leere Antwort)"
+                transcript = data.get("transcript", "")
+                self.archive.add(tag, note, transcript)
+                pfad.unlink()
+
+                if pfad == frisch:
+                    self.show_message(tag, note, rgb=TAG_COLORS.get(tag, (0, 255, 0)))
+                    time.sleep(RESULT_DISPLAY_SEC)
+        finally:
+            self._warteschlangen_lock.release()
 
     def _on_press(self) -> None:
         self.press_started_at = time.monotonic()
-        if self.mode == "dashboard":
-            self.show_message("Hoere zu...", "Spreche deine Notiz ein...\nLasse los zum Senden.", rgb=(255, 0, 0))
-            if RECORD_PATH.exists():
-                RECORD_PATH.unlink()
-            self.record_proc = subprocess.Popen(RECORD_CMD, stderr=subprocess.PIPE)
 
     def _on_release(self) -> None:
+        # Alles ab hier abgesichert: der Whisplay-Daemon (whisplay_client.py:_event_loop)
+        # schluckt jede Exception aus diesem Callback lautlos und ohne Log - ohne dieses
+        # try/except bleibt das Display bei einem Fehler fuer immer im aktuellen Zustand haengen.
+        try:
+            self._handle_release()
+        except Exception as e:
+            log.error(f"Fehler bei Tasterauswertung: {e}")
+            self.mode = "dashboard"
+            self.show_message("Fehler", f"Unerwarteter Fehler:\n{str(e)[:120]}", rgb=(255, 0, 0))
+            time.sleep(RESULT_DISPLAY_SEC)
+            self.show_dashboard()
+
+    def _handle_release(self) -> None:
         duration = time.monotonic() - self.press_started_at
 
-        # Aufnahme läuft -> Beenden und an Pi 5 senden
-        if self.record_proc:
-            # Alles ab hier abgesichert: der Whisplay-Daemon (whisplay_client.py:_event_loop)
-            # schluckt jede Exception aus diesem Callback lautlos und ohne Log - ohne dieses
-            # try/except bleibt das Display bei einem Fehler fuer immer auf "Sende..." stehen.
-            try:
-                self._send_recording(duration)
-            except Exception as e:
-                log.error(f"Fehler beim Senden/Verarbeiten: {e}")
-                self.show_message("Fehler", f"Unerwarteter Fehler:\n{str(e)[:120]}", rgb=(255, 0, 0))
-                time.sleep(RESULT_DISPLAY_SEC)
-                self.show_dashboard()
+        # Aufnahme laeuft -> jeder Tastendruck beendet sie und sendet, egal wie lang
+        if self.mode == "recording":
+            self._stop_and_send()
             return
 
-        # Durchblättern
+        if self.mode == "dashboard":
+            if duration >= LONG_PRESS_SEC:
+                self.mode = "browse"
+                self.browse_index = 0
+                self.show_browse_item()
+            else:
+                self._start_recording()
+            return
+
+        # Durchblättern: kurz = einen weiter (am Ende wieder von vorn), lang = zurueck nach Home
         if self.mode == "browse":
-            if duration > 1.5:
+            if duration >= LONG_PRESS_SEC:
                 self.mode = "dashboard"
                 self.show_dashboard()
             else:
                 self.browse_index += 1
                 self.show_browse_item()
-        elif self.mode == "dashboard" and duration > 1.5:
-            self.mode = "browse"
-            self.browse_index = 0
-            self.show_browse_item()
 
     def run(self):
         self.show_dashboard()
+        naechster_versuch = time.monotonic() + QUEUE_RETRY_SEC
         while True:
-            time.sleep(0.1)
+            time.sleep(1.0)
+            if time.monotonic() < naechster_versuch:
+                continue
+            naechster_versuch = time.monotonic() + QUEUE_RETRY_SEC
+            # Nur im Ruhezustand nachsenden - waehrend einer Aufnahme oder im
+            # Blaettern soll die Warteschlange das Display nicht dazwischenfunken.
+            if self.mode != "dashboard" or not any(QUEUE_DIR.glob("*.wav")):
+                continue
+            try:
+                self._verarbeite_warteschlange(blockierend=False)
+            except Exception as e:
+                log.error(f"Warteschlange (Hintergrund): {e}")
+            if self.mode == "dashboard":
+                self.show_dashboard()
 
 
 if __name__ == "__main__":
