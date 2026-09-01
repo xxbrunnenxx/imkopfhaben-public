@@ -232,7 +232,9 @@ class App:
         body = (
             f"Todos: {c.get('Todo', 0) + c.get('Aufgabe', 0)}\n"
             f"Ideen: {c.get('Idee', 0)}\n"
-            f"Notizen: {c.get('Notiz', 0) + c.get('Wichtig', 0) + c.get('Tagebuch', 0)}\n"
+            f"Notizen: {c.get('Notiz', 0)}\n"
+            f"Wichtig: {c.get('Wichtig', 0)}\n"
+            f"Tagebuch: {c.get('Tagebuch', 0)}\n"
             f"Akku: {akku_text}\n"
         )
         if wartend:
