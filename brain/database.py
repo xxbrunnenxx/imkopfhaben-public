@@ -1,9 +1,10 @@
 import difflib
 import sqlite3
 from datetime import datetime, timedelta
+from pathlib import Path
 from typing import List, Optional, Dict, Any
 
-DB_PATH = "imkopfhaben.db"
+DB_PATH = Path(__file__).parent / "imkopfhaben.db"
 
 def init_db():
     with sqlite3.connect(DB_PATH) as conn:
