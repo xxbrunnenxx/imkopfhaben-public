@@ -21,9 +21,7 @@
   *{box-sizing:border-box;}
   body{
     margin:0;
-    background:
-      repeating-linear-gradient(to bottom, transparent 0 31px, var(--rule) 31px 32px),
-      var(--paper);
+    background:var(--paper);
     color:var(--ink);
     font-family:"IBM Plex Sans", system-ui, sans-serif;
     -webkit-font-smoothing:antialiased;
@@ -33,26 +31,7 @@
     position:relative;
     max-width:1040px;
     margin:0 auto;
-    padding:72px 40px 96px 108px;
-  }
-
-  /* notebook margin: red rule + a column of binding holes */
-  .page::before{
-    content:"";
-    position:absolute;
-    top:0; bottom:0; left:76px;
-    width:2px;
-    background:var(--margin);
-    opacity:0.75;
-  }
-  .page::after{
-    content:"";
-    position:absolute;
-    top:40px; bottom:40px; left:34px;
-    width:10px;
-    background-image:radial-gradient(circle at 5px 5px, #dcdfe4 4.2px, transparent 4.6px);
-    background-size:100% 40px;
-    background-repeat:repeat-y;
+    padding:72px 40px 96px;
   }
 
   .eyebrow{
@@ -109,16 +88,38 @@
   .screen{
     position:relative;
     aspect-ratio:3/5;
-    background:var(--screen);
+    background:
+      repeating-linear-gradient(to bottom, transparent 0 15px, var(--screen-line) 15px 16px),
+      var(--screen);
     border-radius:3px;
     overflow:hidden;
     box-shadow:0 0 0 1px rgba(0,0,0,0.3) inset, 0 2px 12px rgba(0,0,0,0.18) inset;
     display:flex;
     flex-direction:column;
-    padding:22px 26px;
+    padding:22px 22px 22px 34px;
     font-family:"IBM Plex Mono", monospace;
     color:var(--ink);
   }
+
+  /* notebook page, but on the device itself: red margin rule + binding holes */
+  .screen::before{
+    content:"";
+    position:absolute;
+    top:0; bottom:0; left:24px;
+    width:1.4px;
+    background:var(--margin);
+    opacity:0.8;
+  }
+  .screen::after{
+    content:"";
+    position:absolute;
+    top:16px; bottom:16px; left:8px;
+    width:6px;
+    background-image:radial-gradient(circle at 3px 3px, var(--screen-line) 2.6px, transparent 3px);
+    background-size:100% 22px;
+    background-repeat:repeat-y;
+  }
+  .screen > *{ position:relative; z-index:1; }
 
   .screen-head{
     display:flex;
@@ -372,7 +373,7 @@
     border-radius:18px;
     box-shadow:0 16px 30px -18px rgba(31,34,41,0.4);
   }
-  .card .screen{padding:16px 18px;}
+  .card .screen{padding:16px 16px 16px 28px;}
   .card .entry .snippet{-webkit-line-clamp:3;}
 
   .swatch-row{
