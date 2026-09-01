@@ -1,6 +1,7 @@
 import os
 import shutil
 import tempfile
+from contextlib import asynccontextmanager
 from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
@@ -15,7 +16,12 @@ import ai_service
 
 STATIC_DIR = Path(__file__).parent / "static"
 
-app = FastAPI(title="imkopfhaben-brain API")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    database.init_db()
+    yield
+
+app = FastAPI(title="imkopfhaben-brain API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,10 +29,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-@app.on_event("startup")
-def startup():
-    database.init_db()
 
 @app.get("/api/health")
 @app.get("/health")
