@@ -1,6 +1,8 @@
+import asyncio
 import os
 import shutil
 import tempfile
+import time
 from contextlib import asynccontextmanager
 from datetime import datetime
 from pathlib import Path
@@ -13,13 +15,50 @@ from pydantic import BaseModel
 
 import database
 import ai_service
+import veredelung_service
 
 STATIC_DIR = Path(__file__).parent / "static"
+
+# Idle-Zeit-Veredelung (Issue #16): Pausenerkennung ist adaptiv/laenger
+# gewaehlt (Entscheidung im Issue), kein knapper Wert - ein einzelner
+# Veredelungsschritt braucht selbst schon 1-3 Minuten, da soll nicht nach
+# jeder kurzen Sprechpause sofort losgelegt werden.
+VEREDELUNG_PAUSE_SEK = 20 * 60
+VEREDELUNG_CHECK_INTERVALL_SEK = 60
+
+_letzte_process_zeit = time.monotonic()
+
+
+async def _veredelungs_hintergrundschleife():
+    """Prueft periodisch, ob seit VEREDELUNG_PAUSE_SEK kein /process mehr
+    kam, und fuehrt dann GENAU EINEN Veredelungsschritt aus (in einem
+    eigenen Thread, damit /process waehrenddessen nicht blockiert wird).
+    Unterbrechung passiert dadurch, dass ein neuer /process-Aufruf
+    _letzte_process_zeit sofort aktualisiert - der naechste Tick hier sieht
+    dann wieder Aktivitaet und startet keinen neuen Schritt. Ein bereits
+    laufender Schritt wird NICHT mitten in der Generierung abgebrochen
+    (Design-Entscheidung aus Issue #16 - technisch nur mit deutlich mehr
+    Aufwand sauber moeglich, bei seltenen, kurzen Ueberschneidungen nicht
+    den Aufwand wert)."""
+    while True:
+        await asyncio.sleep(VEREDELUNG_CHECK_INTERVALL_SEK)
+        idle_sek = time.monotonic() - _letzte_process_zeit
+        if idle_sek < VEREDELUNG_PAUSE_SEK:
+            continue
+        try:
+            ergebnis = await asyncio.to_thread(veredelung_service.fuehre_veredelung_schritt_aus)
+            if ergebnis:
+                print(f"[Veredelung] {ergebnis}")
+        except Exception as e:
+            print(f"[Veredelung Fehler] {e}")
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     database.init_db()
+    hintergrund_task = asyncio.create_task(_veredelungs_hintergrundschleife())
     yield
+    hintergrund_task.cancel()
 
 app = FastAPI(title="imkopfhaben-brain API", lifespan=lifespan)
 
@@ -37,16 +76,48 @@ def health_check():
 
 @app.get("/api/config")
 def get_config():
-    return {"categories": ai_service.CATEGORIES}
+    return {"categories": database.get_categories()}
 
 @app.get("/api/notes")
 def list_notes(limit: int = Query(50, ge=1, le=500)):
     return database.get_all_notes(limit=limit)
 
+@app.get("/api/counts")
+def get_counts():
+    """Fuers periodische Notebook-Polling (Issue #16/#11) - erkennt
+    Server-seitige Aenderungen (Web-UI-Edits, Veredelung), analog zum
+    bestehenden 60s-Warteschlangen-Retry-Rhythmus im Notebook."""
+    return {
+        "counts": database.get_category_counts(),
+        "hoechste_notiz_id": database.get_hoechste_notiz_id(),
+        "hoechste_veredelung_id": database.get_hoechste_veredelung_id(),
+    }
+
+@app.get("/api/veredelt")
+def list_veredelte(seit_id: int = Query(0, ge=0)):
+    """Rueckkanal fuer veredelte Notizen (Issue #16) - eigener Endpunkt,
+    getrennt vom allgemeinen /api/counts-Polling. `seit_id` = zuletzt
+    abgeholte veredelung_id, damit das Notebook nur Neues nachlaedt."""
+    return database.get_veredelte_seit(seit_id)
+
+@app.get("/api/buendel-vorschlaege")
+def get_buendel_vorschlaege():
+    return database.get_buendel_vorschlaege()
+
+@app.delete("/api/buendel-vorschlaege/{vorschlag_id}")
+def loesche_buendel_vorschlag(vorschlag_id: int):
+    success = database.loesche_buendel_vorschlag(vorschlag_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Vorschlag nicht gefunden")
+    return {"status": "deleted", "id": vorschlag_id}
+
 # /process ist die Route, die dein Pi Zero (app.py) anspricht!
 @app.post("/process")
 @app.post("/api/process-audio")
 async def process_audio(file: UploadFile = File(...)):
+    global _letzte_process_zeit
+    _letzte_process_zeit = time.monotonic()
+
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
         shutil.copyfileobj(file.file, tmp)
         tmp_path = tmp.name

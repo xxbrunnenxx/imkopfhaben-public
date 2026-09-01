@@ -2,21 +2,10 @@ import json
 import requests
 from faster_whisper import WhisperModel
 
+import database
+
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL_NAME = "qwen2.5:7b"
-
-# Einzige Quelle der Wahrheit fuer die gueltigen Kategorien (siehe Issue #9)
-# - wurde vorher zusaetzlich in notebook/app.py und brain/static/index.html
-# dupliziert gepflegt. Wird ueber GET /api/config an beide Clients ausgeliefert.
-CATEGORIES = {
-    "Todo": "#ff8c00",
-    "Idee": "#3399ff",
-    "Notiz": "#3ecf8e",
-    "Termin": "#e64ac9",
-    "Wichtig": "#e0453f",
-    "Tagebuch": "#b088f5",
-    "Unklar": "#7a8290",
-}
 
 print("Lade Faster-Whisper Modell (medium)...")
 whisper_model = WhisperModel(
@@ -48,7 +37,7 @@ def structure_with_llm(transcript: str) -> dict:
             "transcript": ""
         }
 
-    kategorie_liste = ", ".join(f'"{name}"' for name in CATEGORIES)
+    kategorie_liste = ", ".join(f'"{name}"' for name in database.get_categories())
     prompt = f"""Transkript: "{transcript}"
 
 Aufgabe:

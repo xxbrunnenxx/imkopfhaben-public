@@ -73,6 +73,9 @@ Ist der Brain nicht erreichbar, landet die fertige Aufnahme statt in einer einze
 **Duplikat-Erkennung & geschärfte Kategorisierung**
 `brain/database.find_similar_recent()` vergleicht neue Transkripte gegen die letzten 10 Minuten (String-Ähnlichkeit) und verhindert Doppel-Notizen. Die Kategorie "Wichtig" wird nur bei echtem Dringlichkeitssignal vergeben, unklare/zu kurze Transkripte landen in der eigenen Kategorie "Unklar" statt zwangsweise in einer der Sinn-Kategorien.
 
+**Idle-Zeit-Veredelung**
+`brain/veredelung_service.py` nutzt Leerlaufzeit (20 Minuten ohne `/process`, Hintergrund-Task in `main.py`) für ein zweites, kleineres lokales Modell (`google/gemma-4-e2b` über [LM Studio](https://lmstudio.ai/), entkoppelt vom Live-Pfad mit `qwen2.5:7b`/Ollama): Notizen sprachlich glätten, Kategorie nachschärfen, redundante Notizen bündeln, Tagebuch über mehrere Tage verdichten, Kategorien selbst pflegen (neue anlegen, leere löschen). Original bleibt neben der veredelten Version erhalten — Web-UI zeigt beide nebeneinander. Läuft in einem eigenen Thread, damit `/process` währenddessen nicht blockiert wird; ein bereits laufender Veredelungsschritt wird nicht mitten in der Generierung abgebrochen, nur zwischen zwei Schritten geprüft, ob wieder echte Aktivität da ist.
+
 ---
 
 ## 🚀 Installation & Start
@@ -85,8 +88,11 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# LLM laden
+# LLM fuer den Live-Pfad laden
 ollama pull qwen2.5:7b
+
+# LM Studio fuer die Veredelung: Modell google/gemma-4-e2b laden, dann
+# lms server start (liefert eine OpenAI-kompatible API auf Port 1234)
 
 # Starten
 uvicorn main:app --host 0.0.0.0 --port 8000
@@ -158,6 +164,18 @@ Führt mehrere Notizen (`ids`, optional `body`/`category`) zu einer neuen zusamm
 ### `DELETE /api/notes/{note_id}`
 Löscht eine einzelne Notiz.
 
+### `GET /api/counts`
+Kategorie-Zählungen plus höchste Notiz-/Veredelungs-ID — fürs periodische Notebook-Polling (Server-Änderungen erkennen, ohne alles neu zu laden).
+
+### `GET /api/veredelt?seit_id=<id>`
+Veredelte Notizen (Original + veredelte Version) seit einer gegebenen ID — Rückkanal für das Notebook.
+
+### `GET /api/buendel-vorschlaege` / `DELETE /api/buendel-vorschlaege/{id}`
+Von der Veredelung vorgeschlagene Notiz-Bündel (zum manuellen Zusammenführen über die Web-UI) bzw. Verwerfen eines Vorschlags.
+
+### `GET /api/config`
+Gültige Kategorien mitsamt Farben (aus der DB, nicht mehr hartcodiert).
+
 ### `GET /api/health` (Alias: `GET /health`)
 Kurzer Status-Check, meldet u. a. das aktive LLM-Modell.
 
@@ -177,6 +195,7 @@ imkopfhaben/
 │   ├── main.py
 │   ├── ai_service.py
 │   ├── database.py
+│   ├── veredelung_service.py
 │   ├── static/
 │   │   └── index.html
 │   ├── requirements.txt

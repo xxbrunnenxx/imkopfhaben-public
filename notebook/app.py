@@ -32,10 +32,18 @@ log = logging.getLogger("imkopfhaben-app")
 SERVER_HOST = "http://kraken.local:8000"
 SERVER_URL = f"{SERVER_HOST}/process"
 CONFIG_URL = f"{SERVER_HOST}/api/config"
+NOTES_URL = f"{SERVER_HOST}/api/notes"
+VEREDELT_URL = f"{SERVER_HOST}/api/veredelt"
 RECORD_PATH = Path("/tmp/note.wav")
 ARCHIVE_PATH = Path.home() / "imkopfhaben_archive.json"
 QUEUE_DIR = Path.home() / "notiz_warteschlange"
 QUEUE_RETRY_SEC = 60.0
+# Veredelte Notizen (Issue #16) - Rueckkanal, eigenes Verzeichnis getrennt
+# von der Warteschlange/dem normalen Archiv, echte Dateien zum Durchsehen
+# per SCP/Samba.
+VEREDELTE_DIR = Path.home() / "veredelte_notizen"
+SYNC_STATE_PATH = Path.home() / "sync_stand.json"
+SYNC_RETRY_SEC = 60.0
 
 FONT_PATH_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 FONT_PATH_REGULAR = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
@@ -90,6 +98,22 @@ def _aktualisiere_tag_colors() -> None:
                 continue
     except requests.RequestException as e:
         log.error(f"Konnte Kategorie-Konfiguration nicht laden, nutze Standardfarben: {e}")
+
+
+def _lade_sync_stand() -> dict:
+    if SYNC_STATE_PATH.exists():
+        try:
+            return json.loads(SYNC_STATE_PATH.read_text())
+        except Exception:
+            pass
+    return {"letzte_veredelung_id": 0}
+
+
+def _speichere_sync_stand(stand: dict) -> None:
+    try:
+        SYNC_STATE_PATH.write_text(json.dumps(stand))
+    except Exception as e:
+        log.error(f"Sync-Stand konnte nicht gespeichert werden: {e}")
 
 
 def _load_fonts():
@@ -376,6 +400,58 @@ class App:
         finally:
             self._warteschlangen_lock.release()
 
+    def _synchronisiere_mit_server(self) -> None:
+        """Periodischer Abgleich mit dem Brain (Issue #11/#16), analog zum
+        60s-Warteschlangen-Rhythmus:
+        1. Neue veredelte Notizen abholen (eigener Rueckkanal-Endpunkt) und
+           als echte Dateien unter ~/veredelte_notizen/ ablegen.
+        2. Das lokale Archiv komplett gegen den aktuellen Server-Stand
+           abgleichen - behebt die Notebook/Server-Drift (Issue #11):
+           Web-UI-Edits/Loeschungen/Merges und die Veredelung liefen sonst
+           unbemerkt am Geraet vorbei (live so aufgetreten)."""
+        stand = _lade_sync_stand()
+        try:
+            resp = requests.get(VEREDELT_URL, params={"seit_id": stand["letzte_veredelung_id"]}, timeout=5)
+            resp.raise_for_status()
+            neue_veredelungen = resp.json()
+        except requests.RequestException as e:
+            log.error(f"Sync mit Brain fehlgeschlagen: {e}")
+            return
+
+        if neue_veredelungen:
+            VEREDELTE_DIR.mkdir(exist_ok=True)
+            for v in neue_veredelungen:
+                zeitstempel = v["erstellt_am"].replace(" ", "_").replace(":", "")
+                dateiname = f"{v['note_id']}_{zeitstempel}.txt"
+                inhalt = (
+                    f"Original ({v['roh_kategorie']}, {v['notiz_erstellt_am']}):\n{v['roh_body']}\n\n"
+                    f"Veredelt ({v['erstellt_am']}):\n{v['veredelter_body']}\n"
+                )
+                if v.get("veredelte_kategorie") and v["veredelte_kategorie"] != v["roh_kategorie"]:
+                    inhalt += f"\nKategorie-Vorschlag: {v['veredelte_kategorie']}\n"
+                (VEREDELTE_DIR / dateiname).write_text(inhalt, encoding="utf-8")
+            stand["letzte_veredelung_id"] = max(v["veredelung_id"] for v in neue_veredelungen)
+            _speichere_sync_stand(stand)
+
+        try:
+            resp = requests.get(NOTES_URL, params={"limit": 500}, timeout=5)
+            resp.raise_for_status()
+            server_notizen = resp.json()
+        except requests.RequestException as e:
+            log.error(f"Notizen-Abgleich fehlgeschlagen: {e}")
+            return
+
+        self.archive.items = [
+            {
+                "tag": n["category"],
+                "note": n["body"],
+                "transcript": n.get("raw_transcript") or "",
+                "created_at": n["created_at"],
+            }
+            for n in server_notizen
+        ]
+        self.archive.save()
+
     def _on_press(self) -> None:
         self.press_started_at = time.monotonic()
 
@@ -421,20 +497,33 @@ class App:
     def run(self):
         self.show_dashboard()
         naechster_versuch = time.monotonic() + QUEUE_RETRY_SEC
+        naechster_sync = time.monotonic() + SYNC_RETRY_SEC
         while True:
             time.sleep(1.0)
-            if time.monotonic() < naechster_versuch:
-                continue
-            naechster_versuch = time.monotonic() + QUEUE_RETRY_SEC
-            # Nur im Ruhezustand nachsenden - waehrend einer Aufnahme oder im
-            # Blaettern soll die Warteschlange das Display nicht dazwischenfunken.
-            if self.mode != "dashboard" or not any(QUEUE_DIR.glob("*.wav")):
-                continue
-            try:
-                self._verarbeite_warteschlange(blockierend=False)
-            except Exception as e:
-                log.error(f"Warteschlange (Hintergrund): {e}")
-            if self.mode == "dashboard":
+            jetzt = time.monotonic()
+            aktualisiert = False
+
+            # Nur im Ruhezustand nachsenden/synchronisieren - waehrend einer
+            # Aufnahme oder im Blaettern soll das Display nicht dazwischenfunken.
+            if jetzt >= naechster_versuch:
+                naechster_versuch = jetzt + QUEUE_RETRY_SEC
+                if self.mode == "dashboard" and any(QUEUE_DIR.glob("*.wav")):
+                    try:
+                        self._verarbeite_warteschlange(blockierend=False)
+                        aktualisiert = True
+                    except Exception as e:
+                        log.error(f"Warteschlange (Hintergrund): {e}")
+
+            if jetzt >= naechster_sync:
+                naechster_sync = jetzt + SYNC_RETRY_SEC
+                if self.mode == "dashboard":
+                    try:
+                        self._synchronisiere_mit_server()
+                        aktualisiert = True
+                    except Exception as e:
+                        log.error(f"Server-Sync (Hintergrund): {e}")
+
+            if aktualisiert and self.mode == "dashboard":
                 self.show_dashboard()
 
 

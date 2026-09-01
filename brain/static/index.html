@@ -83,6 +83,22 @@
     margin-bottom: 6px;
   }
   #empty { color: var(--text-dim); text-align: center; padding: 40px 0; }
+  .veredelt-block {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--card-border);
+  }
+  .veredelt-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    margin-bottom: 3px;
+  }
+  .veredelt-kat-hinweis { color: var(--warn); font-size: 0.78rem; margin-top: 4px; }
+  #buendel { max-width: 720px; margin: 0 auto 16px; padding: 0 20px; }
+  #buendel .note { border-color: var(--warn); }
+  #buendel .note-actions button.primary { border-color: var(--accent); color: var(--accent); }
 </style>
 </head>
 <body>
@@ -98,6 +114,7 @@
     <span id="status"></span>
   </div>
 </header>
+<div id="buendel"></div>
 <main id="list"></main>
 
 <script>
@@ -122,15 +139,63 @@ async function ladeKonfiguration() {
 
 let notes = [];
 let selected = new Set();
+let veredeltMap = new Map(); // note_id -> neueste Veredelung
 
 async function laden() {
   status("lade...");
-  const res = await fetch("/api/notes?limit=500");
-  notes = await res.json();
+  const [notesRes, veredeltRes, buendelRes] = await Promise.all([
+    fetch("/api/notes?limit=500"),
+    fetch("/api/veredelt?seit_id=0"),
+    fetch("/api/buendel-vorschlaege"),
+  ]);
+  notes = await notesRes.json();
+  const veredelte = await veredeltRes.json();
+  veredeltMap = new Map();
+  for (const v of veredelte) veredeltMap.set(v.note_id, v); // spaetere ueberschreiben frühere
+  const buendel = await buendelRes.json();
+
   selected.clear();
   fuelleFilter();
   render();
+  renderBuendel(buendel);
   status(`${notes.length} Notizen`);
+}
+
+function renderBuendel(vorschlaege) {
+  const el = document.getElementById("buendel");
+  if (!vorschlaege.length) { el.innerHTML = ""; return; }
+  el.innerHTML = `<h1 style="font-size:0.95rem;margin:0 0 8px">Bündel-Vorschläge der Veredelung</h1>` +
+    vorschlaege.map(v => {
+      const betroffene = v.note_ids.map(id => notes.find(n => n.id === id)).filter(Boolean);
+      if (betroffene.length < 2) return "";
+      const texte = betroffene.map(n => `#${n.id}: ${escapeHtml(n.body)}`).join("<br>");
+      return `
+        <div class="note">
+          <div class="note-body">
+            <div class="note-top"><span class="tag" style="background:${'var(--warn)'}22;color:var(--warn)">Vorschlag</span></div>
+            <div class="text">${texte}</div>
+            <div class="veredelt-kat-hinweis">${escapeHtml(v.begruendung || "")}</div>
+            <div class="note-actions">
+              <button class="primary" data-buendel-merge="${v.id}" data-ids="${v.note_ids.join(',')}">Zusammenführen</button>
+              <button data-buendel-verwerfen="${v.id}">Verwerfen</button>
+            </div>
+          </div>
+        </div>`;
+    }).join("");
+
+  el.querySelectorAll("[data-buendel-merge]").forEach(b => b.addEventListener("click", async () => {
+    const ids = b.dataset.ids.split(",").map(Number);
+    await fetch("/api/notes/merge", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids }),
+    });
+    await fetch(`/api/buendel-vorschlaege/${b.dataset.buendelMerge}`, { method: "DELETE" });
+    await laden();
+  }));
+  el.querySelectorAll("[data-buendel-verwerfen]").forEach(b => b.addEventListener("click", async () => {
+    await fetch(`/api/buendel-vorschlaege/${b.dataset.buendelVerwerfen}`, { method: "DELETE" });
+    await laden();
+  }));
 }
 
 function fuelleFilter() {
@@ -169,6 +234,19 @@ function render() {
 
 function noteHtml(n) {
   const farbe = TAG_COLORS[n.category] || "#7a8290";
+  const veredelt = veredeltMap.get(n.id);
+  let veredeltHtml = "";
+  if (veredelt) {
+    const katAbweichung = veredelt.veredelte_kategorie && veredelt.veredelte_kategorie !== n.category
+      ? `<div class="veredelt-kat-hinweis">Kategorie-Vorschlag der Veredelung: ${escapeHtml(veredelt.veredelte_kategorie)}</div>`
+      : "";
+    veredeltHtml = `
+      <div class="veredelt-block">
+        <div class="veredelt-label">Veredelt (${escapeHtml(veredelt.erstellt_am)})</div>
+        <div class="text">${escapeHtml(veredelt.veredelter_body)}</div>
+        ${katAbweichung}
+      </div>`;
+  }
   return `
     <div class="note" id="note-${n.id}">
       <input type="checkbox" data-id="${n.id}" ${selected.has(n.id) ? "checked" : ""}>
@@ -179,6 +257,7 @@ function noteHtml(n) {
         </div>
         <div class="text">${escapeHtml(n.body)}</div>
         ${n.raw_transcript ? `<div class="transcript">„${escapeHtml(n.raw_transcript)}"</div>` : ""}
+        ${veredeltHtml}
         <div class="note-actions">
           <button data-edit="${n.id}">Bearbeiten</button>
           <button data-delete="${n.id}" class="danger">Löschen</button>
