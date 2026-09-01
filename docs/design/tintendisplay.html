@@ -1,0 +1,553 @@
+<title>Tintendisplay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper:#ffffff;
+    --rule:#e4e8ef;
+    --margin:#b23a2e;
+    --margin-soft:#d99a92;
+    --ink:#1f2229;
+    --ink-soft:#6b7078;
+    --ink-faint:#9a9ea3;
+    --screen:#ece7d8;
+    --screen-line:#d8d2bf;
+    --card:#fdfcf9;
+    --card-line:#e4e2da;
+    --bezel:#202225;
+    --bezel-edge:#101113;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{
+    position:relative;
+    max-width:1040px;
+    margin:0 auto;
+    padding:72px 40px 96px;
+  }
+
+  .eyebrow{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12px;
+    letter-spacing:0.13em;
+    text-transform:uppercase;
+    color:var(--margin);
+    margin:0 0 14px;
+  }
+
+  h1{
+    font-family:"Caveat", "Segoe Print", cursive;
+    font-weight:700;
+    font-size:clamp(40px,5.6vw,58px);
+    line-height:1.05;
+    letter-spacing:0.005em;
+    margin:0 0 20px;
+    text-wrap:balance;
+    color:var(--ink);
+    transform:rotate(-0.4deg);
+    transform-origin:left;
+  }
+
+  .lede{
+    max-width:60ch;
+    font-size:16px;
+    line-height:1.65;
+    color:#4a4e55;
+    margin:0 0 64px;
+  }
+  .lede strong{color:var(--ink);font-weight:600;}
+
+  /* ---------- device rig ---------- */
+  .rig{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-bottom:80px;
+  }
+
+  .device{
+    position:relative;
+    width:min(100%,340px);
+    background:linear-gradient(160deg,var(--bezel),var(--bezel-edge));
+    border-radius:26px;
+    padding:20px 20px 26px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.06) inset,
+      0 24px 40px -20px rgba(31,34,41,0.35),
+      0 3px 8px rgba(31,34,41,0.18);
+  }
+
+  .screen{
+    position:relative;
+    aspect-ratio:3/5;
+    background:
+      repeating-linear-gradient(to bottom, transparent 0 15px, var(--screen-line) 15px 16px),
+      var(--screen);
+    border-radius:3px;
+    overflow:hidden;
+    box-shadow:0 0 0 1px rgba(0,0,0,0.3) inset, 0 2px 12px rgba(0,0,0,0.18) inset;
+    display:flex;
+    flex-direction:column;
+    padding:22px 22px 22px 34px;
+    font-family:"IBM Plex Mono", monospace;
+    color:var(--ink);
+  }
+
+  /* notebook page, but on the device itself: red margin rule + binding holes */
+  .screen::before{
+    content:"";
+    position:absolute;
+    top:0; bottom:0; left:24px;
+    width:1.4px;
+    background:var(--margin);
+    opacity:0.8;
+  }
+  .screen::after{
+    content:"";
+    position:absolute;
+    top:16px; bottom:16px; left:8px;
+    width:6px;
+    background-image:radial-gradient(circle at 3px 3px, var(--screen-line) 2.6px, transparent 3px);
+    background-size:100% 22px;
+    background-repeat:repeat-y;
+  }
+  .screen > *{ position:relative; z-index:1; }
+
+  .screen-head{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    padding-bottom:12px;
+    border-bottom:1.5px solid var(--ink);
+    margin-bottom:6px;
+  }
+  .wordmark{
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+  }
+  .status-cluster{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    font-size:10.5px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+  }
+  .sync-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--ink);
+    display:inline-block;
+    margin-right:5px;
+    transform:translateY(-1px);
+  }
+  .battery{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+  }
+  .battery .pct{
+    font-size:10.5px;
+    letter-spacing:0.02em;
+  }
+  .battery .pct::before{
+    content:"≈";
+    color:var(--ink-soft);
+    margin-right:1px;
+  }
+  .battery .cell{
+    width:14px;height:9px;
+    border:1.3px solid var(--ink);
+    border-radius:1px;
+    display:flex;
+    align-items:center;
+    padding:1.5px;
+  }
+  .battery .cell span{
+    display:block;height:100%;background:var(--ink);width:75%;
+  }
+  .battery .nub{
+    width:2px;height:5px;background:var(--ink);
+  }
+
+  /* list / idle state */
+  .rule-field{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+  .entry{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding:12px 0;
+    border-bottom:1px dashed var(--screen-line);
+    font-size:12.5px;
+  }
+  .entry:last-child{border-bottom:none;}
+  .entry .meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+  }
+  .entry time{color:var(--ink-soft);font-size:11px;}
+  .entry .len{color:var(--ink-soft);font-size:11px;margin-left:auto;}
+  .entry .snippet{
+    font-family:"IBM Plex Sans", sans-serif;
+    font-size:12px;
+    line-height:1.4;
+    overflow:hidden;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+  }
+
+  /* category stamps: differ by pattern, not by color */
+  .stamp{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height:22px;
+    padding:0 8px;
+    border:1.4px solid var(--ink);
+    border-radius:3px;
+    font-size:10px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    position:relative;
+    overflow:hidden;
+    background:var(--screen);
+    white-space:nowrap;
+  }
+  .stamp span{position:relative;z-index:1;}
+
+  .stamp--idee{ background-image:radial-gradient(circle at 1px 1px, var(--ink) 1px, transparent 1.4px); background-size:5px 5px; background-color:var(--screen); }
+  .stamp--aufgabe{ background-image:radial-gradient(circle at 1px 1px, var(--ink) 1px, transparent 1.4px); background-size:8px 8px; background-color:var(--screen); }
+  .stamp--notiz{ background-color:var(--screen); }
+  .stamp--tagebuch{ background-image:repeating-linear-gradient(45deg, var(--ink) 0 1px, transparent 1px 6px); background-color:var(--screen); }
+  .stamp--wichtig{ background:var(--ink); color:var(--screen); border-color:var(--ink); }
+  .stamp--wichtig span{color:var(--screen);}
+  .stamp--unklar{ background:var(--screen); border-style:dashed; }
+
+  /* recording state */
+  .rec-screen{ align-items:center; justify-content:center; text-align:center; gap:18px; }
+  .rec-label{
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    justify-content:center;
+  }
+  .rec-dot{
+    width:7px;height:7px;border-radius:50%;background:var(--ink);
+  }
+  .timer{
+    font-size:38px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .waveform{
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:3px;
+    height:46px;
+  }
+  .waveform i{
+    display:block;
+    width:3.5px;
+    background:var(--ink);
+    border-radius:1px;
+  }
+  .rec-note{
+    font-family:"IBM Plex Sans", sans-serif;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    max-width:32ch;
+  }
+
+  /* control strip below the screen, on the bezel */
+  .controls{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    gap:46px;
+    padding-top:20px;
+  }
+  .control{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:9px;
+  }
+  .control .glyph{
+    width:34px;height:34px;
+    border-radius:50%;
+    background:linear-gradient(160deg,#2a2d31,#151719);
+    box-shadow:0 1px 0 rgba(255,255,255,0.07) inset, 0 3px 6px rgba(0,0,0,0.4);
+    position:relative;
+  }
+  .control .glyph.square{border-radius:8px;width:26px;height:26px;}
+  .control .glyph::after{
+    content:"";
+    position:absolute;
+  }
+  .control.rotary .glyph::after{
+    top:5px;left:50%;
+    width:2px;height:8px;
+    background:var(--margin-soft);
+    transform:translateX(-50%);
+    border-radius:1px;
+  }
+  .control .caption{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:10px;
+    letter-spacing:0.04em;
+    color:var(--ink-faint);
+    text-align:center;
+  }
+  .control .caption b{
+    display:block;
+    color:#4a4e55;
+    font-size:9.5px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:2px;
+  }
+
+  .rig figcaption{
+    margin-top:24px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11.5px;
+    letter-spacing:0.04em;
+    color:var(--ink-faint);
+    text-align:center;
+  }
+
+  /* ---------- secondary row ---------- */
+  .pair{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:24px;
+    margin-bottom:72px;
+  }
+  @media (max-width:720px){ .pair{grid-template-columns:1fr;} }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:10px;
+    padding:20px;
+    box-shadow:0 1px 3px rgba(31,34,41,0.05);
+  }
+  .card .label{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 14px;
+    padding-bottom:8px;
+    border-bottom:2px solid var(--margin-soft);
+    display:inline-block;
+  }
+  .card .device{
+    width:min(100%,240px);
+    margin:0 auto;
+    padding:14px 14px 18px;
+    border-radius:18px;
+    box-shadow:0 16px 30px -18px rgba(31,34,41,0.4);
+  }
+  .card .screen{padding:16px 16px 16px 28px;}
+  .card .entry .snippet{-webkit-line-clamp:3;}
+
+  .swatch-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* ---------- rationale ---------- */
+  .rationale{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+    padding-top:36px;
+    border-top:1px solid var(--card-line);
+  }
+  @media (max-width:720px){ .rationale{grid-template-columns:1fr;} }
+  .rationale h3{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin:0 0 10px;
+  }
+  .rationale p{
+    font-size:14px;
+    line-height:1.6;
+    color:#565a61;
+    margin:0;
+  }
+
+  .footnote{
+    margin-top:52px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11.5px;
+    color:var(--ink-faint);
+    letter-spacing:0.03em;
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .entry, .stamp{ transition:opacity .2s ease; }
+  }
+</style>
+
+<div class="page">
+
+  <p class="eyebrow">Gestaltungsentwurf · ESP32-S3, 3,97″ E-Paper, 800 × 480</p>
+  <h1>Ein Notizbuch, das aussieht wie eines</h1>
+  <p class="lede">
+    Reiner Bildschirmentwurf für das Waveshare-Board als mögliches zweites Gehäuse
+    für <strong>imkopfhaben</strong> — orientiert an der Sprachnotizbuch-Idee, ohne
+    dass hier etwas davon implementiert wird. E-Paper kennt kein Grau durch
+    Leuchtkraft und keine Farbe zur Unterscheidung, nur Schwarz, Weiß und die
+    Rasterung dazwischen. Der Entwurf nimmt genau das als Material: <strong>Kategorien
+    unterscheiden sich durch Muster, nicht durch Farbe.</strong>
+  </p>
+
+  <!-- HERO: idle / list state -->
+  <figure class="rig">
+    <div class="device">
+      <div class="screen">
+        <div class="screen-head">
+          <span class="wordmark">imkopfhaben</span>
+          <span class="status-cluster">
+            <span><span class="sync-dot"></span>gesichert</span>
+            <span>Di · 01.09.</span>
+            <span class="battery"><span class="pct">72%</span><span class="cell"><span></span></span><span class="nub"></span></span>
+          </span>
+        </div>
+        <div class="rule-field">
+          <div class="entry">
+            <div class="meta">
+              <time>09:14</time>
+              <span class="stamp stamp--idee"><span>Idee</span></span>
+              <span class="len">0:38</span>
+            </div>
+            <span class="snippet">Kategorien vom Brain automatisch pflegen lassen</span>
+          </div>
+          <div class="entry">
+            <div class="meta">
+              <time>09:41</time>
+              <span class="stamp stamp--aufgabe"><span>Aufgabe</span></span>
+              <span class="len">0:22</span>
+            </div>
+            <span class="snippet">nexmon-Skript nach dem Neustart nochmal prüfen</span>
+          </div>
+          <div class="entry">
+            <div class="meta">
+              <time>10:05</time>
+              <span class="stamp stamp--notiz"><span>Notiz</span></span>
+              <span class="len">0:15</span>
+            </div>
+            <span class="snippet">Ordner austausch/gesehen nach Ansehen einsortieren</span>
+          </div>
+          <div class="entry">
+            <div class="meta">
+              <time>12:30</time>
+              <span class="stamp stamp--tagebuch"><span>Tagebuch</span></span>
+              <span class="len">1:04</span>
+            </div>
+            <span class="snippet">kurzer Spaziergang, Kopf wieder frei</span>
+          </div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="control rotary">
+          <div class="glyph"></div>
+          <div class="caption"><b>Rotary</b>drehen · drücken</div>
+        </div>
+        <div class="control">
+          <div class="glyph square"></div>
+          <div class="caption"><b>PWR</b>ein / aus</div>
+        </div>
+        <div class="control">
+          <div class="glyph square"></div>
+          <div class="caption"><b>BOOT</b>reserviert</div>
+        </div>
+      </div>
+    </div>
+    <figcaption>Grundzustand — letzte Notizen, Rotary blättert, Drücken öffnet</figcaption>
+  </figure>
+
+  <!-- secondary states -->
+  <div class="pair">
+    <div class="card">
+      <p class="label">Aufnahme läuft</p>
+      <div class="device">
+        <div class="screen rec-screen">
+          <span class="rec-label"><span class="rec-dot"></span>Aufnahme läuft</span>
+          <span class="timer">00:47</span>
+          <div class="waveform">
+            <i style="height:14px"></i><i style="height:28px"></i><i style="height:18px"></i>
+            <i style="height:38px"></i><i style="height:22px"></i><i style="height:44px"></i>
+            <i style="height:16px"></i><i style="height:30px"></i><i style="height:20px"></i>
+            <i style="height:34px"></i><i style="height:24px"></i><i style="height:12px"></i>
+          </div>
+          <span class="rec-note">Kategorie wird nach der Übertragung vom Brain vergeben</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="label">Stempelsatz — sechs Kategorien, sechs Raster</p>
+      <div class="swatch-row">
+        <span class="stamp stamp--idee"><span>Idee</span></span>
+        <span class="stamp stamp--aufgabe"><span>Aufgabe</span></span>
+        <span class="stamp stamp--notiz"><span>Notiz</span></span>
+        <span class="stamp stamp--tagebuch"><span>Tagebuch</span></span>
+        <span class="stamp stamp--wichtig"><span>Wichtig</span></span>
+        <span class="stamp stamp--unklar"><span>Unklar</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rationale">
+    <div>
+      <h3>Material</h3>
+      <p>Feste Schriftweite auf dem Screen, weil E-Paper ohnehin im festen Pixelraster
+      aktualisiert — die Schrift behauptet keine Feinheit, die das Display nicht hat.</p>
+    </div>
+    <div>
+      <h3>Unterscheidung ohne Farbe</h3>
+      <p>„Wichtig“ als voll geschwärzter Stempel, „Unklar“ nur als gestrichelte Kontur —
+      Dringlichkeit und Zweifel werden über die Form gelesen, nicht über einen Farbcode,
+      den die Hardware gar nicht zeigen könnte.</p>
+    </div>
+    <div>
+      <h3>Bedienung</h3>
+      <p>Rotary, PWR und BOOT sind hier nur beschriftet, nicht verdrahtet — die Beschriftung
+      zeigt lediglich, wofür welcher Knopf am Board gedacht wäre.</p>
+    </div>
+  </div>
+
+  <p class="footnote">Vorschlag — reine Bildschirmgestaltung, keine Funktion dahinter.</p>
+
+</div>
