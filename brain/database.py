@@ -23,6 +23,12 @@ def init_db():
         """)
         conn.commit()
 
+# priority und is_done: bewusst ungenutzt/reserviert. priority wird beim
+# Speichern immer hart auf "normal" gesetzt und nirgends gelesen, is_done
+# nirgends geschrieben oder gelesen - keine versteckte Funktion, die hier
+# fehlt. Siehe Issue #5 fuer die Alternativen (aktiv nutzen z.B. als
+# "Erledigt"-Haekchen in der Web-UI, oder Spalten per Migration entfernen).
+
 def save_note(title: str, body: str, category: str = "Notiz", priority: str = "normal", raw_transcript: str = "") -> Dict[str, Any]:
     created_at = datetime.now().strftime("%Y-%m-%d %H:%M")
     with sqlite3.connect(DB_PATH) as conn:
