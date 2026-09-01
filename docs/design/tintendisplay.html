@@ -1,80 +1,97 @@
 <title>Tintendisplay</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
   :root{
-    --desk:#1c2023;
-    --desk-raised:#242a2e;
-    --desk-line:#383f44;
-    --paper:#e7e2d4;
-    --paper-dim:#d9d3c2;
-    --ink:#211f1a;
-    --ink-soft:#4a473f;
-    --accent:#5c8ba0;
-    --accent-soft:#8fb0bf;
-    --bezel:#141618;
-    --bezel-edge:#0a0b0c;
+    --paper:#ffffff;
+    --rule:#e4e8ef;
+    --margin:#b23a2e;
+    --margin-soft:#d99a92;
+    --ink:#1f2229;
+    --ink-soft:#6b7078;
+    --ink-faint:#9a9ea3;
+    --screen:#ece7d8;
+    --screen-line:#d8d2bf;
+    --card:#fdfcf9;
+    --card-line:#e4e2da;
+    --bezel:#202225;
+    --bezel-edge:#101113;
   }
 
   *{box-sizing:border-box;}
   body{
     margin:0;
-    background:var(--desk);
-    color:var(--paper);
+    background:
+      repeating-linear-gradient(to bottom, transparent 0 31px, var(--rule) 31px 32px),
+      var(--paper);
+    color:var(--ink);
     font-family:"IBM Plex Sans", system-ui, sans-serif;
     -webkit-font-smoothing:antialiased;
   }
 
   .page{
+    position:relative;
     max-width:1040px;
     margin:0 auto;
-    padding:72px 32px 96px;
-    position:relative;
+    padding:72px 40px 96px 108px;
   }
 
-  /* ambient lamp glow over the desk */
-  .glow{
-    position:fixed;
-    inset:0;
-    background:radial-gradient(ellipse 900px 620px at 50% -8%, rgba(140,170,185,0.14), transparent 65%);
-    pointer-events:none;
+  /* notebook margin: red rule + a column of binding holes */
+  .page::before{
+    content:"";
+    position:absolute;
+    top:0; bottom:0; left:76px;
+    width:2px;
+    background:var(--margin);
+    opacity:0.75;
+  }
+  .page::after{
+    content:"";
+    position:absolute;
+    top:40px; bottom:40px; left:34px;
+    width:10px;
+    background-image:radial-gradient(circle at 5px 5px, #dcdfe4 4.2px, transparent 4.6px);
+    background-size:100% 40px;
+    background-repeat:repeat-y;
   }
 
   .eyebrow{
     font-family:"IBM Plex Mono", monospace;
-    font-size:12.5px;
-    letter-spacing:0.14em;
+    font-size:12px;
+    letter-spacing:0.13em;
     text-transform:uppercase;
-    color:var(--accent-soft);
-    margin:0 0 18px;
+    color:var(--margin);
+    margin:0 0 14px;
   }
 
   h1{
-    font-family:"Source Serif 4", Georgia, serif;
+    font-family:"Caveat", "Segoe Print", cursive;
     font-weight:700;
-    font-size:clamp(34px,4.6vw,50px);
-    line-height:1.08;
-    letter-spacing:-0.01em;
-    margin:0 0 22px;
+    font-size:clamp(40px,5.6vw,58px);
+    line-height:1.05;
+    letter-spacing:0.005em;
+    margin:0 0 20px;
     text-wrap:balance;
-    color:#f4f1e8;
+    color:var(--ink);
+    transform:rotate(-0.4deg);
+    transform-origin:left;
   }
 
   .lede{
-    max-width:62ch;
-    font-size:16.5px;
+    max-width:60ch;
+    font-size:16px;
     line-height:1.65;
-    color:#c9c4b6;
+    color:#4a4e55;
     margin:0 0 64px;
   }
-  .lede strong{color:var(--paper);font-weight:600;}
+  .lede strong{color:var(--ink);font-weight:600;}
 
   /* ---------- device rig ---------- */
   .rig{
     display:flex;
     flex-direction:column;
     align-items:center;
-    margin-bottom:88px;
+    margin-bottom:80px;
   }
 
   .device{
@@ -84,18 +101,18 @@
     border-radius:26px;
     padding:20px 20px 26px;
     box-shadow:
-      0 1px 0 rgba(255,255,255,0.05) inset,
-      0 40px 70px -25px rgba(0,0,0,0.65),
-      0 4px 10px rgba(0,0,0,0.4);
+      0 1px 0 rgba(255,255,255,0.06) inset,
+      0 24px 40px -20px rgba(31,34,41,0.35),
+      0 3px 8px rgba(31,34,41,0.18);
   }
 
   .screen{
     position:relative;
     aspect-ratio:3/5;
-    background:var(--paper);
+    background:var(--screen);
     border-radius:3px;
     overflow:hidden;
-    box-shadow:0 0 0 1px rgba(0,0,0,0.35) inset, 0 2px 14px rgba(0,0,0,0.25) inset;
+    box-shadow:0 0 0 1px rgba(0,0,0,0.3) inset, 0 2px 12px rgba(0,0,0,0.18) inset;
     display:flex;
     flex-direction:column;
     padding:22px 26px;
@@ -173,7 +190,7 @@
     flex-direction:column;
     gap:6px;
     padding:12px 0;
-    border-bottom:1px dashed rgba(33,31,26,0.35);
+    border-bottom:1px dashed var(--screen-line);
     font-size:12.5px;
   }
   .entry:last-child{border-bottom:none;}
@@ -195,7 +212,7 @@
     -webkit-box-orient:vertical;
   }
 
-  /* category stamps */
+  /* category stamps: differ by pattern, not by color */
   .stamp{
     display:inline-flex;
     align-items:center;
@@ -209,18 +226,18 @@
     text-transform:uppercase;
     position:relative;
     overflow:hidden;
-    background:var(--paper);
+    background:var(--screen);
     white-space:nowrap;
   }
   .stamp span{position:relative;z-index:1;}
 
-  .stamp--idee{ background-image:radial-gradient(circle at 1px 1px, var(--ink) 1px, transparent 1.4px); background-size:5px 5px; background-color:var(--paper); }
-  .stamp--aufgabe{ background-image:radial-gradient(circle at 1px 1px, var(--ink) 1px, transparent 1.4px); background-size:8px 8px; background-color:var(--paper); }
-  .stamp--notiz{ background-color:var(--paper); }
-  .stamp--tagebuch{ background-image:repeating-linear-gradient(45deg, var(--ink) 0 1px, transparent 1px 6px); background-color:var(--paper); }
-  .stamp--wichtig{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
-  .stamp--wichtig span{color:var(--paper);}
-  .stamp--unklar{ background:var(--paper); border-style:dashed; }
+  .stamp--idee{ background-image:radial-gradient(circle at 1px 1px, var(--ink) 1px, transparent 1.4px); background-size:5px 5px; background-color:var(--screen); }
+  .stamp--aufgabe{ background-image:radial-gradient(circle at 1px 1px, var(--ink) 1px, transparent 1.4px); background-size:8px 8px; background-color:var(--screen); }
+  .stamp--notiz{ background-color:var(--screen); }
+  .stamp--tagebuch{ background-image:repeating-linear-gradient(45deg, var(--ink) 0 1px, transparent 1px 6px); background-color:var(--screen); }
+  .stamp--wichtig{ background:var(--ink); color:var(--screen); border-color:var(--ink); }
+  .stamp--wichtig span{color:var(--screen);}
+  .stamp--unklar{ background:var(--screen); border-style:dashed; }
 
   /* recording state */
   .rec-screen{ align-items:center; justify-content:center; text-align:center; gap:18px; }
@@ -280,8 +297,8 @@
   .control .glyph{
     width:34px;height:34px;
     border-radius:50%;
-    background:linear-gradient(160deg,#2a2f33,#1a1d20);
-    box-shadow:0 1px 0 rgba(255,255,255,0.06) inset, 0 3px 6px rgba(0,0,0,0.5);
+    background:linear-gradient(160deg,#2a2d31,#151719);
+    box-shadow:0 1px 0 rgba(255,255,255,0.07) inset, 0 3px 6px rgba(0,0,0,0.4);
     position:relative;
   }
   .control .glyph.square{border-radius:8px;width:26px;height:26px;}
@@ -292,7 +309,7 @@
   .control.rotary .glyph::after{
     top:5px;left:50%;
     width:2px;height:8px;
-    background:var(--accent-soft);
+    background:var(--margin-soft);
     transform:translateX(-50%);
     border-radius:1px;
   }
@@ -300,12 +317,12 @@
     font-family:"IBM Plex Mono", monospace;
     font-size:10px;
     letter-spacing:0.04em;
-    color:#8a8f93;
+    color:var(--ink-faint);
     text-align:center;
   }
   .control .caption b{
     display:block;
-    color:#c7cbce;
+    color:#4a4e55;
     font-size:9.5px;
     text-transform:uppercase;
     letter-spacing:0.08em;
@@ -313,11 +330,11 @@
   }
 
   .rig figcaption{
-    margin-top:26px;
+    margin-top:24px;
     font-family:"IBM Plex Mono", monospace;
     font-size:11.5px;
-    letter-spacing:0.05em;
-    color:#7d8286;
+    letter-spacing:0.04em;
+    color:var(--ink-faint);
     text-align:center;
   }
 
@@ -325,31 +342,35 @@
   .pair{
     display:grid;
     grid-template-columns:1.1fr 0.9fr;
-    gap:28px;
-    margin-bottom:76px;
+    gap:24px;
+    margin-bottom:72px;
   }
   @media (max-width:720px){ .pair{grid-template-columns:1fr;} }
 
   .card{
-    background:var(--desk-raised);
-    border:1px solid var(--desk-line);
-    border-radius:14px;
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:10px;
     padding:20px;
+    box-shadow:0 1px 3px rgba(31,34,41,0.05);
   }
   .card .label{
     font-family:"IBM Plex Mono", monospace;
     font-size:11px;
-    letter-spacing:0.1em;
+    letter-spacing:0.09em;
     text-transform:uppercase;
-    color:var(--accent-soft);
+    color:var(--ink-soft);
     margin:0 0 14px;
+    padding-bottom:8px;
+    border-bottom:2px solid var(--margin-soft);
+    display:inline-block;
   }
   .card .device{
     width:min(100%,240px);
     margin:0 auto;
     padding:14px 14px 18px;
     border-radius:18px;
-    box-shadow:0 20px 40px -18px rgba(0,0,0,0.6);
+    box-shadow:0 16px 30px -18px rgba(31,34,41,0.4);
   }
   .card .screen{padding:16px 18px;}
   .card .entry .snippet{-webkit-line-clamp:3;}
@@ -364,9 +385,9 @@
   .rationale{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:28px;
-    padding-top:40px;
-    border-top:1px solid var(--desk-line);
+    gap:24px;
+    padding-top:36px;
+    border-top:1px solid var(--card-line);
   }
   @media (max-width:720px){ .rationale{grid-template-columns:1fr;} }
   .rationale h3{
@@ -374,21 +395,21 @@
     font-size:12px;
     letter-spacing:0.08em;
     text-transform:uppercase;
-    color:var(--paper);
+    color:var(--ink);
     margin:0 0 10px;
   }
   .rationale p{
     font-size:14px;
     line-height:1.6;
-    color:#b7b2a3;
+    color:#565a61;
     margin:0;
   }
 
   .footnote{
-    margin-top:56px;
+    margin-top:52px;
     font-family:"IBM Plex Mono", monospace;
     font-size:11.5px;
-    color:#6f7478;
+    color:var(--ink-faint);
     letter-spacing:0.03em;
   }
 
@@ -397,7 +418,6 @@
   }
 </style>
 
-<div class="glow"></div>
 <div class="page">
 
   <p class="eyebrow">Gestaltungsentwurf · ESP32-S3, 3,97″ E-Paper, 800 × 480</p>
