@@ -1,0 +1,23 @@
+# logrotate-Regel fuer brain.log
+#
+# brain.log entsteht nicht ueber ein logging-Modul im Code, sondern nur,
+# wenn main.py manuell mit einem Shell-Redirect gestartet wird, z.B.:
+#   nohup uvicorn main:app --host 0.0.0.0 --port 8000 > brain.log 2>&1 &
+# Der Prozess haelt dabei den Dateideskriptor dauerhaft offen. Ein reines
+# rename() durch logrotate wuerde daher ins Leere laufen (der Prozess
+# schriebe weiter in die umbenannte alte Datei) - deshalb copytruncate
+# statt der logrotate-Standardmethode.
+#
+# Installation (Pfad ggf. an die eigene Installation anpassen):
+#   sudo cp brain/imkopfhaben-brain.logrotate /etc/logrotate.d/imkopfhaben-brain
+
+/home/kraken/imkopfhaben-brain/brain.log {
+    weekly
+    rotate 8
+    maxsize 20M
+    compress
+    delaycompress
+    missingok
+    notifempty
+    copytruncate
+}

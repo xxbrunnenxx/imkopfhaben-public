@@ -98,6 +98,12 @@ Für Dauerbetrieb: `imkopfhaben-brain.service` nach `/etc/systemd/system/` kopie
 sudo systemctl enable --now imkopfhaben-brain.service
 ```
 
+Läuft `brain/` stattdessen manuell mit einem Shell-Redirect (z. B. `... > brain.log 2>&1 &`), wächst `brain.log` sonst unbegrenzt. `imkopfhaben-brain.logrotate` nach `/etc/logrotate.d/` kopieren (Pfad darin an die eigene Installation anpassen):
+
+```bash
+sudo cp brain/imkopfhaben-brain.logrotate /etc/logrotate.d/imkopfhaben-brain
+```
+
 ### B. `notebook/` (Pi Zero 2 W / Client)
 
 Voraussetzung: der PiSugar-Whisplay-Treiber (`whisplay_client.py`) ist bereits installiert und im Pfad erreichbar.
@@ -174,7 +180,8 @@ imkopfhaben/
 │   ├── static/
 │   │   └── index.html
 │   ├── requirements.txt
-│   └── imkopfhaben-brain.service
+│   ├── imkopfhaben-brain.service
+│   └── imkopfhaben-brain.logrotate
 └── notebook/
     ├── app.py
     ├── akku_lernen.py
