@@ -35,6 +35,10 @@ app.add_middleware(
 def health_check():
     return {"status": "ok", "backend": "Pi 5", "model": ai_service.MODEL_NAME}
 
+@app.get("/api/config")
+def get_config():
+    return {"categories": ai_service.CATEGORIES}
+
 @app.get("/api/notes")
 def list_notes(limit: int = Query(50, ge=1, le=500)):
     return database.get_all_notes(limit=limit)

@@ -101,10 +101,24 @@
 <main id="list"></main>
 
 <script>
-const TAG_COLORS = {
-  Todo: "#ff8c00", Aufgabe: "#ff8c00", Idee: "#3399ff", Notiz: "#3ecf8e",
-  Termin: "#e64ac9", Wichtig: "#e0453f", Tagebuch: "#b088f5", Unklar: "#7a8290",
-};
+// "Aufgabe" ist ein reiner UI-seitiger Alias fuer Todo (alte Notizen koennen
+// noch so getaggt sein) und kommt nie von /api/config - deshalb hier als
+// Basis stehen bleiben, der Rest kommt vom Server (siehe Issue #9).
+let TAG_COLORS = { Aufgabe: "#ff8c00" };
+
+async function ladeKonfiguration() {
+  try {
+    const res = await fetch("/api/config");
+    const config = await res.json();
+    TAG_COLORS = { ...TAG_COLORS, ...config.categories };
+  } catch (e) {
+    // Fallback, falls /api/config nicht erreichbar ist
+    TAG_COLORS = {
+      Todo: "#ff8c00", Aufgabe: "#ff8c00", Idee: "#3399ff", Notiz: "#3ecf8e",
+      Termin: "#e64ac9", Wichtig: "#e0453f", Tagebuch: "#b088f5", Unklar: "#7a8290",
+    };
+  }
+}
 
 let notes = [];
 let selected = new Set();
@@ -245,7 +259,10 @@ document.getElementById("mergeBtn").addEventListener("click", async () => {
 document.getElementById("refreshBtn").addEventListener("click", laden);
 document.getElementById("filter").addEventListener("change", render);
 
-laden();
+(async () => {
+  await ladeKonfiguration();
+  await laden();
+})();
 </script>
 </body>
 </html>

@@ -5,6 +5,19 @@ from faster_whisper import WhisperModel
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL_NAME = "qwen2.5:7b"
 
+# Einzige Quelle der Wahrheit fuer die gueltigen Kategorien (siehe Issue #9)
+# - wurde vorher zusaetzlich in notebook/app.py und brain/static/index.html
+# dupliziert gepflegt. Wird ueber GET /api/config an beide Clients ausgeliefert.
+CATEGORIES = {
+    "Todo": "#ff8c00",
+    "Idee": "#3399ff",
+    "Notiz": "#3ecf8e",
+    "Termin": "#e64ac9",
+    "Wichtig": "#e0453f",
+    "Tagebuch": "#b088f5",
+    "Unklar": "#7a8290",
+}
+
 print("Lade Faster-Whisper Modell (medium)...")
 whisper_model = WhisperModel(
     "medium",
@@ -35,10 +48,11 @@ def structure_with_llm(transcript: str) -> dict:
             "transcript": ""
         }
 
+    kategorie_liste = ", ".join(f'"{name}"' for name in CATEGORIES)
     prompt = f"""Transkript: "{transcript}"
 
 Aufgabe:
-1. Bestimme die passende Kategorie als 'tag': Wähle genau eines aus ["Todo", "Idee", "Notiz", "Termin", "Wichtig", "Tagebuch", "Unklar"].
+1. Bestimme die passende Kategorie als 'tag': Wähle genau eines aus [{kategorie_liste}].
    - "Wichtig" NUR bei einem echten Dringlichkeits- oder Warnsignal (z.B. Gesundheit, Sicherheit, eine explizite Frist wie "sofort"/"dringend").
      Nicht einfach nehmen, weil der Ton auffällig, vulgär oder unklar ist.
    - "Tagebuch" für persönliche Rückblicke/Erlebnisse: wie der Tag/eine Aktivität war, Stimmung,
