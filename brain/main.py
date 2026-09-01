@@ -64,7 +64,10 @@ async def process_audio(file: UploadFile = File(...)):
             zeit = datetime.now().strftime("%H:%M")
             bestehend = database.get_diary_entry_for_date(heute)
             if bestehend:
-                database.append_to_diary(bestehend["id"], zeit, result.get("note", transcript), transcript)
+                if database.diary_hat_aehnliches_segment(bestehend, transcript):
+                    print(f"[Brain] Tagebuch-Duplikat erkannt (Eintrag #{bestehend['id']}) - nicht erneut angehängt.")
+                else:
+                    database.append_to_diary(bestehend["id"], zeit, result.get("note", transcript), transcript)
             else:
                 database.save_note(
                     title="Tagebuch",

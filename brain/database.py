@@ -99,6 +99,24 @@ def get_diary_entry_for_date(date_str: str) -> Optional[Dict[str, Any]]:
         return dict(row) if row else None
 
 
+def diary_hat_aehnliches_segment(eintrag: Dict[str, Any], transcript: str, threshold: float = 0.85) -> bool:
+    """Prueft, ob der neue Transkript-Text einem bereits im Tageseintrag
+    enthaltenen Abschnitt sehr aehnlich ist (Segmente sind per '\\n---\\n'
+    getrennt, jeweils mit '[HH:MM] '-Praefix). Der normale
+    find_similar_recent()-Dedupe greift beim Tagebuch nicht, weil dort
+    immer an denselben Datensatz angehaengt statt eine neue Notiz erzeugt
+    wird - ohne diesen Check haetten Doppel-Sendungen (z.B. durch die
+    Warteschlange bei einem fluechtigen Netzwerkfehler) den Tageseintrag
+    beliebig oft mit demselben Inhalt aufgebläht."""
+    roh = eintrag.get("raw_transcript") or ""
+    for segment in roh.split("\n---\n"):
+        inhalt = segment.split("] ", 1)[1] if segment.startswith("[") and "] " in segment else segment
+        ratio = difflib.SequenceMatcher(None, transcript.lower(), inhalt.lower()).ratio()
+        if ratio >= threshold:
+            return True
+    return False
+
+
 def append_to_diary(note_id: int, zeit: str, zusatz_body: str, zusatz_transcript: str) -> Optional[Dict[str, Any]]:
     """Haengt einen weiteren Eintrag mit Uhrzeit-Praefix an einen bestehenden
     Tagebuch-Tageseintrag an, statt eine neue Notiz anzulegen."""
