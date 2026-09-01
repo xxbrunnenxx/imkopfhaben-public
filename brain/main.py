@@ -1,6 +1,7 @@
 import os
 import shutil
 import tempfile
+from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
 
@@ -53,20 +54,40 @@ async def process_audio(file: UploadFile = File(...)):
         result = ai_service.structure_with_llm(transcript)
         print(f"[Brain] Ergebnis: {result}")
 
-        # 3. In SQLite Datenbank archivieren - aber nicht, wenn ein sehr
-        # aehnliches Transkript erst kuerzlich schon gespeichert wurde
-        # (z.B. Doppel-Aufnahmen beim Testen oder aus Versehen).
-        doppelt = database.find_similar_recent(transcript)
-        if doppelt:
-            print(f"[Brain] Duplikat erkannt (Notiz #{doppelt['id']}) - nicht erneut gespeichert.")
+        # 3. In SQLite Datenbank archivieren.
+        tag = result.get("tag", "Notiz")
+        if tag == "Tagebuch":
+            # Tagebuch-Eintraege werden pro Kalendertag zusammengefuehrt statt
+            # als einzelne Notizen angelegt - jeder weitere Eintrag am selben
+            # Tag wird mit Uhrzeit an den bestehenden Tageseintrag angehaengt.
+            heute = datetime.now().strftime("%Y-%m-%d")
+            zeit = datetime.now().strftime("%H:%M")
+            bestehend = database.get_diary_entry_for_date(heute)
+            if bestehend:
+                database.append_to_diary(bestehend["id"], zeit, result.get("note", transcript), transcript)
+            else:
+                database.save_note(
+                    title="Tagebuch",
+                    body=f"[{zeit}] {result.get('note', transcript)}",
+                    category="Tagebuch",
+                    priority="normal",
+                    raw_transcript=f"[{zeit}] {transcript}",
+                )
         else:
-            database.save_note(
-                title=result.get("tag", "Notiz"),
-                body=result.get("note", transcript),
-                category=result.get("tag", "Notiz"),
-                priority="normal",
-                raw_transcript=transcript
-            )
+            # Nicht speichern, wenn ein sehr aehnliches Transkript erst
+            # kuerzlich schon gespeichert wurde (z.B. Doppel-Aufnahmen beim
+            # Testen oder aus Versehen).
+            doppelt = database.find_similar_recent(transcript)
+            if doppelt:
+                print(f"[Brain] Duplikat erkannt (Notiz #{doppelt['id']}) - nicht erneut gespeichert.")
+            else:
+                database.save_note(
+                    title=tag,
+                    body=result.get("note", transcript),
+                    category=tag,
+                    priority="normal",
+                    raw_transcript=transcript
+                )
 
         # Exaktes Format zurückgeben, das app.py erwartet:
         return {

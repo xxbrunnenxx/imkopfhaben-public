@@ -83,6 +83,41 @@ def update_note(note_id: int, body: Optional[str] = None, category: Optional[str
     return get_note_by_id(note_id)
 
 
+def get_diary_entry_for_date(date_str: str) -> Optional[Dict[str, Any]]:
+    """Sucht den (einen) Tagebuch-Eintrag fuer einen Kalendertag (`date_str`
+    als "%Y-%m-%d"). Tagebuch-Eintraege werden pro Tag zusammengefuehrt statt
+    als einzelne Notizen gefuehrt - hier wird geprueft, ob heute schon einer
+    existiert."""
+    with sqlite3.connect(DB_PATH) as conn:
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT * FROM notes WHERE category = 'Tagebuch' AND created_at LIKE ? ORDER BY id DESC LIMIT 1",
+            (f"{date_str}%",),
+        )
+        row = cursor.fetchone()
+        return dict(row) if row else None
+
+
+def append_to_diary(note_id: int, zeit: str, zusatz_body: str, zusatz_transcript: str) -> Optional[Dict[str, Any]]:
+    """Haengt einen weiteren Eintrag mit Uhrzeit-Praefix an einen bestehenden
+    Tagebuch-Tageseintrag an, statt eine neue Notiz anzulegen."""
+    bestehend = get_note_by_id(note_id)
+    if not bestehend:
+        return None
+    neuer_body = f"{bestehend['body']}\n[{zeit}] {zusatz_body}"
+    bisheriges_transkript = bestehend.get("raw_transcript") or ""
+    neues_transkript = f"{bisheriges_transkript}\n---\n[{zeit}] {zusatz_transcript}" if bisheriges_transkript else f"[{zeit}] {zusatz_transcript}"
+    with sqlite3.connect(DB_PATH) as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            "UPDATE notes SET body = ?, raw_transcript = ? WHERE id = ?",
+            (neuer_body, neues_transkript, note_id),
+        )
+        conn.commit()
+    return get_note_by_id(note_id)
+
+
 def find_similar_recent(raw_transcript: str, minutes: int = 10, threshold: float = 0.85) -> Optional[Dict[str, Any]]:
     """Sucht in den letzten `minutes` Minuten nach einer Notiz mit sehr
     aehnlichem Transkript (z.B. Doppel-Aufnahmen durch Testdruecken oder

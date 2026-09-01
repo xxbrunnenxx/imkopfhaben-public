@@ -38,9 +38,12 @@ def structure_with_llm(transcript: str) -> dict:
     prompt = f"""Transkript: "{transcript}"
 
 Aufgabe:
-1. Bestimme die passende Kategorie als 'tag': Wähle genau eines aus ["Todo", "Idee", "Notiz", "Termin", "Wichtig", "Unklar"].
+1. Bestimme die passende Kategorie als 'tag': Wähle genau eines aus ["Todo", "Idee", "Notiz", "Termin", "Wichtig", "Tagebuch", "Unklar"].
    - "Wichtig" NUR bei einem echten Dringlichkeits- oder Warnsignal (z.B. Gesundheit, Sicherheit, eine explizite Frist wie "sofort"/"dringend").
      Nicht einfach nehmen, weil der Ton auffällig, vulgär oder unklar ist.
+   - "Tagebuch" für persönliche Rückblicke/Erlebnisse: wie der Tag/eine Aktivität war, Stimmung,
+     Schlaf, was jemand oder etwas (auch ein Haustier) gerade gemacht hat. Erkennbar daran, dass
+     es kein Auftrag/keine Idee ist, sondern eine Beobachtung oder Erinnerung ueber etwas Erlebtes.
    - "Unklar" für alles, das kein erkennbarer, in sich sinnvoller Inhalt ist: einzelne
      Wörter ohne Kontext, Fülllaute, Testphrasen ("Test", "Testnotiz"), Hintergrundrauschen,
      abgehackte Fragmente. Im Zweifel lieber "Unklar" als eine der anderen Kategorien erzwingen.
