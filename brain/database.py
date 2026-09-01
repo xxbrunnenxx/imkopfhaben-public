@@ -1,9 +1,10 @@
 import difflib
 import sqlite3
 from datetime import datetime, timedelta
+from pathlib import Path
 from typing import List, Optional, Dict, Any
 
-DB_PATH = "imkopfhaben.db"
+DB_PATH = Path(__file__).parent / "imkopfhaben.db"
 
 def init_db():
     with sqlite3.connect(DB_PATH) as conn:
@@ -21,6 +22,12 @@ def init_db():
             )
         """)
         conn.commit()
+
+# priority und is_done: bewusst ungenutzt/reserviert. priority wird beim
+# Speichern immer hart auf "normal" gesetzt und nirgends gelesen, is_done
+# nirgends geschrieben oder gelesen - keine versteckte Funktion, die hier
+# fehlt. Siehe Issue #5 fuer die Alternativen (aktiv nutzen z.B. als
+# "Erledigt"-Haekchen in der Web-UI, oder Spalten per Migration entfernen).
 
 def save_note(title: str, body: str, category: str = "Notiz", priority: str = "normal", raw_transcript: str = "") -> Dict[str, Any]:
     created_at = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -99,6 +106,19 @@ def get_diary_entry_for_date(date_str: str) -> Optional[Dict[str, Any]]:
         return dict(row) if row else None
 
 
+def _aehnlichster_treffer(text: str, kandidaten: List[str], threshold: float = 0.85) -> Optional[int]:
+    """Vergleicht `text` per difflib.SequenceMatcher (Groß-/Kleinschreibung
+    ignoriert) gegen jeden String in `kandidaten` und liefert den Index des
+    ersten Treffers ab `threshold` Aehnlichkeit, sonst None. Gemeinsame Basis
+    fuer diary_hat_aehnliches_segment() und find_similar_recent()."""
+    text_lower = text.lower()
+    for index, kandidat in enumerate(kandidaten):
+        ratio = difflib.SequenceMatcher(None, text_lower, (kandidat or "").lower()).ratio()
+        if ratio >= threshold:
+            return index
+    return None
+
+
 def diary_hat_aehnliches_segment(eintrag: Dict[str, Any], transcript: str, threshold: float = 0.85) -> bool:
     """Prueft, ob der neue Transkript-Text einem bereits im Tageseintrag
     enthaltenen Abschnitt sehr aehnlich ist (Segmente sind per '\\n---\\n'
@@ -109,12 +129,12 @@ def diary_hat_aehnliches_segment(eintrag: Dict[str, Any], transcript: str, thres
     Warteschlange bei einem fluechtigen Netzwerkfehler) den Tageseintrag
     beliebig oft mit demselben Inhalt aufgebläht."""
     roh = eintrag.get("raw_transcript") or ""
-    for segment in roh.split("\n---\n"):
-        inhalt = segment.split("] ", 1)[1] if segment.startswith("[") and "] " in segment else segment
-        ratio = difflib.SequenceMatcher(None, transcript.lower(), inhalt.lower()).ratio()
-        if ratio >= threshold:
-            return True
-    return False
+    segmente = roh.split("\n---\n")
+    inhalte = [
+        segment.split("] ", 1)[1] if segment.startswith("[") and "] " in segment else segment
+        for segment in segmente
+    ]
+    return _aehnlichster_treffer(transcript, inhalte, threshold) is not None
 
 
 def append_to_diary(note_id: int, zeit: str, zusatz_body: str, zusatz_transcript: str) -> Optional[Dict[str, Any]]:
@@ -149,8 +169,5 @@ def find_similar_recent(raw_transcript: str, minutes: int = 10, threshold: float
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM notes WHERE created_at >= ? ORDER BY id DESC", (cutoff,))
         kandidaten = cursor.fetchall()
-    for row in kandidaten:
-        ratio = difflib.SequenceMatcher(None, raw_transcript.lower(), (row["raw_transcript"] or "").lower()).ratio()
-        if ratio >= threshold:
-            return dict(row)
-    return None
+    index = _aehnlichster_treffer(raw_transcript, [row["raw_transcript"] for row in kandidaten], threshold)
+    return dict(kandidaten[index]) if index is not None else None

@@ -1,11 +1,12 @@
 import os
 import shutil
 import tempfile
+from contextlib import asynccontextmanager
 from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
 
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
@@ -15,7 +16,12 @@ import ai_service
 
 STATIC_DIR = Path(__file__).parent / "static"
 
-app = FastAPI(title="imkopfhaben-brain API")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    database.init_db()
+    yield
+
+app = FastAPI(title="imkopfhaben-brain API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,17 +30,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.on_event("startup")
-def startup():
-    database.init_db()
-
 @app.get("/api/health")
 @app.get("/health")
 def health_check():
     return {"status": "ok", "backend": "Pi 5", "model": ai_service.MODEL_NAME}
 
+@app.get("/api/config")
+def get_config():
+    return {"categories": ai_service.CATEGORIES}
+
 @app.get("/api/notes")
-def list_notes(limit: int = 50):
+def list_notes(limit: int = Query(50, ge=1, le=500)):
     return database.get_all_notes(limit=limit)
 
 # /process ist die Route, die dein Pi Zero (app.py) anspricht!

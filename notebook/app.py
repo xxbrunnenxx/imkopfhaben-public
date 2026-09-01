@@ -29,7 +29,9 @@ logging.basicConfig(
 )
 log = logging.getLogger("imkopfhaben-app")
 
-SERVER_URL = "http://kraken.local:8000/process"
+SERVER_HOST = "http://kraken.local:8000"
+SERVER_URL = f"{SERVER_HOST}/process"
+CONFIG_URL = f"{SERVER_HOST}/api/config"
 RECORD_PATH = Path("/tmp/note.wav")
 ARCHIVE_PATH = Path.home() / "imkopfhaben_archive.json"
 QUEUE_DIR = Path.home() / "notiz_warteschlange"
@@ -51,6 +53,10 @@ RECORD_CMD = [
 RESULT_DISPLAY_SEC = 5.0
 LONG_PRESS_SEC = 0.6
 
+# Fallback fuer den Fall, dass der Brain beim Start nicht erreichbar ist -
+# "Aufgabe" ist ein reiner Notebook-seitiger Alias fuer alte Notizen und
+# kommt nie vom Server. Die eigentliche Kategorie-Liste kommt sonst per
+# GET /api/config vom Brain (siehe _aktualisiere_tag_colors(), Issue #9).
 TAG_COLORS = {
     "Todo": (255, 120, 0),
     "Aufgabe": (255, 120, 0),
@@ -61,6 +67,29 @@ TAG_COLORS = {
     "Tagebuch": (176, 136, 245),
     "Unklar": (130, 130, 130),
 }
+
+
+def _hex_zu_rgb(hex_farbe: str) -> tuple:
+    hex_farbe = hex_farbe.lstrip("#")
+    return tuple(int(hex_farbe[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def _aktualisiere_tag_colors() -> None:
+    """Holt die Kategorie-Farben vom Brain (GET /api/config) und ergaenzt/
+    ueberschreibt TAG_COLORS damit, statt die Kategorie-Liste hier zusaetzlich
+    hartcodiert zu pflegen (Issue #9). Ist der Brain nicht erreichbar, bleibt
+    der obige Fallback unveraendert stehen - ein Start ohne Netzwerk darf
+    nicht scheitern."""
+    try:
+        resp = requests.get(CONFIG_URL, timeout=3)
+        resp.raise_for_status()
+        for name, hex_farbe in resp.json().get("categories", {}).items():
+            try:
+                TAG_COLORS[name] = _hex_zu_rgb(hex_farbe)
+            except (ValueError, IndexError):
+                continue
+    except requests.RequestException as e:
+        log.error(f"Konnte Kategorie-Konfiguration nicht laden, nutze Standardfarben: {e}")
 
 
 def _load_fonts():
@@ -131,6 +160,7 @@ class Archive:
 class App:
     def __init__(self):
         QUEUE_DIR.mkdir(exist_ok=True)
+        _aktualisiere_tag_colors()
         self.board = create_whisplay_hardware()
         self.board.set_backlight(70)
         self.archive = Archive(ARCHIVE_PATH)
