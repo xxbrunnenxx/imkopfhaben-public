@@ -20,4 +20,5 @@
     missingok
     notifempty
     copytruncate
+    su kraken kraken
 }
