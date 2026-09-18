@@ -7,3 +7,12 @@ __pycache__/
 imkopfhaben_archive.json
 *.bak*
 .claude/
+
+# graphify (KONZEPT.md §8 in derkraken): der Graph selbst gehoert ins Repo,
+# denn er gehoert zum Code und nicht zur Maschine. Draussen bleiben der
+# lokale Kostenmitschnitt, die Zwischenablage und die Datumsstempel-
+# Sicherung, die `graphify update` bei jedem Lauf daneben legt -- alle drei
+# regenerierbar. Gleiche Regel wie in derkraken und kraken-arche.
+graphify-out/cost.json
+graphify-out/cache/
+graphify-out/20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]/

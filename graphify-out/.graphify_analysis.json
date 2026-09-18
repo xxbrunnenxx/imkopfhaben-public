@@ -1,0 +1,286 @@
+{
+  "communities": {
+    "0": [
+      "basemodel",
+      "brain_ai_service",
+      "brain_ai_service_structure_with_llm",
+      "brain_ai_service_transcribe_audio",
+      "brain_main",
+      "brain_main_delete_note",
+      "brain_main_get_buendel_vorschlaege",
+      "brain_main_get_config",
+      "brain_main_get_counts",
+      "brain_main_health_check",
+      "brain_main_lifespan",
+      "brain_main_list_notes",
+      "brain_main_list_veredelte",
+      "brain_main_loesche_buendel_vorschlag",
+      "brain_main_merge_notes",
+      "brain_main_notemerge",
+      "brain_main_noteupdate",
+      "brain_main_patch_note",
+      "brain_main_process_audio",
+      "brain_main_rationale_185",
+      "brain_main_rationale_33",
+      "brain_main_rationale_87",
+      "brain_main_rationale_98",
+      "brain_main_transcribe_raw",
+      "brain_main_veredelungs_hintergrundschleife",
+      "brain_main_web_ui",
+      "delete",
+      "fastapi",
+      "get",
+      "patch",
+      "post",
+      "request",
+      "uploadfile"
+    ],
+    "1": [
+      "image",
+      "imagefont",
+      "notebook_app_app",
+      "notebook_app_app_handle_release",
+      "notebook_app_app_on_exit_request",
+      "notebook_app_app_on_focus_revoked",
+      "notebook_app_app_on_press",
+      "notebook_app_app_on_release",
+      "notebook_app_app_push",
+      "notebook_app_app_run",
+      "notebook_app_app_show_browse_item",
+      "notebook_app_app_show_dashboard",
+      "notebook_app_app_show_message",
+      "notebook_app_app_start_recording",
+      "notebook_app_app_stop_and_send",
+      "notebook_app_app_verarbeite_warteschlange",
+      "notebook_app_app_wrap_text",
+      "notebook_app_rationale_132",
+      "notebook_app_rationale_226",
+      "notebook_app_rationale_358",
+      "notebook_app_rgb565_bytes"
+    ],
+    "2": [
+      "notebook_app",
+      "notebook_app_aktualisiere_tag_colors",
+      "notebook_app_app_init",
+      "notebook_app_app_synchronisiere_mit_server",
+      "notebook_app_archive",
+      "notebook_app_archive_add",
+      "notebook_app_archive_counts",
+      "notebook_app_archive_init",
+      "notebook_app_archive_load",
+      "notebook_app_archive_save",
+      "notebook_app_hex_zu_rgb",
+      "notebook_app_lade_sync_stand",
+      "notebook_app_load_fonts",
+      "notebook_app_rationale_404",
+      "notebook_app_rationale_86",
+      "notebook_app_speichere_sync_stand",
+      "path"
+    ],
+    "3": [
+      "notebook_akku_lernen",
+      "notebook_akku_lernen_fsync_verzeichnis",
+      "notebook_akku_lernen_geschaetzte_energie",
+      "notebook_akku_lernen_laden",
+      "notebook_akku_lernen_leerer_stand",
+      "notebook_akku_lernen_main",
+      "notebook_akku_lernen_rationale_1",
+      "notebook_akku_lernen_rationale_109",
+      "notebook_akku_lernen_rationale_47",
+      "notebook_akku_lernen_rationale_74",
+      "notebook_akku_lernen_rationale_94",
+      "notebook_akku_lernen_schreiben",
+      "notebook_akku_lernen_uptime",
+      "notebook_akku_lernen_zyklus_abschliessen"
+    ],
+    "4": [
+      "brain_database",
+      "brain_database_add_category",
+      "brain_database_delete_note",
+      "brain_database_get_categories",
+      "brain_database_get_category_counts",
+      "brain_database_get_hoechste_notiz_id",
+      "brain_database_get_hoechste_veredelung_id",
+      "brain_database_init_db",
+      "brain_database_loesche_buendel_vorschlag",
+      "brain_database_loesche_leere_kategorien",
+      "brain_database_rationale_215",
+      "brain_database_rationale_234",
+      "brain_database_rationale_296"
+    ],
+    "5": [
+      "brain_veredelung_service",
+      "brain_veredelung_service_buendel_erkennen",
+      "brain_veredelung_service_farbe_fuer_neue_kategorie",
+      "brain_veredelung_service_frage_gemma",
+      "brain_veredelung_service_fuehre_veredelung_schritt_aus",
+      "brain_veredelung_service_json_ausschneiden",
+      "brain_veredelung_service_rationale_1",
+      "brain_veredelung_service_rationale_126",
+      "brain_veredelung_service_rationale_188",
+      "brain_veredelung_service_tagebuch_verdichten",
+      "brain_veredelung_service_veredele_einzelne_notiz"
+    ],
+    "6": [
+      "any",
+      "brain_database_append_to_diary",
+      "brain_database_get_all_notes",
+      "brain_database_get_note_by_id",
+      "brain_database_rationale_125",
+      "brain_database_rationale_196",
+      "brain_database_save_note",
+      "brain_database_save_veredelung",
+      "brain_database_speichere_buendel_vorschlaege",
+      "brain_database_update_note"
+    ],
+    "7": [
+      "brain_veredelung_test",
+      "brain_veredelung_test_json_ausschneiden",
+      "brain_veredelung_test_kategorien",
+      "brain_veredelung_test_main",
+      "brain_veredelung_test_rationale_1",
+      "brain_veredelung_test_rationale_82",
+      "brain_veredelung_test_veredele"
+    ],
+    "8": [
+      "brain_database_aehnlichster_treffer",
+      "brain_database_diary_hat_aehnliches_segment",
+      "brain_database_find_similar_recent",
+      "brain_database_rationale_165",
+      "brain_database_rationale_178",
+      "brain_database_rationale_402"
+    ],
+    "9": [
+      "brain_veredelung_test_iterativ",
+      "brain_veredelung_test_iterativ_frage_gemma",
+      "brain_veredelung_test_iterativ_json_ausschneiden",
+      "brain_veredelung_test_iterativ_kategorien",
+      "brain_veredelung_test_iterativ_main",
+      "brain_veredelung_test_iterativ_rationale_1"
+    ],
+    "10": [
+      "brain_database_get_alte_tagebuch_eintraege",
+      "brain_database_rationale_341"
+    ],
+    "11": [
+      "brain_database_get_buendel_vorschlaege",
+      "brain_database_rationale_317"
+    ],
+    "12": [
+      "brain_database_get_diary_entry_for_date",
+      "brain_database_rationale_149"
+    ],
+    "13": [
+      "brain_database_get_notes_ohne_veredelung",
+      "brain_database_rationale_280"
+    ],
+    "14": [
+      "brain_database_get_veredelte_seit",
+      "brain_database_rationale_381"
+    ],
+    "15": [
+      "brain_database_get_veredelung_for_note",
+      "brain_database_rationale_267"
+    ],
+    "16": [
+      "brain_database_rationale_354",
+      "brain_database_zaehle_kategorie_vorschlag"
+    ]
+  },
+  "cohesion": {
+    "0": 0.08712121212121213,
+    "1": 0.18571428571428572,
+    "2": 0.16176470588235295,
+    "3": 0.23076923076923078,
+    "4": 0.15384615384615385,
+    "5": 0.32727272727272727,
+    "6": 0.26666666666666666,
+    "7": 0.42857142857142855,
+    "8": 0.3333333333333333,
+    "9": 0.5333333333333333,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0
+  },
+  "gods": [
+    {
+      "id": "notebook_app_app",
+      "label": "App",
+      "degree": 17
+    },
+    {
+      "id": "notebook_app_archive",
+      "label": "Archive",
+      "degree": 7
+    },
+    {
+      "id": "notebook_akku_lernen_laden",
+      "label": "_laden()",
+      "degree": 5
+    },
+    {
+      "id": "notebook_akku_lernen_main",
+      "label": "_main()",
+      "degree": 5
+    },
+    {
+      "id": "brain_veredelung_service_frage_gemma",
+      "label": "_frage_gemma()",
+      "degree": 5
+    },
+    {
+      "id": "brain_veredelung_service_fuehre_veredelung_schritt_aus",
+      "label": "fuehre_veredelung_schritt_aus()",
+      "degree": 5
+    },
+    {
+      "id": "brain_database_get_note_by_id",
+      "label": "get_note_by_id()",
+      "degree": 5
+    },
+    {
+      "id": "brain_main_transcribe_raw",
+      "label": "transcribe_raw()",
+      "degree": 4
+    },
+    {
+      "id": "notebook_app_rgb565_bytes",
+      "label": "rgb565_bytes()",
+      "degree": 4
+    },
+    {
+      "id": "notebook_app_aktualisiere_tag_colors",
+      "label": "_aktualisiere_tag_colors()",
+      "degree": 4
+    }
+  ],
+  "surprises": [
+    {
+      "source": "LM Studio haelt sich nicht immer strikt an 'nur JSON antworten' - schneidet…",
+      "target": "_json_ausschneiden()",
+      "source_files": [
+        "brain/veredelung_test.py",
+        "brain/veredelung_service.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "why": "bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `App` connect `App` to `app.py`?",
+      "why": "High betweenness centrality (0.057) - this node is a cross-community bridge."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `main.py` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08712121212121213 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

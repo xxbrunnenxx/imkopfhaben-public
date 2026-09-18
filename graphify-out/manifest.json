@@ -1,0 +1,50 @@
+{
+  "brain/ai_service.py": {
+    "mtime": 1789297823.631693,
+    "seen": 1789719037.3469357,
+    "ast_hash": "fe29d0049c3569e73cb6a9519c622f6f",
+    "semantic_hash": "fe29d0049c3569e73cb6a9519c622f6f"
+  },
+  "brain/database.py": {
+    "mtime": 1789297823.6322553,
+    "seen": 1789719037.346941,
+    "ast_hash": "f46242f26a73dc28b07acc8bb5134b07",
+    "semantic_hash": "f46242f26a73dc28b07acc8bb5134b07"
+  },
+  "brain/main.py": {
+    "mtime": 1789297856.2318048,
+    "seen": 1789719037.346943,
+    "ast_hash": "24b197d43dd18052940d69ec35f0ce21",
+    "semantic_hash": "24b197d43dd18052940d69ec35f0ce21"
+  },
+  "brain/veredelung_service.py": {
+    "mtime": 1789297823.6322553,
+    "seen": 1789719037.3469443,
+    "ast_hash": "ca50f91dd2bb0732c2c3ddaf0162fe27",
+    "semantic_hash": "ca50f91dd2bb0732c2c3ddaf0162fe27"
+  },
+  "brain/veredelung_test.py": {
+    "mtime": 1789297823.6322553,
+    "seen": 1789719037.3469458,
+    "ast_hash": "a0254c4236a0b9b4e4255aa26ed27e31",
+    "semantic_hash": "a0254c4236a0b9b4e4255aa26ed27e31"
+  },
+  "brain/veredelung_test_iterativ.py": {
+    "mtime": 1789297823.6322553,
+    "seen": 1789719037.3469474,
+    "ast_hash": "1e1126634d9b1ce3823cae57fb3d134b",
+    "semantic_hash": "1e1126634d9b1ce3823cae57fb3d134b"
+  },
+  "notebook/akku_lernen.py": {
+    "mtime": 1789297823.6329308,
+    "seen": 1789719037.3469489,
+    "ast_hash": "5dc2af793f492aab8ef878029fd58e3e",
+    "semantic_hash": "5dc2af793f492aab8ef878029fd58e3e"
+  },
+  "notebook/app.py": {
+    "mtime": 1789297823.633164,
+    "seen": 1789719037.3469498,
+    "ast_hash": "9663d7b968f1de84ff25bef387fdedb6",
+    "semantic_hash": "9663d7b968f1de84ff25bef387fdedb6"
+  }
+}
