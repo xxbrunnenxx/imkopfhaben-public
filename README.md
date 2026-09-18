@@ -98,6 +98,13 @@ ollama pull qwen2.5:7b
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
+**Bequemer Weg (Start/Stop per Skript, kein Autostart):** Statt LM Studio
+und `uvicorn` von Hand zu starten, fahren `brain/imkopfhaben-start.sh` beide
+Dienste hoch (wartet, bis sie antworten) und `brain/imkopfhaben-stop.sh`
+beide wieder herunter (macht den Pi lastfrei). Bewusst kein systemd/Autostart
+— nach jedem Neustart einmal `./imkopfhaben-start.sh`. Schritt-fuer-Schritt,
+auch fuer den Reboot-Fall, in **`brain/ANLEITUNG.md`**.
+
 Für Dauerbetrieb: `imkopfhaben-brain.service` nach `/etc/systemd/system/` kopieren, Pfade in `WorkingDirectory`/`ExecStart` an die eigene Installation anpassen, dann:
 
 ```bash
