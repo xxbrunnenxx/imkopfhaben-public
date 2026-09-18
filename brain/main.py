@@ -8,7 +8,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
 
-from fastapi import FastAPI, UploadFile, File, HTTPException, Query
+from fastapi import FastAPI, UploadFile, File, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
@@ -179,6 +179,28 @@ async def process_audio(file: UploadFile = File(...)):
     finally:
         if os.path.exists(tmp_path):
             os.remove(tmp_path)
+
+@app.post("/api/transcribe-raw")
+async def transcribe_raw(request: Request):
+    """Reine Transkription ohne Kategorisierung/Speicherung -- fuer den
+    Waveshare-Sticky-Port (folloup-waveshare/xxbrunnenxx/imkopfhaben), der
+    nur den Rohtext braucht, nicht die imkopfhaben-Notiz-Pipeline
+    (Kategorie/Dedupe/Tagebuch). Nutzt dasselbe bereits geladene
+    faster-whisper-Modell wie /api/process-audio -- kein zweites Modell,
+    kein zusaetzlicher RAM-Verbrauch.
+
+    Die Firmware (PostWavClip in local_ai_service.cpp) schickt die WAV-Datei
+    als rohen HTTP-Body mit Content-Type: audio/wav, kein multipart/form-data
+    -- deshalb hier Request.body() statt UploadFile/File()."""
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
+        tmp.write(await request.body())
+        tmp_path = tmp.name
+
+    try:
+        transcript = ai_service.transcribe_audio(tmp_path)
+        return {"transcript": transcript}
+    finally:
+        os.remove(tmp_path)
 
 @app.delete("/api/notes/{note_id}")
 def delete_note(note_id: int):
