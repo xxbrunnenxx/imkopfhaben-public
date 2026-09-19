@@ -30,17 +30,21 @@ Mitschrift. Das ist der Normalfall fuer "mal eben mitnehmen".
 
 Was NICHT passiert
 ------------------
-Nichts wird geloescht und nichts zurueckgeschrieben. Der Export ist eine
+Nichts wird zum Geraet zurueckgeschrieben. Der Export ist eine
 Einbahnstrasse: Geraet und Pi bleiben die Quelle, der Stick traegt eine
 Kopie zum Lesen und Weiterschreiben. Wer auf dem Stick etwas aendert,
 aendert nichts am Geraet -- das waere eine Synchronisierung, und die ist
 ein eigenes Vorhaben mit eigenen Fallen (zwei Seiten, die beide
 geaendert wurden), nicht bestellt und deshalb nicht gebaut.
 
-Bestehende Dateien werden ueberschrieben, damit ein zweiter Lauf den
-Stand auffrischt statt Dubletten anzulegen. Was du selbst in die Dateien
-schreibst, geht dabei verloren -- lege eigene Gedanken deshalb in
-`05-Eigene-Notizen/` ab, das Verzeichnis fasst der Export nie an.
+Vor jedem Lauf wird der zuletzt geschriebene Bestand geleert und frisch
+geschrieben. So verschwindet, was auf dem Geraet geloescht wurde, auch
+vom Stick, statt als Altdatei liegenzubleiben. Angefasst wird nur, was
+der Export selbst anlegt (00/02/03 und die Ordner 01/04) --
+"05-Eigene-Notizen" und alles Fremde im Zielordner bleibt unberuehrt.
+Was du selbst in die verwalteten Dateien schreibst, geht beim naechsten
+Lauf verloren -- lege eigene Gedanken deshalb in `05-Eigene-Notizen/` ab,
+das Verzeichnis fasst der Export nie an.
 
     brain/notizen-exportieren.py                   # Standardziel auf dem Stick
     brain/notizen-exportieren.py --ziel /pfad      # woanders hin
@@ -49,6 +53,7 @@ schreibst, geht dabei verloren -- lege eigene Gedanken deshalb in
 
 import argparse
 import json
+import shutil
 import sys
 import urllib.request
 from collections import defaultdict
@@ -128,6 +133,26 @@ def eintraege_sammeln(aufnahmen, mitschrift_eintraege):
 
     gesammelt.sort(key=lambda e: e["unix"])
     return gesammelt
+
+
+# Was der Export selbst verwaltet und deshalb vor dem Schreiben leert. Alles
+# andere im Zielordner bleibt unangetastet -- vor allem "05-Eigene-Notizen".
+VERWALTETE_DATEIEN = ("00-Uebersicht.md", "02-Aufgaben.md", "03-Ideen.md")
+VERWALTETE_ORDNER = ("01-Tagebuch", "04-Zusammenfassungen")
+
+
+def ziel_aufraeumen(ziel: Path) -> None:
+    """Entfernt den zuletzt geschriebenen Bestand, bevor neu geschrieben wird.
+
+    So verschwindet, was auf dem Geraet geloescht wurde, auch vom Stick,
+    statt als Altdatei liegenzubleiben (z. B. eine Tagesdatei, fuer die es
+    keine Eintraege mehr gibt). Angefasst wird nur, was der Export selbst
+    anlegt -- "05-Eigene-Notizen" und alles Fremde im Ordner bleibt.
+    """
+    for name in VERWALTETE_DATEIEN:
+        (ziel / name).unlink(missing_ok=True)
+    for name in VERWALTETE_ORDNER:
+        shutil.rmtree(ziel / name, ignore_errors=True)
 
 
 def schreiben(pfad: Path, inhalt: str) -> None:
@@ -324,6 +349,9 @@ def main() -> int:
         return 1
 
     quelle = "Geraet + Mitschrift" if aufnahmen else "nur Mitschrift"
+    # Erst den alten Bestand raeumen, dann neu schreiben -- so faellt weg, was
+    # auf dem Geraet geloescht wurde. "05-Eigene-Notizen" bleibt unberuehrt.
+    ziel_aufraeumen(ziel)
     anzahl_tage = tagesdateien_schreiben(ziel, eintraege)
     anzahl_aufgaben = aufgaben_schreiben(ziel, eintraege)
     anzahl_ideen = ideen_schreiben(ziel, eintraege)
