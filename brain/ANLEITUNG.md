@@ -123,3 +123,46 @@ Whisper ihn verstanden hat (roh, ohne Nachpolieren) -- das ist bewusst so.
 Beide horchen auf `0.0.0.0`, damit das ESP32 sie ueber `kraken.local`
 erreicht. Die Firmware ist ab Werk auf `http://kraken.local:1234/v1/` und
 `http://kraken.local:8000/api/transcribe-raw` eingestellt.
+
+## Notizen auf den USB-Stick legen (offline weiterarbeiten)
+
+`brain/notizen-exportieren.py` schreibt den Bestand als gewöhnliche
+Markdown-Dateien auf den Stick, in einer Form, die Obsidian direkt lesen
+kann (YAML-Frontmatter mit Tags). Danach lässt sich ohne Pi, ohne Gerät
+und ohne Netz damit arbeiten — ein Texteditor genügt.
+
+```bash
+brain/notizen-exportieren.py                   # Standardziel auf dem Stick
+brain/notizen-exportieren.py --ziel /pfad      # woanders hin
+brain/notizen-exportieren.py --host 10.0.0.5   # anderes Gerät
+```
+
+Standardziel ist `/mnt/gigastick/Pi5Backup_old version/imkopfhaben/`.
+Hängt der Stick nicht, einmal `sudo mount /dev/sda1 /mnt/gigastick`.
+
+Was entsteht:
+
+| Datei | Inhalt |
+|---|---|
+| `00-Uebersicht.md` | Stand, Verteilung, Erklärung |
+| `01-Tagebuch/` | je Tag eine Datei, chronologisch |
+| `02-Aufgaben.md` | Aufgaben als abhakbare Liste, offen und erledigt getrennt |
+| `03-Ideen.md` | Ideen und Notizen |
+| `04-Zusammenfassungen/` | die Fassungen, die das Gerät erzeugt hat |
+| `05-Eigene-Notizen/` | deins. Der Export fasst dieses Verzeichnis nie an |
+
+Zwei Dinge, die man wissen muss:
+
+**Der Export überschreibt.** Ein zweiter Lauf frischt den Stand auf und
+schreibt die Dateien oben neu. Eigene Gedanken gehören deshalb nach
+`05-Eigene-Notizen/`, das bleibt unangetastet.
+
+**Der Export geht nur in eine Richtung.** Ein Haken, den du auf dem Stick
+setzt, wandert nicht zum Gerät zurück. Das Gerät bleibt die Quelle, der
+Stick trägt eine Kopie. Eine echte Synchronisierung wäre ein eigenes
+Vorhaben mit eigenen Fallen (zwei Seiten, die beide geändert wurden) und
+ist bewusst nicht gebaut.
+
+Ist das Gerät nicht erreichbar, läuft der Export allein aus der
+Mitschrift (`~/imkopfhaben-mitschrift/`). Dann fehlen Tags, Erledigt-Haken
+und Zusammenfassungen, der Text ist aber vollständig da.

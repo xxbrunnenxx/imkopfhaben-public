@@ -17,3 +17,31 @@ Stand: 2026-08-31.
 - [x] **Kategorisierung geschärft** — `brain/ai_service.py`: "Wichtig" nur noch bei echtem Dringlichkeits-/Warnsignal statt bei jedem auffälligen Text, neue Kategorie "Unklar" für Testrauschen/unverständliche Fragmente statt Zwangszuordnung in eine der Sinn-Kategorien. Leere Spracherkennung liefert jetzt "Unklar" statt "Notiz".
 - [x] **Duplikat-Erkennung** — `brain/database.find_similar_recent()`: vor dem Speichern wird geprüft, ob in den letzten 10 Minuten schon ein sehr ähnliches Transkript gespeichert wurde (`difflib`-Vergleich, Schwelle 0.85). Verhindert Doppel-Notizen durch Testdrücken/versehentliches Nachsprechen, ohne Embeddings zu brauchen.
 - [x] **Issue #16 — Idle-Zeit-Veredelung** — `brain/veredelung_service.py`: nutzt Leerlaufzeit (20 Min ohne `/process`, Hintergrund-Task in `main.py`), um gespeicherte Notizen mit `google/gemma-4-e2b` (lokal über LM Studio, entkoppelt vom Live-Pfad mit `qwen2.5:7b`/Ollama) zu veredeln — sprachlich glätten, Kategorie nachschärfen, redundante Notizen bündeln (mit ID-Validierung gegen echte Notiz-IDs, behebt die im Testlauf beobachtete Halluzinations-Lücke), Tagebuch über mehrere Tage verdichten, Kategorien selbst pflegen (neue ab 2 gleichlautenden Vorschlägen anlegen, leere löschen). Original bleibt neben der veredelten Version erhalten (`veredelte_notizen`-Tabelle mit Referenz auf `notes`). Neue Endpunkte `/api/counts`, `/api/veredelt`, `/api/buendel-vorschlaege` fürs Notebook-Polling (behebt zugleich die Notebook/Server-Drift aus #11) und den Rückkanal. Notebook legt veredelte Notizen als echte Dateien unter `~/veredelte_notizen/` ab und gleicht sein lokales Archiv alle 60s komplett gegen den Server-Stand ab. Web-UI zeigt roh + veredelt nebeneinander, plus Bündel-Vorschläge zum manuellen Zusammenführen/Verwerfen. Modellwahl E2B vs. E4B live verglichen (E2B klar vorne: schneller, zuverlässiger, mind. gleiche Qualität) — Details im Issue.
+
+## Notizen auf dem USB-Stick (19.09.2026)
+
+**Gebaut und belegt:** `brain/notizen-exportieren.py` legt den Bestand als
+Obsidian-taugliches Markdown auf dem Stick ab. Der Strang steht durchgängig:
+Aufnahme → Transkript auf dem Pi → Mitschrift → Markdown auf dem Stick.
+Live nachgewiesen mit einer eigens dafür gemachten Aufnahme des
+Besitzers (17:28), die ohne weiteres Zutun bis in
+`01-Tagebuch/2026-09-19.md` und `03-Ideen.md` durchlief. (Wortlaut hier
+bewusst nicht wiedergegeben: Notizinhalte gehören nicht ins Repo.)
+
+**Bewusst einseitig, nicht gebaut:** ein Haken, der auf dem Stick gesetzt
+wird, wandert nicht zum Gerät zurück. Eine echte Synchronisierung müsste
+den Fall beherrschen, dass beide Seiten geändert wurden — das ist ein
+eigenes Vorhaben, kein Anhängsel an den Export. Falls es kommen soll:
+Gerät-seitig gibt es `MarkRecordingCompleted()` bereits, es fehlt die
+Entscheidung, welche Seite bei Konflikten gewinnt.
+
+**Offen, weil nicht bestellt:** kein Automatismus. Der Export läuft von
+Hand, so wie die Dienste auch (siehe Entscheidung gegen systemd weiter
+oben). Wenn er regelmäßig laufen soll, wäre ein `systemd.timer` der
+Handgriff — bewusst nicht angelegt, der Pi soll lastfrei bleiben.
+
+**Prüfung noch offen:** ob Obsidian den Ordner so einliest, wie gedacht.
+Die Form ist an den vorhandenen Vault auf dem Stick angelehnt
+(YAML-Frontmatter mit `tags:`), aber vom Besitzer noch nicht in Obsidian
+geöffnet worden. **Handgriff:** Vault in Obsidian öffnen, Ordner
+`imkopfhaben/` ansehen, prüfen ob Tags und Checkboxen greifen.
