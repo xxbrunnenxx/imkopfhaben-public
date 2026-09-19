@@ -15,6 +15,7 @@ from pydantic import BaseModel
 
 import database
 import ai_service
+import mitschrift
 import veredelung_service
 
 STATIC_DIR = Path(__file__).parent / "static"
@@ -222,9 +223,40 @@ async def transcribe_raw(request: Request):
             ziel = pfad / f"{datetime.now():%Y%m%d-%H%M%S}.wav"
             ziel.write_bytes(roh)
             print(f"[transcribe-raw] leeres Transkript, Audio liegt in {ziel}", flush=True)
+
+        # Hier und nicht spaeter: das ist die Stelle, an der der Text
+        # entsteht. Die SD-Karte im Geraet war bis dahin die einzige Kopie,
+        # und die ist nur lesbar, solange das Geraet an und im WLAN ist.
+        # mitschreiben() wirft nie -- eine Luecke in der Mitschrift ist
+        # hinnehmbar, eine verlorene Aufnahme nicht.
+        mitschrift.mitschreiben(
+            transcript,
+            dauer_sekunden=dauer,
+            bytes_empfangen=len(roh),
+        )
         return {"transcript": transcript}
     finally:
         os.remove(tmp_path)
+
+@app.get("/api/mitschrift")
+def mitschrift_lesen(seit: int = 0):
+    """Alle mitgeschriebenen Transkripte, aelteste zuerst.
+
+    Der Unterschied zu den Archiv-Routen auf dem Geraet: die hier
+    antworten auch, wenn das Geraet aus ist, im Rucksack steckt oder
+    seine SD-Karte hinueber ist. Dafuer kennen sie nur den Text und
+    seinen Zeitpunkt -- Tags, Erledigt-Haken und Nachfassen-Marker
+    entstehen am Geraet und gehoeren dort nachgeschlagen.
+
+    `?seit=<unix-sekunden>` schneidet alles Aeltere ab.
+    """
+    eintraege = mitschrift.lesen(seit)
+    return {
+        "anzahl": len(eintraege),
+        "quelle": str(mitschrift.QUELLE),
+        "transkripte": eintraege,
+    }
+
 
 @app.delete("/api/notes/{note_id}")
 def delete_note(note_id: int):

@@ -17,3 +17,21 @@ graphify-out/cost.json
 graphify-out/cache/
 graphify-out/20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
 .brain.pid
+
+# ---------------------------------------------------------------------------
+# Was das Geraet erzeugt, bleibt auf dem Pi (Besitzer-Vorgabe 19.09.2026)
+# ---------------------------------------------------------------------------
+# Die Aufnahmen des Besitzers und alles, was daraus entsteht -- Transkripte,
+# Zusammenfassungen, Notizen -- gehoeren nie auf GitHub. Gespeichert werden
+# sie sehr wohl, nur ausserhalb der Repos: unter ~/imkopfhaben-mitschrift/
+# auf dem Pi, wo sich damit arbeiten laesst.
+#
+# Diese Zeilen sind der zweite Riegel fuer den Fall, dass so eine Datei doch
+# einmal im Repo landet. Der erste Riegel ist der Ablageort selbst.
+# Audio (*.wav) und die Notiz-Datenbank (*.db) stehen schon weiter oben.
+*.jsonl
+transkripte*
+mitschrift/
+imkopfhaben-mitschrift/
+notizen/
+zusammenfassungen/
