@@ -12,10 +12,10 @@
     "semantic_hash": "f46242f26a73dc28b07acc8bb5134b07"
   },
   "brain/main.py": {
-    "mtime": 1789297856.2318048,
-    "seen": 1789719037.346943,
-    "ast_hash": "24b197d43dd18052940d69ec35f0ce21",
-    "semantic_hash": "24b197d43dd18052940d69ec35f0ce21"
+    "mtime": 1789848117.512322,
+    "seen": 1789848927.8688977,
+    "ast_hash": "dd0d293fc387c87af7a31418c9e8d347",
+    "semantic_hash": ""
   },
   "brain/veredelung_service.py": {
     "mtime": 1789297823.6322553,
@@ -46,5 +46,95 @@
     "seen": 1789719037.3469498,
     "ast_hash": "9663d7b968f1de84ff25bef387fdedb6",
     "semantic_hash": "9663d7b968f1de84ff25bef387fdedb6"
+  },
+  "brain/imkopfhaben-start.sh": {
+    "mtime": 1789832600.5145698,
+    "seen": 1789848927.8688927,
+    "ast_hash": "454a10ad9915376eca3becb8218bd4e0",
+    "semantic_hash": ""
+  },
+  "brain/imkopfhaben-stop.sh": {
+    "mtime": 1789832411.6190913,
+    "seen": 1789848927.8688953,
+    "ast_hash": "826ce24c0ddf4af66f7e8847013781f7",
+    "semantic_hash": ""
+  },
+  "brain/mitschrift-nachholen.py": {
+    "mtime": 1789830206.4850922,
+    "seen": 1789848927.8688993,
+    "ast_hash": "15b11066fdeafcd3197d63ec0482f977",
+    "semantic_hash": ""
+  },
+  "brain/mitschrift.py": {
+    "mtime": 1789829711.3085613,
+    "seen": 1789848927.868901,
+    "ast_hash": "d1709d630a27306cb44c0c08b8085e4f",
+    "semantic_hash": ""
+  },
+  "brain/notizen-auf-stick.sh": {
+    "mtime": 1789832257.001255,
+    "seen": 1789848927.8689024,
+    "ast_hash": "1d8d01589fbcdee9a78d79b2ebbe93fd",
+    "semantic_hash": ""
+  },
+  "brain/notizen-exportieren.py": {
+    "mtime": 1789831840.1307511,
+    "seen": 1789848927.8689036,
+    "ast_hash": "0527419e7fccaf5fc92bc12c01d842c5",
+    "semantic_hash": ""
+  },
+  "brain/pi_status.py": {
+    "mtime": 1789848107.1924188,
+    "seen": 1789848927.868905,
+    "ast_hash": "8e6c83c630b25b1c0640eab58d6feaf3",
+    "semantic_hash": ""
+  },
+  "OFFENE_PUNKTE.md": {
+    "mtime": 1789832621.0768282,
+    "seen": 1789848927.8689184,
+    "ast_hash": "99cf00c1e661dec21f246197ce32113e",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1789758951.9063942,
+    "seen": 1789848927.8689198,
+    "ast_hash": "d1078395c7093b6faab206bfcd29a61b",
+    "semantic_hash": ""
+  },
+  "brain/ANLEITUNG.md": {
+    "mtime": 1789832621.0765853,
+    "seen": 1789848927.8689213,
+    "ast_hash": "85ec6a35617abca8f28eefbd441ea8f0",
+    "semantic_hash": ""
+  },
+  "brain/requirements.txt": {
+    "mtime": 1789297823.6322553,
+    "seen": 1789848927.8689227,
+    "ast_hash": "79abae8cd8edd3c8777d11cebe5ce5dc",
+    "semantic_hash": ""
+  },
+  "brain/static/index.html": {
+    "mtime": 1789297823.6322553,
+    "seen": 1789848927.868924,
+    "ast_hash": "841ec39536c84f2b03e7596701c87f93",
+    "semantic_hash": ""
+  },
+  "docs/design/esp32-hardware-erkenntnisse.md": {
+    "mtime": 1789297823.6328747,
+    "seen": 1789848927.868925,
+    "ast_hash": "c8500e1a38d50ad751c95036885d48c3",
+    "semantic_hash": ""
+  },
+  "docs/design/tintendisplay.html": {
+    "mtime": 1789297823.6329308,
+    "seen": 1789848927.8689265,
+    "ast_hash": "8c20956540dfe4a040bd3b980e5dacf1",
+    "semantic_hash": ""
+  },
+  "notebook/requirements.txt": {
+    "mtime": 1789297823.633164,
+    "seen": 1789848927.8689282,
+    "ast_hash": "ee45f1cbc55bf01e24f29d620d3d5f7e",
+    "semantic_hash": ""
   }
 }

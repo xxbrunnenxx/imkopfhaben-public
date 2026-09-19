@@ -1,1 +1,17 @@
-{"0": "main.py", "1": "App", "2": "app.py", "3": "akku_lernen.py", "4": "database.py", "5": "veredelung_service.py", "6": "Any", "7": "veredelung_test.py", "8": "_aehnlichster_treffer", "9": "veredelung_test_iterativ.py", "10": "get_alte_tagebuch_eintraege", "11": "get_buendel_vorschlaege", "12": "get_diary_entry_for_date", "13": "get_notes_ohne_veredelung", "14": "get_veredelte_seit", "15": "get_veredelung_for_note", "16": "zaehle_kategorie_vorschlag"}
+{
+  "0": "main.py",
+  "1": "App",
+  "2": "app.py",
+  "3": "akku_lernen.py",
+  "4": "get_counts",
+  "5": "database.py",
+  "6": "📡 API-Spezifikation (`brain/`)",
+  "7": "json",
+  "8": "notizen-exportieren.py",
+  "9": "pi_status.py",
+  "10": "imkopfhaben-brain -- Anleitung zum Starten und Stoppen",
+  "11": "imkopfhaben-start.sh",
+  "12": "notizen-auf-stick.sh",
+  "13": "ESP32-S3-ePaper-3.97 — Hardware-Erkenntnisse",
+  "14": "imkopfhaben-stop.sh"
+}

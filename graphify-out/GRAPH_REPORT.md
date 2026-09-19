@@ -1,15 +1,17 @@
-# Graph Report - imkopfhaben-public  (2026-09-18)
+# Graph Report - imkopfhaben-public  (2026-09-19)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 19 files · ~17,923 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 7 file(s) not represented in the graph (top: .service 4, (none) 1, .logrotate 1)
 
 ## Summary
-- 152 nodes · 238 edges · 17 communities (10 shown, 7 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
+- 282 nodes · 485 edges · 15 communities (14 shown, 1 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.93)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `090f585c`
+- Built from commit: `7bdbc090`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -18,88 +20,122 @@
 - App
 - app.py
 - akku_lernen.py
+- get_counts
 - database.py
-- veredelung_service.py
-- Any
-- veredelung_test.py
-- _aehnlichster_treffer
-- veredelung_test_iterativ.py
-- get_alte_tagebuch_eintraege
-- get_buendel_vorschlaege
-- get_diary_entry_for_date
-- get_notes_ohne_veredelung
-- get_veredelte_seit
-- get_veredelung_for_note
-- zaehle_kategorie_vorschlag
+- 📡 API-Spezifikation (`brain/`)
+- json
+- notizen-exportieren.py
+- pi_status.py
+- imkopfhaben-brain -- Anleitung zum Starten und Stoppen
+- imkopfhaben-start.sh
+- notizen-auf-stick.sh
+- ESP32-S3-ePaper-3.97 — Hardware-Erkenntnisse
+- imkopfhaben-stop.sh
 
 ## God Nodes (most connected - your core abstractions)
 1. `App` - 17 edges
-2. `Archive` - 7 edges
-3. `_laden()` - 5 edges
-4. `_main()` - 5 edges
-5. `_frage_gemma()` - 5 edges
-6. `fuehre_veredelung_schritt_aus()` - 5 edges
-7. `get_note_by_id()` - 5 edges
-8. `transcribe_raw()` - 4 edges
-9. `rgb565_bytes()` - 4 edges
-10. `_aktualisiere_tag_colors()` - 4 edges
+2. `📡 API-Spezifikation (`brain/`)` - 12 edges
+3. `process_audio()` - 10 edges
+4. `main()` - 9 edges
+5. `🧠 imkopfhaben` - 9 edges
+6. `status()` - 8 edges
+7. `_veredele_einzelne_notiz()` - 8 edges
+8. `schreiben()` - 7 edges
+9. `fuehre_veredelung_schritt_aus()` - 7 edges
+10. `Archive` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `LM Studio haelt sich nicht immer strikt an 'nur JSON antworten' - schneidet…` --rationale_for--> `_json_ausschneiden()`  [EXTRACTED]
-  brain/veredelung_test.py → brain/veredelung_service.py
+- `process_audio()` --calls--> `transcribe_audio()`  [EXTRACTED]
+  brain/main.py → brain/ai_service.py
+- `list_notes()` --calls--> `get_all_notes()`  [EXTRACTED]
+  brain/main.py → brain/database.py
+- `_main()` --calls--> `get_all_notes()`  [EXTRACTED]
+  brain/veredelung_test_iterativ.py → brain/database.py
+- `_main()` --calls--> `get_all_notes()`  [EXTRACTED]
+  brain/veredelung_test.py → brain/database.py
+- `delete_note()` --calls--> `delete_note()`  [EXTRACTED]
+  brain/main.py → brain/database.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (17 total, 7 thin omitted)
+## Communities (15 total, 1 thin omitted)
 
 ### Community 0 - "main.py"
-Cohesion: 0.09
-Nodes (29): BaseModel, delete_note(), get_buendel_vorschlaege(), get_config(), get_counts(), health_check(), lifespan(), list_notes() (+21 more)
+Cohesion: 0.06
+Nodes (50): asyncio, BaseModel, transcribe_audio(), get_buendel_vorschlaege(), init_db(), loesche_buendel_vorschlag(), Fuer die Web-UI (roh+veredelt/Vorschlaege nebeneinander) - die Veredelung…, delete_note() (+42 more)
 
 ### Community 1 - "App"
 Cohesion: 0.19
-Nodes (7): Image, ImageFont, App, Konvertiert PIL Image in das vom Whisplay LCD erwartete RGB565 Format., Bricht Text anhand der tatsächlichen Pixelbreite sauber um., Arbeitet die Warteschlange aeltestenzuerst ab (Dateiname beginnt mit…, rgb565_bytes()
+Nodes (8): Image, ImageFont, App, Konvertiert PIL Image in das vom Whisplay LCD erwartete RGB565 Format., Bricht Text anhand der tatsächlichen Pixelbreite sauber um., Arbeitet die Warteschlange aeltestenzuerst ab (Dateiname beginnt mit…, rgb565_bytes(), Übrige Punkte
 
 ### Community 2 - "app.py"
-Cohesion: 0.16
-Nodes (9): _aktualisiere_tag_colors(), Archive, _hex_zu_rgb(), _lade_sync_stand(), _load_fonts(), Periodischer Abgleich mit dem Brain (Issue #11/#16), analog zum…, Holt die Kategorie-Farben vom Brain (GET /api/config) und ergaenzt/…, _speichere_sync_stand() (+1 more)
+Cohesion: 0.12
+Nodes (14): logging, _aktualisiere_tag_colors(), Archive, _hex_zu_rgb(), _lade_sync_stand(), _load_fonts(), Path, Periodischer Abgleich mit dem Brain (Issue #11/#16), analog zum… (+6 more)
 
 ### Community 3 - "akku_lernen.py"
-Cohesion: 0.23
-Nodes (13): _fsync_verzeichnis(), geschaetzte_energie(), _laden(), _leerer_stand(), _main(), Der Akku-Lerner — schätzt, wie lange der Akku noch hält, rein aus beobachteten…, Beim Start aufgerufen, bevor der neue Zyklus losgeht: ist der vorige Lauf ohne…, Fehlt die Datei, ist das kein Fehler (erster Start überhaupt) — ist sie kaputt,… (+5 more)
+Cohesion: 0.18
+Nodes (15): argparse, _fsync_verzeichnis(), geschaetzte_energie(), _laden(), _leerer_stand(), _main(), Der Akku-Lerner — schätzt, wie lange der Akku noch hält, rein aus beobachteten…, Beim Start aufgerufen, bevor der neue Zyklus losgeht: ist der vorige Lauf ohne… (+7 more)
 
-### Community 4 - "database.py"
+### Community 4 - "get_counts"
+Cohesion: 0.33
+Nodes (6): get_category_counts(), get_hoechste_notiz_id(), get_hoechste_veredelung_id(), Fuer GET /api/counts - Notebook pollt das periodisch, um Server- seitige…, get_counts(), Fuers periodische Notebook-Polling (Issue #16/#11) - erkennt Server-seitige…
+
+### Community 5 - "database.py"
+Cohesion: 0.07
+Nodes (54): Any, structure_with_llm(), add_category(), _aehnlichster_treffer(), append_to_diary(), delete_note(), diary_hat_aehnliches_segment(), find_similar_recent() (+46 more)
+
+### Community 6 - "📡 API-Spezifikation (`brain/`)"
+Cohesion: 0.08
+Nodes (24): Notizen auf dem USB-Stick (19.09.2026), Offene Punkte, A. `brain/` (Pi 5 / Server), 📡 API-Spezifikation (`brain/`), 📐 Architektur, 📁 Aufbau, B. `notebook/` (Pi Zero 2 W / Client), 🎛️ Bedienung (`notebook/`) (+16 more)
+
+### Community 7 - "json"
+Cohesion: 0.18
+Nodes (14): _frage_gemma(), _json_ausschneiden(), _kategorien(), _main(), Vergleichs-Testskript zu veredelung_test.py: statt alle Notizen in einem Rutsch…, _json_ausschneiden(), _kategorien(), _main() (+6 more)
+
+### Community 8 - "notizen-exportieren.py"
+Cohesion: 0.17
+Nodes (20): Holt einmalig nach, was vor der Mitschrift entstanden ist. Die Mitschrift…, aufgaben_schreiben(), eintraege_sammeln(), geraet_lesen(), hole(), ideen_schreiben(), main(), Path (+12 more)
+
+### Community 9 - "pi_status.py"
 Cohesion: 0.15
-Nodes (6): get_categories(), get_category_counts(), loesche_leere_kategorien(), Name -> Farbe, sortiert nach Anlagedatum. Einzige Quelle der Wahrheit fuer…, Entfernt echt (nicht nur ausgeblendet) alle Kategorien ohne zugehoerige Notiz -…, Fuer GET /api/counts - Notebook pollt das periodisch, um Server- seitige…
+Nodes (17): brain_uptime_sekunden(), cpu_last_prozent(), _lese_cpu_zeiten(), pi_temperatur_celsius(), pi_uptime_sekunden(), ram_prozent(), Pi-5-Kennzahlen fuer die Geraete-Startseite. Liest nur aus dem Kernel (/proc,…, Alle Kennzahlen fuer die Geraete-Startseite in einem Rutsch. (+9 more)
 
-### Community 5 - "veredelung_service.py"
-Cohesion: 0.33
-Nodes (10): _buendel_erkennen(), _farbe_fuer_neue_kategorie(), _frage_gemma(), fuehre_veredelung_schritt_aus(), _json_ausschneiden(), Idle-Zeit-Veredelung der Notizen (Issue #16) - Produktionsmodul, aus den…, Deterministisch aus der Anzahl bestehender Kategorien abgeleitet, damit neue…, Fuehrt GENAU EINEN Veredelungsschritt aus (ein LLM-Call oder eine reine DB-… (+2 more)
+### Community 10 - "imkopfhaben-brain -- Anleitung zum Starten und Stoppen"
+Cohesion: 0.22
+Nodes (8): Haeufige Fragen, imkopfhaben-brain -- Anleitung zum Starten und Stoppen, Notizen auf den USB-Stick legen (offline weiterarbeiten), So startest du (Schritt fuer Schritt), So stoppst du (wenn du fertig bist), Stündlich von selbst, solange die Dienste laufen (19.09.2026), Was da technisch laeuft (Kurzfassung), Wichtig: das laeuft NICHT von allein
 
-### Community 6 - "Any"
-Cohesion: 0.27
-Nodes (10): Any, append_to_diary(), get_all_notes(), get_note_by_id(), Titel wird beim Speichern immer auf die Kategorie gesetzt (wie beim…, Haengt einen weiteren Eintrag mit Uhrzeit-Praefix an einen bestehenden…, save_note(), save_veredelung() (+2 more)
+### Community 11 - "imkopfhaben-start.sh"
+Cohesion: 0.83
+Nodes (3): fehler(), meldung(), imkopfhaben-start.sh script
 
-### Community 7 - "veredelung_test.py"
-Cohesion: 0.43
-Nodes (6): _json_ausschneiden(), _kategorien(), _main(), Eigenstaendiges Testskript fuer die Idle-Zeit-Veredelung (Issue #16). Bewusst…, LM Studio haelt sich nicht immer strikt an 'nur JSON antworten' - schneidet…, veredele()
+### Community 12 - "notizen-auf-stick.sh"
+Cohesion: 0.83
+Nodes (3): aufraeumen(), meldung(), notizen-auf-stick.sh script
 
-### Community 8 - "_aehnlichster_treffer"
-Cohesion: 0.33
-Nodes (6): _aehnlichster_treffer(), diary_hat_aehnliches_segment(), find_similar_recent(), Vergleicht `text` per difflib.SequenceMatcher (Groß-/Kleinschreibung ignoriert)…, Prueft, ob der neue Transkript-Text einem bereits im Tageseintrag enthaltenen…, Sucht in den letzten `minutes` Minuten nach einer Notiz mit sehr aehnlichem…
-
-### Community 9 - "veredelung_test_iterativ.py"
-Cohesion: 0.53
-Nodes (5): _frage_gemma(), _json_ausschneiden(), _kategorien(), _main(), Vergleichs-Testskript zu veredelung_test.py: statt alle Notizen in einem Rutsch…
+### Community 13 - "ESP32-S3-ePaper-3.97 — Hardware-Erkenntnisse"
+Cohesion: 0.50
+Nodes (3): Akku-Füllstand: echter Fuel-Gauge vorhanden, ESP32-S3-ePaper-3.97 — Hardware-Erkenntnisse, Referenz-Projekt: `alxv2016/folloup-sticky`
 
 ## Knowledge Gaps
-- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **28 isolated node(s):** `Notizen auf dem USB-Stick (19.09.2026)`, `📐 Architektur`, `🎛️ Bedienung (`notebook/`)`, `🛠️ Hardware`, `⚙️ Technische Besonderheiten` (+23 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 107 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `App` connect `App` to `app.py`?**
-  _High betweenness centrality (0.057) - this node is a cross-community bridge._
+  _High betweenness centrality (0.242) - this node is a cross-community bridge._
+- **Why does `Übrige Punkte` connect `App` to `📡 API-Spezifikation (`brain/`)`?**
+  _High betweenness centrality (0.153) - this node is a cross-community bridge._
+- **Why does `Offene Punkte` connect `📡 API-Spezifikation (`brain/`)` to `App`?**
+  _High betweenness centrality (0.148) - this node is a cross-community bridge._
+- **What connects `Notizen auf dem USB-Stick (19.09.2026)`, `📐 Architektur`, `🎛️ Bedienung (`notebook/`)` to the rest of the system?**
+  _28 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `main.py` be split into smaller, more focused modules?**
-  _Cohesion score 0.08712121212121213 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05505279034690799 - nodes in this community are weakly interconnected._
+- **Should `app.py` be split into smaller, more focused modules?**
+  _Cohesion score 0.11688311688311688 - nodes in this community are weakly interconnected._
+- **Should `database.py` be split into smaller, more focused modules?**
+  _Cohesion score 0.06623376623376623 - nodes in this community are weakly interconnected._
