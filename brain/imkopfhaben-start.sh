@@ -5,11 +5,14 @@
 # rufst das hier von Hand auf, wenn du das Geraet benutzen willst, und
 # beendest es danach mit imkopfhaben-stop.sh.
 #
-# Zwei Dienste werden gestartet:
+# Gestartet wird:
 #   1. LM Studio Server auf Port 1234  -- das Sprachmodell (gemma-4-e2b),
 #      das die "Zusammenfassen"-Knoepfe am Geraet bedient.
 #   2. brain (dieses Verzeichnis) auf Port 8000 -- nimmt die Sprachdatei
 #      vom Geraet entgegen und macht mit Whisper Text daraus.
+#   3. der stuendliche Abgleich der Notizen auf den USB-Stick (systemd-Timer).
+#      Haengt bewusst an den Diensten: sind sie aus, entstehen keine neuen
+#      Notizen, und der Pi soll dann auch nicht stuendlich aufwachen.
 #
 # Beide binden auf 0.0.0.0, damit das ESP32 sie ueber "kraken.local"
 # erreicht. Das Skript wartet, bis beide wirklich antworten, und meldet
@@ -36,7 +39,7 @@ fehler()  { printf '\nFEHLER: %s\n' "$1" >&2; exit 1; }
 # ---------------------------------------------------------------------------
 # 1. LM Studio Server + Modell
 # ---------------------------------------------------------------------------
-meldung "1/2  LM Studio (Sprachmodell) auf Port $LMS_PORT"
+meldung "1/3  LM Studio (Sprachmodell) auf Port $LMS_PORT"
 
 [ -x "$LMS" ] || fehler "LM Studio nicht gefunden unter $LMS -- ist LM Studio installiert?"
 
@@ -80,7 +83,7 @@ done
 # ---------------------------------------------------------------------------
 # 2. brain (Whisper-Transkription)
 # ---------------------------------------------------------------------------
-meldung "2/2  brain (Whisper-Transkription) auf Port $BRAIN_PORT"
+meldung "2/3  brain (Whisper-Transkription) auf Port $BRAIN_PORT"
 
 [ -x "$BRAIN_VERZEICHNIS/venv/bin/uvicorn" ] \
     || fehler "brain-venv fehlt ($BRAIN_VERZEICHNIS/venv) -- einmal 'python3 -m venv venv && venv/bin/pip install -r requirements.txt' im brain-Ordner ausfuehren."
@@ -113,12 +116,44 @@ for ((i = 0; i < WARTE_BRAIN; i++)); do
 done
 
 # ---------------------------------------------------------------------------
-meldung "Beide Dienste bereit"
+# 3. Stuendlicher Abgleich auf den USB-Stick
+# ---------------------------------------------------------------------------
+# Nur waehrend die Dienste laufen. Solange sie aus sind, entstehen keine
+# neuen Notizen -- ein Zeitgeber, der dann stuendlich aufwacht, den Stick
+# einhaengt und dieselben Dateien noch einmal schreibt, waere genau die Art
+# Dauerlast, die auf diesem Pi nicht sein soll. Deshalb haengt er hier mit
+# dran und wird von imkopfhaben-stop.sh wieder abgeschaltet.
+#
+# --now startet gleich einen Lauf, statt bis zur vollen Stunde zu warten:
+# waehrend die Dienste aus waren, koennen Notizen vom Geraet nachgereicht
+# worden sein.
+meldung "3/3  Stuendlicher Abgleich auf den USB-Stick"
+
+if systemctl list-unit-files imkopfhaben-stick.timer >/dev/null 2>&1; then
+    if sudo systemctl start imkopfhaben-stick.timer 2>/dev/null; then
+        echo "Zeitgeber laeuft -- der Stick wird stuendlich abgeglichen."
+        # Ein Lauf sofort, damit der Stick nicht bis zur vollen Stunde alt ist.
+        sudo systemctl start --no-block imkopfhaben-stick.service 2>/dev/null \
+            && echo "Erster Abgleich angestossen."
+    else
+        echo "Zeitgeber liess sich nicht starten -- der Stick bleibt vorerst alt."
+    fi
+else
+    echo "Zeitgeber nicht installiert -- uebersprungen."
+    echo "  Einrichten: sudo cp imkopfhaben-stick.{service,timer} /etc/systemd/system/"
+fi
+
+# ---------------------------------------------------------------------------
+meldung "Alles bereit"
 cat <<MELDUNG
 Das Geraet kann jetzt aufnehmen. Es spricht den Kraken unter "kraken.local"
 an:
   Sprachmodell  ->  http://kraken.local:$LMS_PORT/v1/
   Transkription ->  http://kraken.local:$BRAIN_PORT/api/transcribe-raw
+
+Die Notizen wandern stuendlich auf den USB-Stick, sofern er steckt --
+steckt er nicht, passiert einfach nichts. Nachsehen:
+  journalctl -u imkopfhaben-stick.service -n 20
 
 Wenn du fertig bist, alles wieder anhalten mit:
   ./imkopfhaben-stop.sh

@@ -6,10 +6,17 @@ OnCalendar=hourly
 # Nicht alle Zeitgeber der Maschine zur vollen Stunde gleichzeitig losrennen
 # lassen -- fuer einen Pi, der lastfrei bleiben soll, ist das Hoeflichkeit.
 RandomizedDelaySec=5min
-# Wichtig fuer den Fall "Pi war aus" oder "Stick steckte nicht": ein
-# verpasster Lauf wird beim naechsten Hochfahren nachgeholt, statt bis zur
-# naechsten vollen Stunde zu warten.
+# Holt einen verpassten Lauf nach, statt bis zur naechsten vollen Stunde zu
+# warten -- greift hier vor allem, wenn die Dienste zwischendurch aus waren.
 Persistent=true
 
-[Install]
-WantedBy=timers.target
+# Kein [Install]-Abschnitt, und das ist Absicht: dieser Zeitgeber soll NICHT
+# beim Hochfahren von selbst anspringen. Er gehoert zu den imkopfhaben-
+# Diensten und wird von imkopfhaben-start.sh gestartet, von
+# imkopfhaben-stop.sh wieder gestoppt. Sind die Dienste aus, entstehen keine
+# neuen Notizen -- ein Zeitgeber, der dann trotzdem stuendlich aufwacht, den
+# Stick einhaengt und dieselben Dateien noch einmal schreibt, waere genau die
+# Dauerlast, die auf diesem Pi nicht sein soll.
+#
+# Folge davon: `systemctl enable` greift bei dieser Einheit nicht (sie hat
+# kein Installationsziel). Gewollt.

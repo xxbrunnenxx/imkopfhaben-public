@@ -170,16 +170,28 @@ Ist das Gerät nicht erreichbar, läuft der Export allein aus der
 Mitschrift (`~/imkopfhaben-mitschrift/`). Dann fehlen Tags, Erledigt-Haken
 und Zusammenfassungen, der Text ist aber vollständig da.
 
-### Stündlich von selbst (eingerichtet 19.09.2026)
+### Stündlich von selbst, solange die Dienste laufen (19.09.2026)
 
-Der Abgleich läuft automatisch: `imkopfhaben-stick.timer` startet jede
-Stunde `brain/notizen-auf-stick.sh`. Von Hand ist dafür nichts mehr nötig.
+Der Abgleich läuft automatisch, **hängt aber an den Diensten**:
+`imkopfhaben-start.sh` startet `imkopfhaben-stick.timer` mit,
+`imkopfhaben-stop.sh` stoppt ihn wieder. Von Hand ist nichts weiter zu tun.
+
+Der Timer hat bewusst **kein `[Install]`** und springt deshalb beim Booten
+nicht von selbst an — `systemctl enable` greift bei ihm gar nicht, das ist
+Absicht. Grund: sind die Dienste aus, entstehen keine neuen Notizen. Ein
+Zeitgeber, der dann trotzdem stündlich aufwacht, den Stick einhängt und
+dieselben Dateien noch einmal schreibt, wäre genau die Dauerlast, die auf
+diesem Pi nicht sein soll.
+
+Beim Start läuft zusätzlich sofort ein Abgleich, statt bis zur vollen
+Stunde zu warten: während die Dienste aus waren, kann das Gerät Notizen
+nachgereicht haben.
 
 ```bash
 systemctl list-timers imkopfhaben-stick.timer   # wann läuft er das nächste Mal
 journalctl -u imkopfhaben-stick.service -n 20   # was war beim letzten Mal
 sudo systemctl start imkopfhaben-stick.service  # jetzt sofort abgleichen
-sudo systemctl disable --now imkopfhaben-stick.timer   # abschalten
+sudo systemctl stop imkopfhaben-stick.timer     # nur für diese Sitzung aus
 ```
 
 **Der Stick darf fehlen.** Steckt er nicht, meldet der Lauf „Stick steckt

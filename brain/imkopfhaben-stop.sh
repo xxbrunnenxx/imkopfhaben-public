@@ -41,6 +41,19 @@ rm -f "$PID_DATEI"
 # ---------------------------------------------------------------------------
 # 2. LM Studio Server beenden
 # ---------------------------------------------------------------------------
+meldung "Stuendlichen Stick-Abgleich anhalten"
+
+# Nur den Zeitgeber, nicht die Einheit selbst deaktivieren: beim naechsten
+# imkopfhaben-start.sh soll er ohne weiteres Zutun wieder anspringen.
+if systemctl list-unit-files imkopfhaben-stick.timer >/dev/null 2>&1; then
+    sudo systemctl stop imkopfhaben-stick.timer 2>/dev/null \
+        && echo "Zeitgeber gestoppt -- kein stuendliches Aufwachen mehr." \
+        || echo "Zeitgeber war nicht aktiv."
+else
+    echo "Zeitgeber nicht installiert -- nichts zu stoppen."
+fi
+
+# ---------------------------------------------------------------------------
 meldung "LM Studio Server anhalten"
 
 if [ -x "$LMS" ]; then

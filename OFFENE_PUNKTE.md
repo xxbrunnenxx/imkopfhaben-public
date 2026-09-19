@@ -35,10 +35,13 @@ eigenes Vorhaben, kein Anhängsel an den Export. Falls es kommen soll:
 Gerät-seitig gibt es `MarkRecordingCompleted()` bereits, es fehlt die
 Entscheidung, welche Seite bei Konflikten gewinnt.
 
-**Erledigt 19.09.2026: stündlich automatisch.**
-`imkopfhaben-stick.timer` startet `brain/notizen-auf-stick.sh` jede Stunde.
-Das verträgt sich mit der Entscheidung gegen systemd-Dauerdienste: der Lauf
-dauert Sekunden, liest nur und weckt kein Sprachmodell. Der fehlende Stick
+**Erledigt 19.09.2026: stündlich automatisch, an die Dienste gekoppelt.**
+`imkopfhaben-stick.timer` startet `brain/notizen-auf-stick.sh` jede Stunde —
+aber nur, solange die Dienste laufen: `imkopfhaben-start.sh` zieht ihn hoch,
+`imkopfhaben-stop.sh` schaltet ihn ab. Der Timer hat bewusst kein
+`[Install]`, springt also beim Booten nicht von selbst an. Damit bleibt die
+Entscheidung gegen Dauerlast durchgehalten: sind die Dienste aus, entstehen
+keine neuen Notizen, und der Pi wacht dann auch nicht stündlich auf. Der fehlende Stick
 ist ausdrücklich der Normalfall und endet ohne Fehler; steckt er wieder,
 wird er an seiner UUID erkannt, eingehängt, beschrieben und wieder
 ausgehängt. Belegt für alle drei Fälle, siehe `brain/ANLEITUNG.md`.
