@@ -51,8 +51,17 @@ if "$LMS" ps 2>/dev/null | grep -q "$MODELL"; then
     echo "Modell $MODELL ist bereits geladen."
 else
     echo "Lade Modell $MODELL (das dauert beim ersten Mal etwas) ..."
-    "$LMS" load "$MODELL" -y \
-        || fehler "Modell $MODELL liess sich nicht laden."
+    # "Text file busy" kann direkt nach "lms server start" auftreten, weil
+    # die lms-Binary dann noch vom gerade gestarteten Dienst gehalten wird
+    # (live beobachtet 19.09.2026). Deshalb ein paar Versuche statt sofort
+    # abzubrechen.
+    geladen=0
+    for versuch in 1 2 3 4 5; do
+        if "$LMS" load "$MODELL" -y; then geladen=1; break; fi
+        echo "Versuch $versuch fehlgeschlagen, warte 5s ..."
+        sleep 5
+    done
+    [ "$geladen" -eq 1 ] || fehler "Modell $MODELL liess sich nicht laden."
 fi
 
 # Warten, bis der Server das Modell ueber die API wirklich meldet.
@@ -83,9 +92,13 @@ else
     echo "Starte brain (Log: $BRAIN_LOG) ..."
     # Im Hintergrund, von der Konsole abgekoppelt, damit es weiterlaeuft,
     # auch wenn du das Terminal schliesst. PID merken fuers Stop-Skript.
+    # Wichtig: die Subshell darf nicht auf uvicorn warten. Ohne das
+    # abschliessende "exit" bleibt sie als Elternprozess haengen und das
+    # Startskript kehrt nie zur Konsole zurueck (live beobachtet 19.09.2026),
+    # obwohl beide Dienste laengst bereit sind.
     ( cd "$BRAIN_VERZEICHNIS" && \
       setsid nohup venv/bin/uvicorn main:app --host 0.0.0.0 --port "$BRAIN_PORT" \
-        > "$BRAIN_LOG" 2>&1 & echo $! > "$BRAIN_VERZEICHNIS/.brain.pid" )
+        > "$BRAIN_LOG" 2>&1 & echo $! > "$BRAIN_VERZEICHNIS/.brain.pid"; exit 0 )
 fi
 
 echo -n "Warte auf brain (laedt das Whisper-Modell)"
