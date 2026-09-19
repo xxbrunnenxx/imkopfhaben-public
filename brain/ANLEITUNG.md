@@ -169,3 +169,39 @@ ist bewusst nicht gebaut.
 Ist das Gerät nicht erreichbar, läuft der Export allein aus der
 Mitschrift (`~/imkopfhaben-mitschrift/`). Dann fehlen Tags, Erledigt-Haken
 und Zusammenfassungen, der Text ist aber vollständig da.
+
+### Stündlich von selbst (eingerichtet 19.09.2026)
+
+Der Abgleich läuft automatisch: `imkopfhaben-stick.timer` startet jede
+Stunde `brain/notizen-auf-stick.sh`. Von Hand ist dafür nichts mehr nötig.
+
+```bash
+systemctl list-timers imkopfhaben-stick.timer   # wann läuft er das nächste Mal
+journalctl -u imkopfhaben-stick.service -n 20   # was war beim letzten Mal
+sudo systemctl start imkopfhaben-stick.service  # jetzt sofort abgleichen
+sudo systemctl disable --now imkopfhaben-stick.timer   # abschalten
+```
+
+**Der Stick darf fehlen.** Steckt er nicht, meldet der Lauf „Stick steckt
+nicht" und endet ohne Fehler — kein rotes systemd-Unit, kein Alarm. Steckt
+er beim nächsten Mal wieder, wird er an seiner UUID erkannt, eingehängt,
+beschrieben und **wieder ausgehängt**. Du kannst ihn also jederzeit
+abziehen, ohne etwas anzuhalten.
+
+Erkannt wird er an der UUID `B218B41F18B3E111`, nicht an `/dev/sda1`: die
+Gerätenamen vergibt der Kernel nach Steckreihenfolge, und ein Skript, das
+einhängt und schreibt, darf nicht auf die falsche Platte greifen. Ein
+anderer Stick braucht eine neue UUID in `notizen-auf-stick.sh` (`lsblk -no
+UUID,LABEL`).
+
+War der Pi aus, als ein Lauf fällig gewesen wäre, holt `Persistent=true`
+ihn beim nächsten Hochfahren nach. Ein Rückstand kann sich ohnehin nicht
+anhäufen: der Export schreibt immer den vollen Stand, nicht die Differenz.
+
+Warum ein Timer hier vertretbar ist, obwohl LM Studio bewusst keinen Dienst
+hat: der Lauf dauert Sekunden und liest nur. Er hält den Pi nicht wach und
+weckt kein Sprachmodell.
+
+**Was er nicht tut:** neu zusammenfassen. Die Zusammenfassungen entstehen
+weiterhin nur auf Knopfdruck am Gerät — das weckt das Sprachmodell und
+kostet Minuten. Der Timer trägt den jeweils vorhandenen Stand auf den Stick.

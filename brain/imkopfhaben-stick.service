@@ -1,0 +1,24 @@
+[Unit]
+# Stuendlicher Abgleich der Notizen auf den USB-Stick.
+#
+# Kein Dauerdienst, sondern ein kurzer Lauf: das Skript schreibt ein paar
+# Markdown-Dateien und ist in Sekunden fertig. Damit vertraegt es sich mit
+# der Entscheidung, den Pi im Ruhezustand lastfrei zu halten -- anders als
+# LM Studio, das deshalb bewusst keinen Dienst hat.
+Description=imkopfhaben: Notizen auf den USB-Stick abgleichen
+# Nur eine Absichtserklaerung, keine Bedingung: ohne Netz laeuft der Export
+# aus der Mitschrift weiter. Deshalb Wants= und nicht Requires=.
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/kraken/imkopfhaben-public/brain/notizen-auf-stick.sh
+User=kraken
+# Ein Lauf dauert Sekunden. Bleibt er haengen (etwa an einem Stick, der
+# sich verabschiedet hat, waehrend er eingehaengt war), soll er abgeraeumt
+# werden, statt bis zum naechsten Mal zu blockieren.
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target

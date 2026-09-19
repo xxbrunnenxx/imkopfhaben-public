@@ -1,0 +1,15 @@
+[Unit]
+Description=imkopfhaben: Notizen stuendlich auf den USB-Stick abgleichen
+
+[Timer]
+OnCalendar=hourly
+# Nicht alle Zeitgeber der Maschine zur vollen Stunde gleichzeitig losrennen
+# lassen -- fuer einen Pi, der lastfrei bleiben soll, ist das Hoeflichkeit.
+RandomizedDelaySec=5min
+# Wichtig fuer den Fall "Pi war aus" oder "Stick steckte nicht": ein
+# verpasster Lauf wird beim naechsten Hochfahren nachgeholt, statt bis zur
+# naechsten vollen Stunde zu warten.
+Persistent=true
+
+[Install]
+WantedBy=timers.target

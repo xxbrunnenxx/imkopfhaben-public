@@ -35,10 +35,20 @@ eigenes Vorhaben, kein Anhängsel an den Export. Falls es kommen soll:
 Gerät-seitig gibt es `MarkRecordingCompleted()` bereits, es fehlt die
 Entscheidung, welche Seite bei Konflikten gewinnt.
 
-**Offen, weil nicht bestellt:** kein Automatismus. Der Export läuft von
-Hand, so wie die Dienste auch (siehe Entscheidung gegen systemd weiter
-oben). Wenn er regelmäßig laufen soll, wäre ein `systemd.timer` der
-Handgriff — bewusst nicht angelegt, der Pi soll lastfrei bleiben.
+**Erledigt 19.09.2026: stündlich automatisch.**
+`imkopfhaben-stick.timer` startet `brain/notizen-auf-stick.sh` jede Stunde.
+Das verträgt sich mit der Entscheidung gegen systemd-Dauerdienste: der Lauf
+dauert Sekunden, liest nur und weckt kein Sprachmodell. Der fehlende Stick
+ist ausdrücklich der Normalfall und endet ohne Fehler; steckt er wieder,
+wird er an seiner UUID erkannt, eingehängt, beschrieben und wieder
+ausgehängt. Belegt für alle drei Fälle, siehe `brain/ANLEITUNG.md`.
+
+**Weiterhin nicht automatisch: das Zusammenfassen.** Das weckt das
+Sprachmodell und dauert Minuten, gehört also nicht in einen stündlichen
+Timer. Es bleibt beim Knopfdruck am Gerät (oder
+`POST /api/archive/summarize` am Gerät). Folge davon: eine Zusammenfassung
+auf dem Stick kann älter sein als die Aufnahmen daneben — sie trägt ihr
+Erzeugungsdatum im Frontmatter, damit das sichtbar bleibt.
 
 **Beim Prüfen gefunden und behoben:** der Export lag zuerst *neben* dem
 Vault (`Pi5Backup_old version/imkopfhaben/`) statt darin. Obsidian zeigt
