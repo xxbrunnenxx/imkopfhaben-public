@@ -17,6 +17,7 @@ import database
 import ai_service
 import mitschrift
 import veredelung_service
+import pi_status
 
 STATIC_DIR = Path(__file__).parent / "static"
 
@@ -74,6 +75,17 @@ app.add_middleware(
 @app.get("/health")
 def health_check():
     return {"status": "ok", "backend": "Pi 5", "model": ai_service.MODEL_NAME}
+
+@app.get("/api/status")
+def pi_status_route():
+    """Kennzahlen des Pi 5 fuer die Geraete-Startseite: Brain-Uptime,
+    Pi-Uptime, CPU-Temperatur, CPU-Last, RAM. Ein Abruf, damit das ESP32
+    nicht mehrere Routen anfassen muss. Fehlt ein Sensor, steht dort
+    null statt eines Fehlers (siehe pi_status.py)."""
+    daten = pi_status.status()
+    daten["status"] = "ok"
+    daten["model"] = ai_service.MODEL_NAME
+    return daten
 
 @app.get("/api/config")
 def get_config():
