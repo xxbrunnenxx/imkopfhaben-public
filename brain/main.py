@@ -192,12 +192,36 @@ async def transcribe_raw(request: Request):
     Die Firmware (PostWavClip in local_ai_service.cpp) schickt die WAV-Datei
     als rohen HTTP-Body mit Content-Type: audio/wav, kein multipart/form-data
     -- deshalb hier Request.body() statt UploadFile/File()."""
+    roh = await request.body()
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
-        tmp.write(await request.body())
+        tmp.write(roh)
         tmp_path = tmp.name
 
     try:
         transcript = ai_service.transcribe_audio(tmp_path)
+        # Sichtbar machen, was ankommt: ein leeres Transkript wertet die
+        # Firmware als Fehlschlag, ohne dass im Log stuende, ob das Audio
+        # ueberhaupt brauchbar war (19.09.2026, "letztes Transkript failed").
+        kopf = roh[:44]
+        rate = int.from_bytes(kopf[24:28], "little") if len(kopf) == 44 else 0
+        kanaele = int.from_bytes(kopf[22:24], "little") if len(kopf) == 44 else 0
+        bits = int.from_bytes(kopf[34:36], "little") if len(kopf) == 44 else 0
+        nutz = max(0, len(roh) - 44)
+        dauer = nutz / (rate * kanaele * bits / 8) if rate and kanaele and bits else 0.0
+        print(
+            f"[transcribe-raw] {len(roh)} Bytes, {rate} Hz, {kanaele} Kanal/Kanaele, "
+            f"{bits} Bit, {dauer:.1f}s -> "
+            + (f"{len(transcript)} Zeichen: {transcript[:120]!r}" if transcript else "LEER"),
+            flush=True,
+        )
+        if not transcript:
+            # Aufheben, damit sich der Fehlschlag nachhoeren laesst statt ihn
+            # zu rekonstruieren.
+            pfad = Path.home() / "transcribe_fehlschlaege"
+            pfad.mkdir(exist_ok=True)
+            ziel = pfad / f"{datetime.now():%Y%m%d-%H%M%S}.wav"
+            ziel.write_bytes(roh)
+            print(f"[transcribe-raw] leeres Transkript, Audio liegt in {ziel}", flush=True)
         return {"transcript": transcript}
     finally:
         os.remove(tmp_path)
