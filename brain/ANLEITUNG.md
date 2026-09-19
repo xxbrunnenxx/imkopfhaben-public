@@ -137,8 +137,11 @@ brain/notizen-exportieren.py --ziel /pfad      # woanders hin
 brain/notizen-exportieren.py --host 10.0.0.5   # anderes Gerät
 ```
 
-Standardziel ist `/mnt/gigastick/Pi5Backup_old version/imkopfhaben/`.
-Hängt der Stick nicht, einmal `sudo mount /dev/sda1 /mnt/gigastick`.
+Standardziel ist `/mnt/gigastick/Pi5Backup_old version/vault/07-imkopfhaben/`
+— **im** Obsidian-Vault, nicht daneben. Obsidian zeigt ausschließlich, was
+unterhalb des Vault-Ordners liegt (erkennbar an dessen `.obsidian/`); ein
+Ordner eine Ebene darüber bleibt unsichtbar. Hängt der Stick nicht, einmal
+`sudo mount /dev/sda1 /mnt/gigastick`.
 
 Was entsteht:
 

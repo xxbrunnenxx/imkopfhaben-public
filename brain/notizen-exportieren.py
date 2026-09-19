@@ -59,7 +59,11 @@ sys.path.insert(0, str(Path(__file__).parent))
 import mitschrift  # noqa: E402
 
 STANDARD_HOST = "192.168.178.75"
-STANDARD_ZIEL = Path("/mnt/gigastick/Pi5Backup_old version/imkopfhaben")
+# In den Vault hinein, nicht daneben. Obsidian zeigt ausschliesslich, was
+# unterhalb des Vault-Ordners liegt (erkennbar an seinem `.obsidian/`) --
+# ein Ordner eine Ebene darueber ist fuer Obsidian unsichtbar. Beim ersten
+# Lauf am 19.09.2026 lag der Export genau dort falsch.
+STANDARD_ZIEL = Path("/mnt/gigastick/Pi5Backup_old version/vault/07-imkopfhaben")
 
 # Wie das Geraet seine Aufnahmen einsortiert, uebersetzt in Klartext.
 TAG_NAMEN = {"note": "Notiz", "task": "Aufgabe", "idea": "Idee"}

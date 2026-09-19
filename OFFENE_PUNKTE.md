@@ -40,8 +40,17 @@ Hand, so wie die Dienste auch (siehe Entscheidung gegen systemd weiter
 oben). Wenn er regelmäßig laufen soll, wäre ein `systemd.timer` der
 Handgriff — bewusst nicht angelegt, der Pi soll lastfrei bleiben.
 
-**Prüfung noch offen:** ob Obsidian den Ordner so einliest, wie gedacht.
-Die Form ist an den vorhandenen Vault auf dem Stick angelehnt
-(YAML-Frontmatter mit `tags:`), aber vom Besitzer noch nicht in Obsidian
-geöffnet worden. **Handgriff:** Vault in Obsidian öffnen, Ordner
-`imkopfhaben/` ansehen, prüfen ob Tags und Checkboxen greifen.
+**Beim Prüfen gefunden und behoben:** der Export lag zuerst *neben* dem
+Vault (`Pi5Backup_old version/imkopfhaben/`) statt darin. Obsidian zeigt
+nur, was unterhalb des Vault-Ordners liegt — der Export wäre dort nie
+aufgetaucht. Ziel ist jetzt
+`Pi5Backup_old version/vault/07-imkopfhaben/`. Der alte Ordner steht noch
+da und kann gelöscht werden; er enthält nur Export-Erzeugnisse, nichts
+Eigenes.
+
+**Form maschinell belegt:** alle sechs Dateien haben gültiges
+YAML-Frontmatter ab Zeile 1, ein `tags:`-Feld in Obsidian-Syntax und sind
+sauberes UTF-8; die Aufgabenliste enthält 5 Checkboxen in der Syntax, die
+Obsidian abhaken kann. **Letzter Handgriff bleibt beim Besitzer:** Vault
+in Obsidian öffnen und ansehen, ob es auch gefällt — das entscheidet das
+Auge, nicht eine Messung.
