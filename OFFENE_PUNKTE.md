@@ -67,3 +67,28 @@ sauberes UTF-8; die Aufgabenliste enthält 5 Checkboxen in der Syntax, die
 Obsidian abhaken kann. **Letzter Handgriff bleibt beim Besitzer:** Vault
 in Obsidian öffnen und ansehen, ob es auch gefällt — das entscheidet das
 Auge, nicht eine Messung.
+
+## 420-Track in den Vault-Export (20.09.2026)
+
+**Gebaut und belegt:** `brain/notizen-exportieren.py` zieht den 420-Track
+vom Gerät (`GET /api/420track`) und schreibt `06-420Track.md` in den Vault —
+Verlauf je Tag (neueste zuerst), Stand als Punktreihe, ein ⚑ an Tagen über
+dem Richtwert. Die vom Besitzer gepflegte `06-420Track-Vermerke.md` (Weg 1:
+seine Datei, der Export liest nur) wird nach Datum eingemerged.
+
+Drei Handgriffe, alle grün (gegen ein Scratch-Ziel, Gerät live unter
+192.168.178.75):
+
+1. **Route → Datei.** Lauf schreibt `06-420Track.md`, Kopf `heute 6 ·
+   Tagesrichtwert 4`, Verlaufszeile `### 2026-09-20 — 6 ⚑` mit sechs
+   Punkten. Vorlage `06-420Track-Vermerke.md` wird einmalig angelegt.
+2. **Vermerk-Merge.** Ein Testvermerk unter `## 2026-09-20` in der
+   Vermerke-Datei taucht nach dem Lauf unter dem passenden Tag in
+   `06-420Track.md` auf; die Vermerke-Datei selbst bleibt unangetastet.
+3. **Gerät aus schützt die Kopie.** Lauf mit `--host 10.255.255.1`
+   (unerreichbar): `06-420Track.md` bleibt samt Vermerk stehen, statt
+   geleert zu werden — der Track hat keine Zweitquelle auf dem Pi, seine
+   Historie liegt nur im NVS des Geräts und als Stick-Kopie.
+
+**Offen (Auge des Besitzers):** Vault in Obsidian öffnen und sehen, ob die
+Form von `06-420Track.md` und der Vermerke-Datei gefällt.

@@ -153,6 +153,8 @@ Was entsteht:
 | `03-Ideen.md` | Ideen und Notizen |
 | `04-Zusammenfassungen/` | die Fassungen, die das Gerät erzeugt hat |
 | `05-Eigene-Notizen/` | deins. Der Export fasst dieses Verzeichnis nie an |
+| `06-420Track.md` | der 420-Track vom Gerät (`/api/420track`): Verlauf je Tag, mit deinen Vermerken |
+| `06-420Track-Vermerke.md` | deins. Vermerke je Tag; der Export liest sie nur und fasst sie nie an |
 
 Zwei Dinge, die man wissen muss:
 

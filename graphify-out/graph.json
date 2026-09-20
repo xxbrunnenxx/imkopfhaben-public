@@ -56,18 +56,6 @@
       "source_location": "L144"
     },
     {
-      "id": "brain_ai_service_transcribe_audio",
-      "label": "transcribe_audio()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "code",
-      "norm_label": "transcribe_audio()",
-      "source_file": "brain/ai_service.py",
-      "source_location": "L18"
-    },
-    {
       "id": "brain_database_get_buendel_vorschlaege",
       "label": "get_buendel_vorschlaege()",
       "_callable": true,
@@ -78,6 +66,42 @@
       "norm_label": "get_buendel_vorschlaege()",
       "source_file": "brain/database.py",
       "source_location": "L316"
+    },
+    {
+      "id": "brain_database_get_category_counts",
+      "label": "get_category_counts()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "code",
+      "norm_label": "get_category_counts()",
+      "source_file": "brain/database.py",
+      "source_location": "L295"
+    },
+    {
+      "id": "brain_database_get_hoechste_notiz_id",
+      "label": "get_hoechste_notiz_id()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "code",
+      "norm_label": "get_hoechste_notiz_id()",
+      "source_file": "brain/database.py",
+      "source_location": "L366"
+    },
+    {
+      "id": "brain_database_get_hoechste_veredelung_id",
+      "label": "get_hoechste_veredelung_id()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "code",
+      "norm_label": "get_hoechste_veredelung_id()",
+      "source_file": "brain/database.py",
+      "source_location": "L373"
     },
     {
       "id": "brain_database_init_db",
@@ -126,6 +150,18 @@
       "norm_label": "get_buendel_vorschlaege()",
       "source_file": "brain/main.py",
       "source_location": "L117"
+    },
+    {
+      "id": "brain_main_get_counts",
+      "label": "get_counts()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "code",
+      "norm_label": "get_counts()",
+      "source_file": "brain/main.py",
+      "source_location": "L99"
     },
     {
       "id": "brain_main_health_check",
@@ -224,18 +260,6 @@
       "source_location": "L80"
     },
     {
-      "id": "brain_main_transcribe_raw",
-      "label": "transcribe_raw()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "code",
-      "norm_label": "transcribe_raw()",
-      "source_file": "brain/main.py",
-      "source_location": "L197"
-    },
-    {
       "id": "brain_main_veredelungs_hintergrundschleife",
       "label": "_veredelungs_hintergrundschleife()",
       "_callable": true,
@@ -258,66 +282,6 @@
       "norm_label": "web_ui()",
       "source_file": "brain/main.py",
       "source_location": "L324"
-    },
-    {
-      "id": "brain_mitschrift_anhaengen_atomar",
-      "label": "_anhaengen_atomar()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "code",
-      "norm_label": "_anhaengen_atomar()",
-      "source_file": "brain/mitschrift.py",
-      "source_location": "L51"
-    },
-    {
-      "id": "brain_mitschrift_lesen",
-      "label": "lesen()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "code",
-      "norm_label": "lesen()",
-      "source_file": "brain/mitschrift.py",
-      "source_location": "L95"
-    },
-    {
-      "id": "brain_mitschrift_mitschreiben",
-      "label": "mitschreiben()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "code",
-      "norm_label": "mitschreiben()",
-      "source_file": "brain/mitschrift.py",
-      "source_location": "L65"
-    },
-    {
-      "id": "brain_mitschrift_nachholen_main",
-      "label": "main()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "code",
-      "norm_label": "main()",
-      "source_file": "brain/mitschrift-nachholen.py",
-      "source_location": "L39"
-    },
-    {
-      "id": "brain_mitschrift_tagesdatei",
-      "label": "_tagesdatei()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "code",
-      "norm_label": "_tagesdatei()",
-      "source_file": "brain/mitschrift.py",
-      "source_location": "L47"
     },
     {
       "id": "notebook_app_app_handle_release",
@@ -752,52 +716,64 @@
       "source_location": "L108"
     },
     {
-      "id": "brain_database_get_category_counts",
-      "label": "get_category_counts()",
+      "id": "brain_mitschrift_anhaengen_atomar",
+      "label": "_anhaengen_atomar()",
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "get_counts",
+      "community_name": "mitschrift.py",
       "file_type": "code",
-      "norm_label": "get_category_counts()",
-      "source_file": "brain/database.py",
-      "source_location": "L295"
+      "norm_label": "_anhaengen_atomar()",
+      "source_file": "brain/mitschrift.py",
+      "source_location": "L51"
     },
     {
-      "id": "brain_database_get_hoechste_notiz_id",
-      "label": "get_hoechste_notiz_id()",
+      "id": "brain_mitschrift_lesen",
+      "label": "lesen()",
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "get_counts",
+      "community_name": "mitschrift.py",
       "file_type": "code",
-      "norm_label": "get_hoechste_notiz_id()",
-      "source_file": "brain/database.py",
-      "source_location": "L366"
+      "norm_label": "lesen()",
+      "source_file": "brain/mitschrift.py",
+      "source_location": "L95"
     },
     {
-      "id": "brain_database_get_hoechste_veredelung_id",
-      "label": "get_hoechste_veredelung_id()",
+      "id": "brain_mitschrift_mitschreiben",
+      "label": "mitschreiben()",
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "get_counts",
+      "community_name": "mitschrift.py",
       "file_type": "code",
-      "norm_label": "get_hoechste_veredelung_id()",
-      "source_file": "brain/database.py",
-      "source_location": "L373"
+      "norm_label": "mitschreiben()",
+      "source_file": "brain/mitschrift.py",
+      "source_location": "L65"
     },
     {
-      "id": "brain_main_get_counts",
-      "label": "get_counts()",
+      "id": "brain_mitschrift_nachholen_main",
+      "label": "main()",
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "get_counts",
+      "community_name": "mitschrift.py",
       "file_type": "code",
-      "norm_label": "get_counts()",
-      "source_file": "brain/main.py",
-      "source_location": "L99"
+      "norm_label": "main()",
+      "source_file": "brain/mitschrift-nachholen.py",
+      "source_location": "L39"
+    },
+    {
+      "id": "brain_mitschrift_tagesdatei",
+      "label": "_tagesdatei()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "mitschrift.py",
+      "file_type": "code",
+      "norm_label": "_tagesdatei()",
+      "source_file": "brain/mitschrift.py",
+      "source_location": "L47"
     },
     {
       "id": "brain_ai_service_structure_with_llm",
@@ -1172,6 +1148,30 @@
       "source_location": "L101"
     },
     {
+      "id": "brain_ai_service_transcribe_audio",
+      "label": "transcribe_audio()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "transcribe_audio()",
+      "source_file": "brain/ai_service.py",
+      "source_location": "L18"
+    },
+    {
+      "id": "brain_main_transcribe_raw",
+      "label": "transcribe_raw()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "transcribe_raw()",
+      "source_file": "brain/main.py",
+      "source_location": "L197"
+    },
+    {
       "id": "brain_veredelung_test_iterativ_frage_gemma",
       "label": "_frage_gemma()",
       "_callable": true,
@@ -1277,7 +1277,7 @@
       "file_type": "code",
       "norm_label": "aufgaben_schreiben()",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L170"
+      "source_location": "L211"
     },
     {
       "id": "brain_notizen_exportieren_eintraege_sammeln",
@@ -1289,7 +1289,7 @@
       "file_type": "code",
       "norm_label": "eintraege_sammeln()",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L86"
+      "source_location": "L107"
     },
     {
       "id": "brain_notizen_exportieren_geraet_lesen",
@@ -1301,7 +1301,7 @@
       "file_type": "code",
       "norm_label": "geraet_lesen()",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L77"
+      "source_location": "L82"
     },
     {
       "id": "brain_notizen_exportieren_hole",
@@ -1313,7 +1313,7 @@
       "file_type": "code",
       "norm_label": "hole()",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L72"
+      "source_location": "L77"
     },
     {
       "id": "brain_notizen_exportieren_ideen_schreiben",
@@ -1325,7 +1325,7 @@
       "file_type": "code",
       "norm_label": "ideen_schreiben()",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L216"
+      "source_location": "L257"
     },
     {
       "id": "brain_notizen_exportieren_main",
@@ -1337,7 +1337,7 @@
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L304"
+      "source_location": "L482"
     },
     {
       "id": "brain_notizen_exportieren_schreiben",
@@ -1349,7 +1349,7 @@
       "file_type": "code",
       "norm_label": "schreiben()",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L133"
+      "source_location": "L174"
     },
     {
       "id": "brain_notizen_exportieren_tagesdateien_schreiben",
@@ -1361,7 +1361,79 @@
       "file_type": "code",
       "norm_label": "tagesdateien_schreiben()",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L138"
+      "source_location": "L179"
+    },
+    {
+      "id": "brain_notizen_exportieren_track_lesen",
+      "label": "track_lesen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "code",
+      "norm_label": "track_lesen()",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L91"
+    },
+    {
+      "id": "brain_notizen_exportieren_track_schreiben",
+      "label": "track_schreiben()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "code",
+      "norm_label": "track_schreiben()",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L382"
+    },
+    {
+      "id": "brain_notizen_exportieren_track_tag_als_datum",
+      "label": "track_tag_als_datum()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "code",
+      "norm_label": "track_tag_als_datum()",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L309"
+    },
+    {
+      "id": "brain_notizen_exportieren_track_vermerke_lesen",
+      "label": "track_vermerke_lesen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "code",
+      "norm_label": "track_vermerke_lesen()",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L319"
+    },
+    {
+      "id": "brain_notizen_exportieren_track_vermerke_lesen_ablegen",
+      "label": "ablegen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "code",
+      "norm_label": "ablegen()",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L334"
+    },
+    {
+      "id": "brain_notizen_exportieren_track_vermerke_vorlage_anlegen",
+      "label": "track_vermerke_vorlage_anlegen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "code",
+      "norm_label": "track_vermerke_vorlage_anlegen()",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L356"
     },
     {
       "id": "brain_notizen_exportieren_uebersicht_schreiben",
@@ -1373,7 +1445,19 @@
       "file_type": "code",
       "norm_label": "uebersicht_schreiben()",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L261"
+      "source_location": "L437"
+    },
+    {
+      "id": "brain_notizen_exportieren_ziel_aufraeumen",
+      "label": "ziel_aufraeumen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "code",
+      "norm_label": "ziel_aufraeumen()",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L160"
     },
     {
       "id": "brain_notizen_exportieren_zusammenfassungen_schreiben",
@@ -1385,7 +1469,7 @@
       "file_type": "code",
       "norm_label": "zusammenfassungen_schreiben()",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L230"
+      "source_location": "L271"
     },
     {
       "id": "brain_pi_status_brain_uptime_sekunden",
@@ -1494,39 +1578,6 @@
       "source_location": "L1"
     },
     {
-      "id": "brain_mitschrift",
-      "label": "mitschrift.py",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "code",
-      "norm_label": "mitschrift.py",
-      "source_file": "brain/mitschrift.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "brain_mitschrift_py_path",
-      "label": "Path",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "code",
-      "norm_label": "path",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "datetime",
-      "label": "datetime",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "code",
-      "norm_label": "datetime",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
       "id": "delete",
       "label": "delete",
       "_origin": "ast",
@@ -1571,15 +1622,15 @@
       "source_location": ""
     },
     {
-      "id": "request",
-      "label": "Request",
+      "id": "brain_database_rationale_296",
+      "label": "Fuer GET /api/counts - Notebook pollt das periodisch, um Server- seitige\u2026",
       "_origin": "ast",
       "community": 0,
       "community_name": "main.py",
-      "file_type": "code",
-      "norm_label": "request",
-      "source_file": "",
-      "source_location": ""
+      "file_type": "rationale",
+      "norm_label": "fuer get /api/counts - notebook pollt das periodisch, um server- seitige...",
+      "source_file": "brain/database.py",
+      "source_location": "L296"
     },
     {
       "id": "brain_database_rationale_317",
@@ -1593,6 +1644,17 @@
       "source_location": "L317"
     },
     {
+      "id": "brain_main_rationale_100",
+      "label": "Fuers periodische Notebook-Polling (Issue #16/#11) - erkennt Server-seitige\u2026",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "rationale",
+      "norm_label": "fuers periodische notebook-polling (issue #16/#11) - erkennt server-seitige...",
+      "source_file": "brain/main.py",
+      "source_location": "L100"
+    },
+    {
       "id": "brain_main_rationale_111",
       "label": "Rueckkanal fuer veredelte Notizen (Issue #16) - eigener Endpunkt, getrennt vom\u2026",
       "_origin": "ast",
@@ -1602,17 +1664,6 @@
       "norm_label": "rueckkanal fuer veredelte notizen (issue #16) - eigener endpunkt, getrennt vom...",
       "source_file": "brain/main.py",
       "source_location": "L111"
-    },
-    {
-      "id": "brain_main_rationale_198",
-      "label": "Reine Transkription ohne Kategorisierung/Speicherung -- fuer den Waveshare-\u2026",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "rationale",
-      "norm_label": "reine transkription ohne kategorisierung/speicherung -- fuer den waveshare-...",
-      "source_file": "brain/main.py",
-      "source_location": "L198"
     },
     {
       "id": "brain_main_rationale_255",
@@ -1646,50 +1697,6 @@
       "norm_label": "kennzahlen des pi 5 fuer die geraete-startseite: brain-uptime, pi-uptime, cpu-...",
       "source_file": "brain/main.py",
       "source_location": "L81"
-    },
-    {
-      "id": "brain_mitschrift_rationale_1",
-      "label": "Mitschrift: jedes Transkript beim Entstehen wegschreiben. Warum es das gibt\u2026",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "rationale",
-      "norm_label": "mitschrift: jedes transkript beim entstehen wegschreiben. warum es das gibt...",
-      "source_file": "brain/mitschrift.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "brain_mitschrift_rationale_52",
-      "label": "Anhaengen und auf die Platte zwingen. Ohne flush/fsync steht bei einem\u2026",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "rationale",
-      "norm_label": "anhaengen und auf die platte zwingen. ohne flush/fsync steht bei einem...",
-      "source_file": "brain/mitschrift.py",
-      "source_location": "L52"
-    },
-    {
-      "id": "brain_mitschrift_rationale_67",
-      "label": "Ein Transkript wegschreiben. Wirft nie.",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "rationale",
-      "norm_label": "ein transkript wegschreiben. wirft nie.",
-      "source_file": "brain/mitschrift.py",
-      "source_location": "L67"
-    },
-    {
-      "id": "brain_mitschrift_rationale_96",
-      "label": "Alle mitgeschriebenen Transkripte, aelteste zuerst. Kaputte Zeilen werden\u2026",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "rationale",
-      "norm_label": "alle mitgeschriebenen transkripte, aelteste zuerst. kaputte zeilen werden...",
-      "source_file": "brain/mitschrift.py",
-      "source_location": "L96"
     },
     {
       "id": "image",
@@ -1840,7 +1847,7 @@
       "node_kind": "heading",
       "norm_label": "stundlich von selbst, solange die dienste laufen (19.09.2026)",
       "source_file": "brain/ANLEITUNG.md",
-      "source_location": "L173"
+      "source_location": "L175"
     },
     {
       "id": "brain_anleitung_was_da_technisch_laeuft_kurzfassung",
@@ -2190,26 +2197,103 @@
       "source_location": "L94"
     },
     {
-      "id": "brain_database_rationale_296",
-      "label": "Fuer GET /api/counts - Notebook pollt das periodisch, um Server- seitige\u2026",
+      "id": "brain_mitschrift",
+      "label": "mitschrift.py",
       "_origin": "ast",
       "community": 4,
-      "community_name": "get_counts",
-      "file_type": "rationale",
-      "norm_label": "fuer get /api/counts - notebook pollt das periodisch, um server- seitige...",
-      "source_file": "brain/database.py",
-      "source_location": "L296"
+      "community_name": "mitschrift.py",
+      "file_type": "code",
+      "norm_label": "mitschrift.py",
+      "source_file": "brain/mitschrift.py",
+      "source_location": "L1"
     },
     {
-      "id": "brain_main_rationale_100",
-      "label": "Fuers periodische Notebook-Polling (Issue #16/#11) - erkennt Server-seitige\u2026",
+      "id": "brain_mitschrift_nachholen",
+      "label": "mitschrift-nachholen.py",
       "_origin": "ast",
       "community": 4,
-      "community_name": "get_counts",
+      "community_name": "mitschrift.py",
+      "file_type": "code",
+      "norm_label": "mitschrift-nachholen.py",
+      "source_file": "brain/mitschrift-nachholen.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "brain_mitschrift_py_path",
+      "label": "Path",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "mitschrift.py",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "datetime",
+      "label": "datetime",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "mitschrift.py",
+      "file_type": "code",
+      "norm_label": "datetime",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "brain_mitschrift_nachholen_rationale_2",
+      "label": "Holt einmalig nach, was vor der Mitschrift entstanden ist. Die Mitschrift\u2026",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "mitschrift.py",
       "file_type": "rationale",
-      "norm_label": "fuers periodische notebook-polling (issue #16/#11) - erkennt server-seitige...",
-      "source_file": "brain/main.py",
-      "source_location": "L100"
+      "norm_label": "holt einmalig nach, was vor der mitschrift entstanden ist. die mitschrift...",
+      "source_file": "brain/mitschrift-nachholen.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "brain_mitschrift_rationale_1",
+      "label": "Mitschrift: jedes Transkript beim Entstehen wegschreiben. Warum es das gibt\u2026",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "mitschrift.py",
+      "file_type": "rationale",
+      "norm_label": "mitschrift: jedes transkript beim entstehen wegschreiben. warum es das gibt...",
+      "source_file": "brain/mitschrift.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "brain_mitschrift_rationale_52",
+      "label": "Anhaengen und auf die Platte zwingen. Ohne flush/fsync steht bei einem\u2026",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "mitschrift.py",
+      "file_type": "rationale",
+      "norm_label": "anhaengen und auf die platte zwingen. ohne flush/fsync steht bei einem...",
+      "source_file": "brain/mitschrift.py",
+      "source_location": "L52"
+    },
+    {
+      "id": "brain_mitschrift_rationale_67",
+      "label": "Ein Transkript wegschreiben. Wirft nie.",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "mitschrift.py",
+      "file_type": "rationale",
+      "norm_label": "ein transkript wegschreiben. wirft nie.",
+      "source_file": "brain/mitschrift.py",
+      "source_location": "L67"
+    },
+    {
+      "id": "brain_mitschrift_rationale_96",
+      "label": "Alle mitgeschriebenen Transkripte, aelteste zuerst. Kaputte Zeilen werden\u2026",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "mitschrift.py",
+      "file_type": "rationale",
+      "norm_label": "alle mitgeschriebenen transkripte, aelteste zuerst. kaputte zeilen werden...",
+      "source_file": "brain/mitschrift.py",
+      "source_location": "L96"
     },
     {
       "id": "any",
@@ -2464,6 +2548,18 @@
       "norm_label": "offene_punkte.md",
       "source_file": "OFFENE_PUNKTE.md",
       "source_location": "L1"
+    },
+    {
+      "id": "offene_punkte_420_track_in_den_vault_export_20_09_2026",
+      "label": "420-Track in den Vault-Export (20.09.2026)",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "\ud83d\udce1 API-Spezifikation (`brain/`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "420-track in den vault-export (20.09.2026)",
+      "source_file": "OFFENE_PUNKTE.md",
+      "source_location": "L71"
     },
     {
       "id": "offene_punkte_notizen_auf_dem_usb_stick_19_09_2026",
@@ -2799,6 +2895,28 @@
       "source_location": "L1"
     },
     {
+      "id": "request",
+      "label": "Request",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "request",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "brain_main_rationale_198",
+      "label": "Reine Transkription ohne Kategorisierung/Speicherung -- fuer den Waveshare-\u2026",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "json",
+      "file_type": "rationale",
+      "norm_label": "reine transkription ohne kategorisierung/speicherung -- fuer den waveshare-...",
+      "source_file": "brain/main.py",
+      "source_location": "L198"
+    },
+    {
       "id": "brain_veredelung_test_iterativ_rationale_1",
       "label": "Vergleichs-Testskript zu veredelung_test.py: statt alle Notizen in einem Rutsch\u2026",
       "_origin": "ast",
@@ -2832,17 +2950,6 @@
       "source_location": "L82"
     },
     {
-      "id": "brain_mitschrift_nachholen",
-      "label": "mitschrift-nachholen.py",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "notizen-exportieren.py",
-      "file_type": "code",
-      "norm_label": "mitschrift-nachholen.py",
-      "source_file": "brain/mitschrift-nachholen.py",
-      "source_location": "L1"
-    },
-    {
       "id": "brain_notizen_exportieren",
       "label": "notizen-exportieren.py",
       "_origin": "ast",
@@ -2865,18 +2972,29 @@
       "source_location": ""
     },
     {
-      "id": "brain_mitschrift_nachholen_rationale_2",
-      "label": "Holt einmalig nach, was vor der Mitschrift entstanden ist. Die Mitschrift\u2026",
+      "id": "brain_notizen_exportieren_rationale_108",
+      "label": "Beide Quellen zu einer Liste zusammenfuehren. Das Geraet hat Vorrang, weil nur\u2026",
       "_origin": "ast",
       "community": 8,
       "community_name": "notizen-exportieren.py",
       "file_type": "rationale",
-      "norm_label": "holt einmalig nach, was vor der mitschrift entstanden ist. die mitschrift...",
-      "source_file": "brain/mitschrift-nachholen.py",
-      "source_location": "L2"
+      "norm_label": "beide quellen zu einer liste zusammenfuehren. das geraet hat vorrang, weil nur...",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L108"
     },
     {
-      "id": "brain_notizen_exportieren_rationale_139",
+      "id": "brain_notizen_exportieren_rationale_161",
+      "label": "Entfernt den zuletzt geschriebenen Bestand, bevor neu geschrieben wird. So\u2026",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "rationale",
+      "norm_label": "entfernt den zuletzt geschriebenen bestand, bevor neu geschrieben wird. so...",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L161"
+    },
+    {
+      "id": "brain_notizen_exportieren_rationale_180",
       "label": "Je Tag eine Datei -- so, wie die Notizen entstanden sind.",
       "_origin": "ast",
       "community": 8,
@@ -2884,18 +3002,7 @@
       "file_type": "rationale",
       "norm_label": "je tag eine datei -- so, wie die notizen entstanden sind.",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L139"
-    },
-    {
-      "id": "brain_notizen_exportieren_rationale_171",
-      "label": "Alle Aufgaben als abhakbare Liste. Bewusst Markdown-Checkboxen: die lassen sich\u2026",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "notizen-exportieren.py",
-      "file_type": "rationale",
-      "norm_label": "alle aufgaben als abhakbare liste. bewusst markdown-checkboxen: die lassen sich...",
-      "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L171"
+      "source_location": "L180"
     },
     {
       "id": "brain_notizen_exportieren_rationale_2",
@@ -2909,7 +3016,62 @@
       "source_location": "L2"
     },
     {
-      "id": "brain_notizen_exportieren_rationale_78",
+      "id": "brain_notizen_exportieren_rationale_212",
+      "label": "Alle Aufgaben als abhakbare Liste. Bewusst Markdown-Checkboxen: die lassen sich\u2026",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "rationale",
+      "norm_label": "alle aufgaben als abhakbare liste. bewusst markdown-checkboxen: die lassen sich...",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L212"
+    },
+    {
+      "id": "brain_notizen_exportieren_rationale_310",
+      "label": "YYYYMMDD (int) -> date, oder None wenn 0/ungueltig (Uhr ungestellt).",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "rationale",
+      "norm_label": "yyyymmdd (int) -> date, oder none wenn 0/ungueltig (uhr ungestellt).",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L310"
+    },
+    {
+      "id": "brain_notizen_exportieren_rationale_320",
+      "label": "Liest die vom Besitzer gepflegte Vermerke-Datei, Vermerk je Datum. Format\u2026",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "rationale",
+      "norm_label": "liest die vom besitzer gepflegte vermerke-datei, vermerk je datum. format...",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L320"
+    },
+    {
+      "id": "brain_notizen_exportieren_rationale_357",
+      "label": "Legt die Vermerke-Datei einmalig an, falls sie fehlt. Nie ueberschreiben.",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "rationale",
+      "norm_label": "legt die vermerke-datei einmalig an, falls sie fehlt. nie ueberschreiben.",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L357"
+    },
+    {
+      "id": "brain_notizen_exportieren_rationale_383",
+      "label": "Schreibt `06-420Track.md` aus der Board-Route, Vermerke nach Datum gemerged.\u2026",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "notizen-exportieren.py",
+      "file_type": "rationale",
+      "norm_label": "schreibt `06-420track.md` aus der board-route, vermerke nach datum gemerged....",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L383"
+    },
+    {
+      "id": "brain_notizen_exportieren_rationale_83",
       "label": "Aufnahmen und Zusammenfassungen holen, oder (None, None).",
       "_origin": "ast",
       "community": 8,
@@ -2917,18 +3079,18 @@
       "file_type": "rationale",
       "norm_label": "aufnahmen und zusammenfassungen holen, oder (none, none).",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L78"
+      "source_location": "L83"
     },
     {
-      "id": "brain_notizen_exportieren_rationale_87",
-      "label": "Beide Quellen zu einer Liste zusammenfuehren. Das Geraet hat Vorrang, weil nur\u2026",
+      "id": "brain_notizen_exportieren_rationale_92",
+      "label": "Holt den 420-Track vom Geraet (`/api/420track`), oder None. Anders als der Rest\u2026",
       "_origin": "ast",
       "community": 8,
       "community_name": "notizen-exportieren.py",
       "file_type": "rationale",
-      "norm_label": "beide quellen zu einer liste zusammenfuehren. das geraet hat vorrang, weil nur...",
+      "norm_label": "holt den 420-track vom geraet (`/api/420track`), oder none. anders als der rest...",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L87"
+      "source_location": "L92"
     },
     {
       "id": "brain_pi_status",
@@ -3032,6 +3194,7 @@
     {
       "id": "asyncio",
       "label": "asyncio",
+      "_origin": "semantic",
       "community": 0,
       "community_name": "main.py",
       "external": true,
@@ -3043,6 +3206,7 @@
     {
       "id": "contextlib",
       "label": "contextlib",
+      "_origin": "semantic",
       "community": 0,
       "community_name": "main.py",
       "external": true,
@@ -3054,6 +3218,7 @@
     {
       "id": "fastapi_middleware_cors",
       "label": "fastapi_middleware_cors",
+      "_origin": "semantic",
       "community": 0,
       "community_name": "main.py",
       "external": true,
@@ -3065,6 +3230,7 @@
     {
       "id": "fastapi_responses",
       "label": "fastapi_responses",
+      "_origin": "semantic",
       "community": 0,
       "community_name": "main.py",
       "external": true,
@@ -3074,30 +3240,9 @@
       "type": "external"
     },
     {
-      "id": "os",
-      "label": "os",
-      "community": 0,
-      "community_name": "main.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "os",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "pathlib",
-      "label": "pathlib",
-      "community": 0,
-      "community_name": "main.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "pathlib",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "pydantic",
       "label": "pydantic",
+      "_origin": "semantic",
       "community": 0,
       "community_name": "main.py",
       "external": true,
@@ -3107,19 +3252,9 @@
       "type": "external"
     },
     {
-      "id": "tempfile",
-      "label": "tempfile",
-      "community": 0,
-      "community_name": "main.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "tempfile",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "logging",
       "label": "logging",
+      "_origin": "semantic",
       "community": 2,
       "community_name": "app.py",
       "external": true,
@@ -3131,6 +3266,7 @@
     {
       "id": "pil",
       "label": "pil",
+      "_origin": "semantic",
       "community": 2,
       "community_name": "app.py",
       "external": true,
@@ -3142,6 +3278,7 @@
     {
       "id": "shutil",
       "label": "shutil",
+      "_origin": "semantic",
       "community": 2,
       "community_name": "app.py",
       "external": true,
@@ -3153,6 +3290,7 @@
     {
       "id": "threading",
       "label": "threading",
+      "_origin": "semantic",
       "community": 2,
       "community_name": "app.py",
       "external": true,
@@ -3164,6 +3302,7 @@
     {
       "id": "whisplay_client",
       "label": "whisplay_client",
+      "_origin": "semantic",
       "community": 2,
       "community_name": "app.py",
       "external": true,
@@ -3175,6 +3314,7 @@
     {
       "id": "argparse",
       "label": "argparse",
+      "_origin": "semantic",
       "community": 3,
       "community_name": "akku_lernen.py",
       "external": true,
@@ -3186,6 +3326,7 @@
     {
       "id": "signal",
       "label": "signal",
+      "_origin": "semantic",
       "community": 3,
       "community_name": "akku_lernen.py",
       "external": true,
@@ -3195,8 +3336,69 @@
       "type": "external"
     },
     {
+      "id": "os",
+      "label": "os",
+      "_origin": "semantic",
+      "community": 4,
+      "community_name": "mitschrift.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "os",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "pathlib",
+      "label": "pathlib",
+      "_origin": "semantic",
+      "community": 4,
+      "community_name": "mitschrift.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "pathlib",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "sys",
+      "label": "sys",
+      "_origin": "semantic",
+      "community": 4,
+      "community_name": "mitschrift.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "sys",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "tempfile",
+      "label": "tempfile",
+      "_origin": "semantic",
+      "community": 4,
+      "community_name": "mitschrift.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "tempfile",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "urllib_request",
+      "label": "urllib_request",
+      "_origin": "semantic",
+      "community": 4,
+      "community_name": "mitschrift.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "urllib_request",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "difflib",
       "label": "difflib",
+      "_origin": "semantic",
       "community": 5,
       "community_name": "database.py",
       "external": true,
@@ -3208,6 +3410,7 @@
     {
       "id": "sqlite3",
       "label": "sqlite3",
+      "_origin": "semantic",
       "community": 5,
       "community_name": "database.py",
       "external": true,
@@ -3219,6 +3422,7 @@
     {
       "id": "typing",
       "label": "typing",
+      "_origin": "semantic",
       "community": 5,
       "community_name": "database.py",
       "external": true,
@@ -3230,6 +3434,7 @@
     {
       "id": "faster_whisper",
       "label": "faster_whisper",
+      "_origin": "semantic",
       "community": 7,
       "community_name": "json",
       "external": true,
@@ -3241,6 +3446,7 @@
     {
       "id": "json",
       "label": "json",
+      "_origin": "semantic",
       "community": 7,
       "community_name": "json",
       "external": true,
@@ -3252,6 +3458,7 @@
     {
       "id": "requests",
       "label": "requests",
+      "_origin": "semantic",
       "community": 7,
       "community_name": "json",
       "external": true,
@@ -3263,6 +3470,7 @@
     {
       "id": "collections",
       "label": "collections",
+      "_origin": "semantic",
       "community": 8,
       "community_name": "notizen-exportieren.py",
       "external": true,
@@ -3272,30 +3480,9 @@
       "type": "external"
     },
     {
-      "id": "sys",
-      "label": "sys",
-      "community": 8,
-      "community_name": "notizen-exportieren.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "sys",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "urllib_request",
-      "label": "urllib_request",
-      "community": 8,
-      "community_name": "notizen-exportieren.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "urllib_request",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "subprocess",
       "label": "subprocess",
+      "_origin": "semantic",
       "community": 9,
       "community_name": "pi_status.py",
       "external": true,
@@ -3307,6 +3494,7 @@
     {
       "id": "time",
       "label": "time",
+      "_origin": "semantic",
       "community": 9,
       "community_name": "pi_status.py",
       "external": true,
@@ -3818,7 +4006,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L212",
+      "source_location": "L253",
       "weight": 1.0
     },
     {
@@ -3830,7 +4018,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L80",
+      "source_location": "L85",
       "weight": 1.0
     },
     {
@@ -3842,7 +4030,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L226",
+      "source_location": "L267",
       "weight": 1.0
     },
     {
@@ -3854,7 +4042,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L310",
+      "source_location": "L488",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_main",
+      "target": "brain_notizen_exportieren_track_lesen",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L489",
       "weight": 1.0
     },
     {
@@ -3866,7 +4066,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L311",
+      "source_location": "L490",
       "weight": 1.0
     },
     {
@@ -3878,7 +4078,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L311",
+      "source_location": "L490",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_main",
+      "target": "brain_notizen_exportieren_track_vermerke_vorlage_anlegen",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L509",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_main",
+      "target": "brain_notizen_exportieren_ziel_aufraeumen",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L516",
       "weight": 1.0
     },
     {
@@ -3890,7 +4114,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L327",
+      "source_location": "L517",
       "weight": 1.0
     },
     {
@@ -3902,7 +4126,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L328",
+      "source_location": "L518",
       "weight": 1.0
     },
     {
@@ -3914,7 +4138,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L329",
+      "source_location": "L519",
       "weight": 1.0
     },
     {
@@ -3926,7 +4150,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L330",
+      "source_location": "L520",
       "weight": 1.0
     },
     {
@@ -3938,7 +4162,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L331",
+      "source_location": "L521",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_main",
+      "target": "brain_notizen_exportieren_track_schreiben",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L525",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_main",
+      "target": "brain_notizen_exportieren_track_vermerke_lesen",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L525",
       "weight": 1.0
     },
     {
@@ -3950,7 +4198,55 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L166",
+      "source_location": "L207",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_track_lesen",
+      "target": "brain_notizen_exportieren_hole",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_track_schreiben",
+      "target": "brain_notizen_exportieren_track_tag_als_datum",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L416",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_track_schreiben",
+      "target": "brain_notizen_exportieren_schreiben",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L433",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_track_vermerke_vorlage_anlegen",
+      "target": "brain_notizen_exportieren_schreiben",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L379",
       "weight": 1.0
     },
     {
@@ -3962,7 +4258,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L301",
+      "source_location": "L479",
       "weight": 1.0
     },
     {
@@ -3974,7 +4270,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L256",
+      "source_location": "L297",
       "weight": 1.0
     },
     {
@@ -4818,6 +5114,18 @@
       "weight": 1.0
     },
     {
+      "source": "brain_notizen_exportieren_track_vermerke_lesen",
+      "target": "brain_notizen_exportieren_track_vermerke_lesen_ablegen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L334",
+      "weight": 1.0
+    },
+    {
       "source": "brain_main_delete_note",
       "target": "delete",
       "relation": "references",
@@ -5462,7 +5770,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L50",
+      "source_location": "L54",
       "weight": 1.0
     },
     {
@@ -5474,7 +5782,19 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L51",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren",
+      "target": "shutil",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -5486,7 +5806,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L52",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
@@ -5498,7 +5818,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L53",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -5510,7 +5830,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L59",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -6038,7 +6358,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L54",
+      "source_location": "L59",
       "weight": 1.0
     },
     {
@@ -6050,7 +6370,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L55",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -6062,7 +6382,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L56",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -6254,7 +6574,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L170",
+      "source_location": "L211",
       "weight": 1.0
     },
     {
@@ -6266,7 +6586,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L216",
+      "source_location": "L257",
       "weight": 1.0
     },
     {
@@ -6278,7 +6598,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L133",
+      "source_location": "L174",
       "weight": 1.0
     },
     {
@@ -6290,7 +6610,43 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L138",
+      "source_location": "L179",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_track_schreiben",
+      "target": "brain_notizen_exportieren_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L382",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_track_vermerke_lesen",
+      "target": "brain_notizen_exportieren_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L319",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_track_vermerke_vorlage_anlegen",
+      "target": "brain_notizen_exportieren_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L356",
       "weight": 1.0
     },
     {
@@ -6302,7 +6658,19 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L261",
+      "source_location": "L437",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_ziel_aufraeumen",
+      "target": "brain_notizen_exportieren_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L160",
       "weight": 1.0
     },
     {
@@ -6314,7 +6682,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L230",
+      "source_location": "L271",
       "weight": 1.0
     },
     {
@@ -6496,7 +6864,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/ANLEITUNG.md",
-      "source_location": "L173",
+      "source_location": "L175",
       "weight": 1.0
     },
     {
@@ -7084,13 +7452,35 @@
     },
     {
       "source": "brain_notizen_exportieren",
+      "target": "brain_notizen_exportieren_eintraege_sammeln",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L107",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren",
+      "target": "brain_notizen_exportieren_ziel_aufraeumen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L160",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren",
       "target": "brain_notizen_exportieren_schreiben",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L133",
+      "source_location": "L174",
       "weight": 1.0
     },
     {
@@ -7101,7 +7491,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L138",
+      "source_location": "L179",
       "weight": 1.0
     },
     {
@@ -7112,7 +7502,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L170",
+      "source_location": "L211",
       "weight": 1.0
     },
     {
@@ -7123,7 +7513,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L216",
+      "source_location": "L257",
       "weight": 1.0
     },
     {
@@ -7134,7 +7524,51 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L230",
+      "source_location": "L271",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren",
+      "target": "brain_notizen_exportieren_track_tag_als_datum",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L309",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren",
+      "target": "brain_notizen_exportieren_track_vermerke_lesen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L319",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren",
+      "target": "brain_notizen_exportieren_track_vermerke_vorlage_anlegen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L356",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren",
+      "target": "brain_notizen_exportieren_track_schreiben",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L382",
       "weight": 1.0
     },
     {
@@ -7145,7 +7579,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L261",
+      "source_location": "L437",
       "weight": 1.0
     },
     {
@@ -7156,7 +7590,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L304",
+      "source_location": "L482",
       "weight": 1.0
     },
     {
@@ -7167,7 +7601,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L72",
+      "source_location": "L77",
       "weight": 1.0
     },
     {
@@ -7178,18 +7612,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L77",
+      "source_location": "L82",
       "weight": 1.0
     },
     {
       "source": "brain_notizen_exportieren",
-      "target": "brain_notizen_exportieren_eintraege_sammeln",
+      "target": "brain_notizen_exportieren_track_lesen",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L86",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -7674,6 +8108,17 @@
       "confidence_score": 1.0,
       "source_file": "OFFENE_PUNKTE.md",
       "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "offene_punkte_offene_punkte",
+      "target": "offene_punkte_420_track_in_den_vault_export_20_09_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "OFFENE_PUNKTE.md",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -8513,25 +8958,36 @@
       "weight": 1.0
     },
     {
-      "source": "brain_notizen_exportieren_rationale_139",
+      "source": "brain_notizen_exportieren_rationale_108",
+      "target": "brain_notizen_exportieren_eintraege_sammeln",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_rationale_161",
+      "target": "brain_notizen_exportieren_ziel_aufraeumen",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L161",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_rationale_180",
       "target": "brain_notizen_exportieren_tagesdateien_schreiben",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L139",
-      "weight": 1.0
-    },
-    {
-      "source": "brain_notizen_exportieren_rationale_171",
-      "target": "brain_notizen_exportieren_aufgaben_schreiben",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L171",
+      "source_location": "L180",
       "weight": 1.0
     },
     {
@@ -8546,25 +9002,80 @@
       "weight": 1.0
     },
     {
-      "source": "brain_notizen_exportieren_rationale_78",
+      "source": "brain_notizen_exportieren_rationale_212",
+      "target": "brain_notizen_exportieren_aufgaben_schreiben",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L212",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_rationale_310",
+      "target": "brain_notizen_exportieren_track_tag_als_datum",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L310",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_rationale_320",
+      "target": "brain_notizen_exportieren_track_vermerke_lesen",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L320",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_rationale_357",
+      "target": "brain_notizen_exportieren_track_vermerke_vorlage_anlegen",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L357",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_rationale_383",
+      "target": "brain_notizen_exportieren_track_schreiben",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/notizen-exportieren.py",
+      "source_location": "L383",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_notizen_exportieren_rationale_83",
       "target": "brain_notizen_exportieren_geraet_lesen",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L78",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
-      "source": "brain_notizen_exportieren_rationale_87",
-      "target": "brain_notizen_exportieren_eintraege_sammeln",
+      "source": "brain_notizen_exportieren_rationale_92",
+      "target": "brain_notizen_exportieren_track_lesen",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/notizen-exportieren.py",
-      "source_location": "L87",
+      "source_location": "L92",
       "weight": 1.0
     },
     {
@@ -8915,5 +9426,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "7bdbc09005c6a41412c201ae2b298a98787a3770"
+  "built_at_commit": "b1b4b30252313558bef6fc10186489039482041b"
 }

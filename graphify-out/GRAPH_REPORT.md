@@ -1,17 +1,17 @@
-# Graph Report - imkopfhaben-public  (2026-09-19)
+# Graph Report - imkopfhaben-public  (2026-09-20)
 
 ## Corpus Check
-- 19 files · ~17,923 words
+- 19 files · ~19,019 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: .service 4, (none) 1, .logrotate 1)
 
 ## Summary
-- 282 nodes · 485 edges · 15 communities (14 shown, 1 thin omitted)
+- 296 nodes · 513 edges · 15 communities (14 shown, 1 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.93)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7bdbc090`
+- Built from commit: `b1b4b302`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -20,7 +20,7 @@
 - App
 - app.py
 - akku_lernen.py
-- get_counts
+- mitschrift.py
 - database.py
 - 📡 API-Spezifikation (`brain/`)
 - json
@@ -34,13 +34,13 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `App` - 17 edges
-2. `📡 API-Spezifikation (`brain/`)` - 12 edges
-3. `process_audio()` - 10 edges
-4. `main()` - 9 edges
-5. `🧠 imkopfhaben` - 9 edges
-6. `status()` - 8 edges
-7. `_veredele_einzelne_notiz()` - 8 edges
-8. `schreiben()` - 7 edges
+2. `main()` - 14 edges
+3. `📡 API-Spezifikation (`brain/`)` - 12 edges
+4. `process_audio()` - 10 edges
+5. `schreiben()` - 9 edges
+6. `🧠 imkopfhaben` - 9 edges
+7. `status()` - 8 edges
+8. `_veredele_einzelne_notiz()` - 8 edges
 9. `fuehre_veredelung_schritt_aus()` - 7 edges
 10. `Archive` - 7 edges
 
@@ -62,8 +62,8 @@
 ## Communities (15 total, 1 thin omitted)
 
 ### Community 0 - "main.py"
-Cohesion: 0.06
-Nodes (50): asyncio, BaseModel, transcribe_audio(), get_buendel_vorschlaege(), init_db(), loesche_buendel_vorschlag(), Fuer die Web-UI (roh+veredelt/Vorschlaege nebeneinander) - die Veredelung…, delete_note() (+42 more)
+Cohesion: 0.07
+Nodes (38): asyncio, BaseModel, get_buendel_vorschlaege(), get_category_counts(), get_hoechste_notiz_id(), get_hoechste_veredelung_id(), init_db(), loesche_buendel_vorschlag() (+30 more)
 
 ### Community 1 - "App"
 Cohesion: 0.19
@@ -77,25 +77,25 @@ Nodes (14): logging, _aktualisiere_tag_colors(), Archive, _hex_zu_rgb(), _lade_s
 Cohesion: 0.18
 Nodes (15): argparse, _fsync_verzeichnis(), geschaetzte_energie(), _laden(), _leerer_stand(), _main(), Der Akku-Lerner — schätzt, wie lange der Akku noch hält, rein aus beobachteten…, Beim Start aufgerufen, bevor der neue Zyklus losgeht: ist der vorige Lauf ohne… (+7 more)
 
-### Community 4 - "get_counts"
-Cohesion: 0.33
-Nodes (6): get_category_counts(), get_hoechste_notiz_id(), get_hoechste_veredelung_id(), Fuer GET /api/counts - Notebook pollt das periodisch, um Server- seitige…, get_counts(), Fuers periodische Notebook-Polling (Issue #16/#11) - erkennt Server-seitige…
+### Community 4 - "mitschrift.py"
+Cohesion: 0.15
+Nodes (17): _anhaengen_atomar(), lesen(), mitschreiben(), main(), Holt einmalig nach, was vor der Mitschrift entstanden ist. Die Mitschrift…, Path, Mitschrift: jedes Transkript beim Entstehen wegschreiben. Warum es das gibt…, Anhaengen und auf die Platte zwingen. Ohne flush/fsync steht bei einem… (+9 more)
 
 ### Community 5 - "database.py"
 Cohesion: 0.07
 Nodes (54): Any, structure_with_llm(), add_category(), _aehnlichster_treffer(), append_to_diary(), delete_note(), diary_hat_aehnliches_segment(), find_similar_recent() (+46 more)
 
 ### Community 6 - "📡 API-Spezifikation (`brain/`)"
-Cohesion: 0.08
-Nodes (24): Notizen auf dem USB-Stick (19.09.2026), Offene Punkte, A. `brain/` (Pi 5 / Server), 📡 API-Spezifikation (`brain/`), 📐 Architektur, 📁 Aufbau, B. `notebook/` (Pi Zero 2 W / Client), 🎛️ Bedienung (`notebook/`) (+16 more)
+Cohesion: 0.07
+Nodes (25): 420-Track in den Vault-Export (20.09.2026), Notizen auf dem USB-Stick (19.09.2026), Offene Punkte, A. `brain/` (Pi 5 / Server), 📡 API-Spezifikation (`brain/`), 📐 Architektur, 📁 Aufbau, B. `notebook/` (Pi Zero 2 W / Client) (+17 more)
 
 ### Community 7 - "json"
-Cohesion: 0.18
-Nodes (14): _frage_gemma(), _json_ausschneiden(), _kategorien(), _main(), Vergleichs-Testskript zu veredelung_test.py: statt alle Notizen in einem Rutsch…, _json_ausschneiden(), _kategorien(), _main() (+6 more)
+Cohesion: 0.13
+Nodes (18): transcribe_audio(), Reine Transkription ohne Kategorisierung/Speicherung -- fuer den Waveshare-…, transcribe_raw(), _frage_gemma(), _json_ausschneiden(), _kategorien(), _main(), Vergleichs-Testskript zu veredelung_test.py: statt alle Notizen in einem Rutsch… (+10 more)
 
 ### Community 8 - "notizen-exportieren.py"
-Cohesion: 0.17
-Nodes (20): Holt einmalig nach, was vor der Mitschrift entstanden ist. Die Mitschrift…, aufgaben_schreiben(), eintraege_sammeln(), geraet_lesen(), hole(), ideen_schreiben(), main(), Path (+12 more)
+Cohesion: 0.13
+Nodes (29): aufgaben_schreiben(), eintraege_sammeln(), geraet_lesen(), hole(), ideen_schreiben(), main(), Path, Beide Quellen zu einer Liste zusammenfuehren. Das Geraet hat Vorrang, weil nur… (+21 more)
 
 ### Community 9 - "pi_status.py"
 Cohesion: 0.15
@@ -118,24 +118,24 @@ Cohesion: 0.50
 Nodes (3): Akku-Füllstand: echter Fuel-Gauge vorhanden, ESP32-S3-ePaper-3.97 — Hardware-Erkenntnisse, Referenz-Projekt: `alxv2016/folloup-sticky`
 
 ## Knowledge Gaps
-- **28 isolated node(s):** `Notizen auf dem USB-Stick (19.09.2026)`, `📐 Architektur`, `🎛️ Bedienung (`notebook/`)`, `🛠️ Hardware`, `⚙️ Technische Besonderheiten` (+23 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 107 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **29 isolated node(s):** `Notizen auf dem USB-Stick (19.09.2026)`, `420-Track in den Vault-Export (20.09.2026)`, `📐 Architektur`, `🎛️ Bedienung (`notebook/`)`, `🛠️ Hardware` (+24 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 115 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `App` connect `App` to `app.py`?**
-  _High betweenness centrality (0.242) - this node is a cross-community bridge._
+  _High betweenness centrality (0.238) - this node is a cross-community bridge._
 - **Why does `Übrige Punkte` connect `App` to `📡 API-Spezifikation (`brain/`)`?**
-  _High betweenness centrality (0.153) - this node is a cross-community bridge._
+  _High betweenness centrality (0.152) - this node is a cross-community bridge._
 - **Why does `Offene Punkte` connect `📡 API-Spezifikation (`brain/`)` to `App`?**
   _High betweenness centrality (0.148) - this node is a cross-community bridge._
-- **What connects `Notizen auf dem USB-Stick (19.09.2026)`, `📐 Architektur`, `🎛️ Bedienung (`notebook/`)` to the rest of the system?**
-  _28 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `Notizen auf dem USB-Stick (19.09.2026)`, `420-Track in den Vault-Export (20.09.2026)`, `📐 Architektur` to the rest of the system?**
+  _29 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `main.py` be split into smaller, more focused modules?**
-  _Cohesion score 0.05505279034690799 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06747638326585695 - nodes in this community are weakly interconnected._
 - **Should `app.py` be split into smaller, more focused modules?**
   _Cohesion score 0.11688311688311688 - nodes in this community are weakly interconnected._
-- **Should `database.py` be split into smaller, more focused modules?**
-  _Cohesion score 0.06623376623376623 - nodes in this community are weakly interconnected._
+- **Should `mitschrift.py` be split into smaller, more focused modules?**
+  _Cohesion score 0.14619883040935672 - nodes in this community are weakly interconnected._
