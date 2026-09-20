@@ -92,3 +92,13 @@ Drei Handgriffe, alle grün (gegen ein Scratch-Ziel, Gerät live unter
 
 **Offen (Auge des Besitzers):** Vault in Obsidian öffnen und sehen, ob die
 Form von `06-420Track.md` und der Vermerke-Datei gefällt.
+
+**Am echten Abnahmepfad belegt (20.09.2026, 19:54):** nicht nur per
+Handaufruf gegen ein Scratch-Ziel, sondern über den echten Dienst. `sudo
+systemctl start imkopfhaben-stick.service` zog den neuen Code, mountete den
+GigaStick (`/dev/sda1`, NTFS) und schrieb `420-Track: 1 Tage (heute 7)` ins
+Journal. Danach im gemounteten Vault
+(`/mnt/gigastick/Pi5Backup_old version/vault/07-imkopfhaben/`) gegengeprüft:
+`06-420Track.md` liegt real da (`heute 7 ⚑`, sieben Punkte), die Vorlage
+`06-420Track-Vermerke.md` ebenso, die bestehenden Notiz-Dateien daneben
+unberührt.
