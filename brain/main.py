@@ -10,7 +10,7 @@ from typing import List, Optional
 
 from fastapi import FastAPI, UploadFile, File, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel
 
 import database
@@ -18,6 +18,7 @@ import ai_service
 import mitschrift
 import veredelung_service
 import pi_status
+import kopffrei_archiv
 
 STATIC_DIR = Path(__file__).parent / "static"
 
@@ -58,6 +59,7 @@ async def _veredelungs_hintergrundschleife():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     database.init_db()
+    kopffrei_archiv.starten()
     hintergrund_task = asyncio.create_task(_veredelungs_hintergrundschleife())
     yield
     hintergrund_task.cancel()
@@ -73,8 +75,39 @@ app.add_middleware(
 
 @app.get("/api/health")
 @app.get("/health")
-def health_check():
+def health_check(request: Request):
+    # Fragt das kopffrei-Geraet nach, ist es gerade wach und im WLAN: dann sofort
+    # ausstehende Texte zustellen (kopffrei_archiv.geraet_meldet_sich).
+    kopffrei_archiv.geraet_meldet_sich(
+        request.client.host if request.client else None,
+        request.headers.get("user-agent"),
+    )
     return {"status": "ok", "backend": "Pi 5", "model": ai_service.MODEL_NAME}
+
+
+# --- kopffrei: Aufnahme abgeben, Text kommt spaeter per Zustellung (kopffrei_archiv) ---
+
+@app.post("/api/aufnahme")
+async def aufnahme_annehmen(request: Request,
+                            kennung: str = Query(..., alias="id"),
+                            aera: str = Query(...)):
+    """Das Geraet gibt eine Aufnahme ab und bekommt sofort eine Bestaetigung.
+
+    202 = neu angenommen, 200 = schon bekannt (keine zweite Transkription).
+    Die Arbeit (Datei schreiben) laeuft im Thread, damit die Ereignisschleife frei bleibt.
+    """
+    roh = await request.body()
+    status, antwort = await asyncio.to_thread(
+        kopffrei_archiv.annehmen, kennung, aera, roh,
+        request.client.host if request.client else None,
+    )
+    return JSONResponse(status_code=status, content=antwort)
+
+
+@app.get("/api/aufnahme/stand")
+def aufnahme_stand():
+    """Wie steht es um die Nachrichten: je Aera angenommen/transkribiert/zugestellt/offen."""
+    return kopffrei_archiv.stand()
 
 @app.get("/api/status")
 def pi_status_route():
