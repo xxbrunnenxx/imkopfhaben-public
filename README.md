@@ -3,6 +3,12 @@
 > Ein lokales, sprachgesteuertes Notizbuch im Hosentaschenformat.
 > Verarbeitet Sprachnotizen ohne Cloud, fasst sie per lokalem LLM zusammen, zeigt sie auf einem runden Whisplay-Display an und lässt sie sich über eine Web-Oberfläche aufräumen.
 
+> **Hinweis (05.10.2026):** Der `brain/`-Teil (Pi-seitiger Dienst) ist in das Projekt
+> **kopffrei** umgezogen und wird dort weiterentwickelt — getrimmt auf die Teile, die
+> das kopffrei-Gerät nutzt. Dieses Repo bleibt als Historie stehen; `brain/` liegt in
+> der Git-Historie (letzter Stand vor dem Umzug). `notebook/` (Pi Zero) ist hier
+> unverändert, aber ohne laufenden `brain`-Backend-Dienst.
+
 ---
 
 ## 📐 Architektur
