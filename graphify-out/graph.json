@@ -14,7 +14,7 @@
       "file_type": "code",
       "norm_label": "notemerge",
       "source_file": "brain/main.py",
-      "source_location": "L294"
+      "source_location": "L327"
     },
     {
       "id": "brain_main_noteupdate",
@@ -27,7 +27,7 @@
       "file_type": "code",
       "norm_label": "noteupdate",
       "source_file": "brain/main.py",
-      "source_location": "L281"
+      "source_location": "L314"
     },
     {
       "id": "notebook_app_app",
@@ -54,6 +54,18 @@
       "norm_label": "archive",
       "source_file": "notebook/app.py",
       "source_location": "L144"
+    },
+    {
+      "id": "brain_ai_service_transcribe_audio",
+      "label": "transcribe_audio()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "code",
+      "norm_label": "transcribe_audio()",
+      "source_file": "brain/ai_service.py",
+      "source_location": "L18"
     },
     {
       "id": "brain_database_get_buendel_vorschlaege",
@@ -128,6 +140,30 @@
       "source_location": "L332"
     },
     {
+      "id": "brain_main_aufnahme_annehmen",
+      "label": "aufnahme_annehmen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "code",
+      "norm_label": "aufnahme_annehmen()",
+      "source_file": "brain/main.py",
+      "source_location": "L91"
+    },
+    {
+      "id": "brain_main_aufnahme_stand",
+      "label": "aufnahme_stand()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "code",
+      "norm_label": "aufnahme_stand()",
+      "source_file": "brain/main.py",
+      "source_location": "L108"
+    },
+    {
       "id": "brain_main_delete_note",
       "label": "delete_note()",
       "_callable": true,
@@ -137,7 +173,7 @@
       "file_type": "code",
       "norm_label": "delete_note()",
       "source_file": "brain/main.py",
-      "source_location": "L274"
+      "source_location": "L307"
     },
     {
       "id": "brain_main_get_buendel_vorschlaege",
@@ -149,7 +185,7 @@
       "file_type": "code",
       "norm_label": "get_buendel_vorschlaege()",
       "source_file": "brain/main.py",
-      "source_location": "L117"
+      "source_location": "L150"
     },
     {
       "id": "brain_main_get_counts",
@@ -161,7 +197,7 @@
       "file_type": "code",
       "norm_label": "get_counts()",
       "source_file": "brain/main.py",
-      "source_location": "L99"
+      "source_location": "L132"
     },
     {
       "id": "brain_main_health_check",
@@ -173,7 +209,7 @@
       "file_type": "code",
       "norm_label": "health_check()",
       "source_file": "brain/main.py",
-      "source_location": "L76"
+      "source_location": "L78"
     },
     {
       "id": "brain_main_lifespan",
@@ -185,7 +221,7 @@
       "file_type": "code",
       "norm_label": "lifespan()",
       "source_file": "brain/main.py",
-      "source_location": "L59"
+      "source_location": "L60"
     },
     {
       "id": "brain_main_list_notes",
@@ -197,7 +233,7 @@
       "file_type": "code",
       "norm_label": "list_notes()",
       "source_file": "brain/main.py",
-      "source_location": "L95"
+      "source_location": "L128"
     },
     {
       "id": "brain_main_list_veredelte",
@@ -209,7 +245,7 @@
       "file_type": "code",
       "norm_label": "list_veredelte()",
       "source_file": "brain/main.py",
-      "source_location": "L110"
+      "source_location": "L143"
     },
     {
       "id": "brain_main_loesche_buendel_vorschlag",
@@ -221,7 +257,7 @@
       "file_type": "code",
       "norm_label": "loesche_buendel_vorschlag()",
       "source_file": "brain/main.py",
-      "source_location": "L121"
+      "source_location": "L154"
     },
     {
       "id": "brain_main_mitschrift_lesen",
@@ -233,7 +269,7 @@
       "file_type": "code",
       "norm_label": "mitschrift_lesen()",
       "source_file": "brain/main.py",
-      "source_location": "L254"
+      "source_location": "L287"
     },
     {
       "id": "brain_main_patch_note",
@@ -245,7 +281,7 @@
       "file_type": "code",
       "norm_label": "patch_note()",
       "source_file": "brain/main.py",
-      "source_location": "L287"
+      "source_location": "L320"
     },
     {
       "id": "brain_main_pi_status_route",
@@ -257,7 +293,19 @@
       "file_type": "code",
       "norm_label": "pi_status_route()",
       "source_file": "brain/main.py",
-      "source_location": "L80"
+      "source_location": "L113"
+    },
+    {
+      "id": "brain_main_transcribe_raw",
+      "label": "transcribe_raw()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "code",
+      "norm_label": "transcribe_raw()",
+      "source_file": "brain/main.py",
+      "source_location": "L230"
     },
     {
       "id": "brain_main_veredelungs_hintergrundschleife",
@@ -269,7 +317,7 @@
       "file_type": "code",
       "norm_label": "_veredelungs_hintergrundschleife()",
       "source_file": "brain/main.py",
-      "source_location": "L34"
+      "source_location": "L35"
     },
     {
       "id": "brain_main_web_ui",
@@ -281,7 +329,7 @@
       "file_type": "code",
       "norm_label": "web_ui()",
       "source_file": "brain/main.py",
-      "source_location": "L324"
+      "source_location": "L357"
     },
     {
       "id": "notebook_app_app_handle_release",
@@ -428,6 +476,18 @@
       "source_location": "L324"
     },
     {
+      "id": "notebook_app_app_synchronisiere_mit_server",
+      "label": "._synchronisiere_mit_server()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "App",
+      "file_type": "code",
+      "norm_label": "._synchronisiere_mit_server()",
+      "source_file": "notebook/app.py",
+      "source_location": "L403"
+    },
+    {
       "id": "notebook_app_app_verarbeite_warteschlange",
       "label": "._verarbeite_warteschlange()",
       "_callable": true,
@@ -452,6 +512,18 @@
       "source_location": "L225"
     },
     {
+      "id": "notebook_app_lade_sync_stand",
+      "label": "_lade_sync_stand()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "App",
+      "file_type": "code",
+      "norm_label": "_lade_sync_stand()",
+      "source_file": "notebook/app.py",
+      "source_location": "L103"
+    },
+    {
       "id": "notebook_app_rgb565_bytes",
       "label": "rgb565_bytes()",
       "_callable": true,
@@ -462,6 +534,126 @@
       "norm_label": "rgb565_bytes()",
       "source_file": "notebook/app.py",
       "source_location": "L131"
+    },
+    {
+      "id": "notebook_app_speichere_sync_stand",
+      "label": "_speichere_sync_stand()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "App",
+      "file_type": "code",
+      "norm_label": "_speichere_sync_stand()",
+      "source_file": "notebook/app.py",
+      "source_location": "L112"
+    },
+    {
+      "id": "notebook_akku_lernen_fsync_verzeichnis",
+      "label": "_fsync_verzeichnis()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "code",
+      "norm_label": "_fsync_verzeichnis()",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L65"
+    },
+    {
+      "id": "notebook_akku_lernen_geschaetzte_energie",
+      "label": "geschaetzte_energie()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "code",
+      "norm_label": "geschaetzte_energie()",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L93"
+    },
+    {
+      "id": "notebook_akku_lernen_laden",
+      "label": "_laden()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "code",
+      "norm_label": "_laden()",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L46"
+    },
+    {
+      "id": "notebook_akku_lernen_leerer_stand",
+      "label": "_leerer_stand()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "code",
+      "norm_label": "_leerer_stand()",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L42"
+    },
+    {
+      "id": "notebook_akku_lernen_main",
+      "label": "_main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "code",
+      "norm_label": "_main()",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L135"
+    },
+    {
+      "id": "notebook_akku_lernen_main_anhalten",
+      "label": "_anhalten()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "code",
+      "norm_label": "_anhalten()",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L151"
+    },
+    {
+      "id": "notebook_akku_lernen_schreiben",
+      "label": "_schreiben()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "code",
+      "norm_label": "_schreiben()",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L73"
+    },
+    {
+      "id": "notebook_akku_lernen_uptime",
+      "label": "_uptime()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "code",
+      "norm_label": "_uptime()",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L37"
+    },
+    {
+      "id": "notebook_akku_lernen_zyklus_abschliessen",
+      "label": "_zyklus_abschliessen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "code",
+      "norm_label": "_zyklus_abschliessen()",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L108"
     },
     {
       "id": "notebook_app_aktualisiere_tag_colors",
@@ -486,18 +678,6 @@
       "norm_label": ".__init__()",
       "source_file": "notebook/app.py",
       "source_location": "L185"
-    },
-    {
-      "id": "notebook_app_app_synchronisiere_mit_server",
-      "label": "._synchronisiere_mit_server()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "app.py",
-      "file_type": "code",
-      "norm_label": "._synchronisiere_mit_server()",
-      "source_file": "notebook/app.py",
-      "source_location": "L403"
     },
     {
       "id": "notebook_app_archive_add",
@@ -572,18 +752,6 @@
       "source_location": "L80"
     },
     {
-      "id": "notebook_app_lade_sync_stand",
-      "label": "_lade_sync_stand()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "app.py",
-      "file_type": "code",
-      "norm_label": "_lade_sync_stand()",
-      "source_file": "notebook/app.py",
-      "source_location": "L103"
-    },
-    {
       "id": "notebook_app_load_fonts",
       "label": "_load_fonts()",
       "_callable": true,
@@ -596,124 +764,196 @@
       "source_location": "L119"
     },
     {
-      "id": "notebook_app_speichere_sync_stand",
-      "label": "_speichere_sync_stand()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "app.py",
-      "file_type": "code",
-      "norm_label": "_speichere_sync_stand()",
-      "source_file": "notebook/app.py",
-      "source_location": "L112"
-    },
-    {
-      "id": "notebook_akku_lernen_fsync_verzeichnis",
-      "label": "_fsync_verzeichnis()",
+      "id": "brain_kopffrei_archiv_annehmen",
+      "label": "annehmen()",
       "_callable": true,
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "code",
-      "norm_label": "_fsync_verzeichnis()",
-      "source_file": "notebook/akku_lernen.py",
+      "norm_label": "annehmen()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L131"
+    },
+    {
+      "id": "brain_kopffrei_archiv_arbeiter",
+      "label": "_arbeiter()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "file_type": "code",
+      "norm_label": "_arbeiter()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L175"
+    },
+    {
+      "id": "brain_kopffrei_archiv_ausstehend",
+      "label": "_ausstehend()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "file_type": "code",
+      "norm_label": "_ausstehend()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L208"
+    },
+    {
+      "id": "brain_kopffrei_archiv_geraet_meldet_sich",
+      "label": "geraet_meldet_sich()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "file_type": "code",
+      "norm_label": "geraet_meldet_sich()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L275"
+    },
+    {
+      "id": "brain_kopffrei_archiv_ist_lokal",
+      "label": "_ist_lokal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "file_type": "code",
+      "norm_label": "_ist_lokal()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L94"
+    },
+    {
+      "id": "brain_kopffrei_archiv_jetzt",
+      "label": "_jetzt()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "file_type": "code",
+      "norm_label": "_jetzt()",
+      "source_file": "brain/kopffrei_archiv.py",
       "source_location": "L65"
     },
     {
-      "id": "notebook_akku_lernen_geschaetzte_energie",
-      "label": "geschaetzte_energie()",
+      "id": "brain_kopffrei_archiv_lese_stand",
+      "label": "_lese_stand()",
       "_callable": true,
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "code",
-      "norm_label": "geschaetzte_energie()",
-      "source_file": "notebook/akku_lernen.py",
-      "source_location": "L93"
+      "norm_label": "_lese_stand()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L83"
     },
     {
-      "id": "notebook_akku_lernen_laden",
-      "label": "_laden()",
+      "id": "brain_kopffrei_archiv_merke_geraet",
+      "label": "_merke_geraet()",
       "_callable": true,
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "code",
-      "norm_label": "_laden()",
-      "source_file": "notebook/akku_lernen.py",
-      "source_location": "L46"
+      "norm_label": "_merke_geraet()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L98"
     },
     {
-      "id": "notebook_akku_lernen_leerer_stand",
-      "label": "_leerer_stand()",
+      "id": "brain_kopffrei_archiv_pfade",
+      "label": "_pfade()",
       "_callable": true,
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "code",
-      "norm_label": "_leerer_stand()",
-      "source_file": "notebook/akku_lernen.py",
-      "source_location": "L42"
+      "norm_label": "_pfade()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L69"
     },
     {
-      "id": "notebook_akku_lernen_main",
-      "label": "_main()",
+      "id": "brain_kopffrei_archiv_schreibe_atomar",
+      "label": "_schreibe_atomar()",
       "_callable": true,
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "code",
-      "norm_label": "_main()",
-      "source_file": "notebook/akku_lernen.py",
-      "source_location": "L135"
+      "norm_label": "_schreibe_atomar()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L74"
     },
     {
-      "id": "notebook_akku_lernen_main_anhalten",
-      "label": "_anhalten()",
+      "id": "brain_kopffrei_archiv_schreibe_stand",
+      "label": "_schreibe_stand()",
       "_callable": true,
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "code",
-      "norm_label": "_anhalten()",
-      "source_file": "notebook/akku_lernen.py",
-      "source_location": "L151"
+      "norm_label": "_schreibe_stand()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L90"
     },
     {
-      "id": "notebook_akku_lernen_schreiben",
-      "label": "_schreiben()",
+      "id": "brain_kopffrei_archiv_stand",
+      "label": "stand()",
       "_callable": true,
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "code",
-      "norm_label": "_schreiben()",
-      "source_file": "notebook/akku_lernen.py",
-      "source_location": "L73"
+      "norm_label": "stand()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L294"
     },
     {
-      "id": "notebook_akku_lernen_uptime",
-      "label": "_uptime()",
+      "id": "brain_kopffrei_archiv_starten",
+      "label": "starten()",
       "_callable": true,
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "code",
-      "norm_label": "_uptime()",
-      "source_file": "notebook/akku_lernen.py",
-      "source_location": "L37"
+      "norm_label": "starten()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L314"
     },
     {
-      "id": "notebook_akku_lernen_zyklus_abschliessen",
-      "label": "_zyklus_abschliessen()",
+      "id": "brain_kopffrei_archiv_stelle_zu",
+      "label": "_stelle_zu()",
       "_callable": true,
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "code",
-      "norm_label": "_zyklus_abschliessen()",
-      "source_file": "notebook/akku_lernen.py",
-      "source_location": "L108"
+      "norm_label": "_stelle_zu()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L223"
+    },
+    {
+      "id": "brain_kopffrei_archiv_wav_dauer_s",
+      "label": "_wav_dauer_s()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "file_type": "code",
+      "norm_label": "_wav_dauer_s()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L112"
+    },
+    {
+      "id": "brain_kopffrei_archiv_zusteller",
+      "label": "_zusteller()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "file_type": "code",
+      "norm_label": "_zusteller()",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L241"
     },
     {
       "id": "brain_mitschrift_anhaengen_atomar",
@@ -1037,7 +1277,7 @@
       "file_type": "code",
       "norm_label": "get_config()",
       "source_file": "brain/main.py",
-      "source_location": "L91"
+      "source_location": "L124"
     },
     {
       "id": "brain_main_merge_notes",
@@ -1049,7 +1289,7 @@
       "file_type": "code",
       "norm_label": "merge_notes()",
       "source_file": "brain/main.py",
-      "source_location": "L301"
+      "source_location": "L334"
     },
     {
       "id": "brain_main_process_audio",
@@ -1061,7 +1301,7 @@
       "file_type": "code",
       "norm_label": "process_audio()",
       "source_file": "brain/main.py",
-      "source_location": "L130"
+      "source_location": "L163"
     },
     {
       "id": "brain_veredelung_service_buendel_erkennen",
@@ -1146,30 +1386,6 @@
       "norm_label": "_veredele_einzelne_notiz()",
       "source_file": "brain/veredelung_service.py",
       "source_location": "L101"
-    },
-    {
-      "id": "brain_ai_service_transcribe_audio",
-      "label": "transcribe_audio()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "transcribe_audio()",
-      "source_file": "brain/ai_service.py",
-      "source_location": "L18"
-    },
-    {
-      "id": "brain_main_transcribe_raw",
-      "label": "transcribe_raw()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "transcribe_raw()",
-      "source_file": "brain/main.py",
-      "source_location": "L197"
     },
     {
       "id": "brain_veredelung_test_iterativ_frage_gemma",
@@ -1622,6 +1838,17 @@
       "source_location": ""
     },
     {
+      "id": "request",
+      "label": "Request",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "code",
+      "norm_label": "request",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
       "id": "brain_database_rationale_296",
       "label": "Fuer GET /api/counts - Notebook pollt das periodisch, um Server- seitige\u2026",
       "_origin": "ast",
@@ -1644,51 +1871,18 @@
       "source_location": "L317"
     },
     {
-      "id": "brain_main_rationale_100",
-      "label": "Fuers periodische Notebook-Polling (Issue #16/#11) - erkennt Server-seitige\u2026",
+      "id": "brain_main_rationale_109",
+      "label": "Wie steht es um die Nachrichten: je Aera\u2026",
       "_origin": "ast",
       "community": 0,
       "community_name": "main.py",
       "file_type": "rationale",
-      "norm_label": "fuers periodische notebook-polling (issue #16/#11) - erkennt server-seitige...",
+      "norm_label": "wie steht es um die nachrichten: je aera...",
       "source_file": "brain/main.py",
-      "source_location": "L100"
+      "source_location": "L109"
     },
     {
-      "id": "brain_main_rationale_111",
-      "label": "Rueckkanal fuer veredelte Notizen (Issue #16) - eigener Endpunkt, getrennt vom\u2026",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "rationale",
-      "norm_label": "rueckkanal fuer veredelte notizen (issue #16) - eigener endpunkt, getrennt vom...",
-      "source_file": "brain/main.py",
-      "source_location": "L111"
-    },
-    {
-      "id": "brain_main_rationale_255",
-      "label": "Alle mitgeschriebenen Transkripte, aelteste zuerst. Der Unterschied zu den\u2026",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "rationale",
-      "norm_label": "alle mitgeschriebenen transkripte, aelteste zuerst. der unterschied zu den...",
-      "source_file": "brain/main.py",
-      "source_location": "L255"
-    },
-    {
-      "id": "brain_main_rationale_35",
-      "label": "Prueft periodisch, ob seit VEREDELUNG_PAUSE_SEK kein /process mehr kam, und\u2026",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "main.py",
-      "file_type": "rationale",
-      "norm_label": "prueft periodisch, ob seit veredelung_pause_sek kein /process mehr kam, und...",
-      "source_file": "brain/main.py",
-      "source_location": "L35"
-    },
-    {
-      "id": "brain_main_rationale_81",
+      "id": "brain_main_rationale_114",
       "label": "Kennzahlen des Pi 5 fuer die Geraete-Startseite: Brain-Uptime, Pi-Uptime, CPU-\u2026",
       "_origin": "ast",
       "community": 0,
@@ -1696,7 +1890,73 @@
       "file_type": "rationale",
       "norm_label": "kennzahlen des pi 5 fuer die geraete-startseite: brain-uptime, pi-uptime, cpu-...",
       "source_file": "brain/main.py",
-      "source_location": "L81"
+      "source_location": "L114"
+    },
+    {
+      "id": "brain_main_rationale_133",
+      "label": "Fuers periodische Notebook-Polling (Issue #16/#11) - erkennt Server-seitige\u2026",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "rationale",
+      "norm_label": "fuers periodische notebook-polling (issue #16/#11) - erkennt server-seitige...",
+      "source_file": "brain/main.py",
+      "source_location": "L133"
+    },
+    {
+      "id": "brain_main_rationale_144",
+      "label": "Rueckkanal fuer veredelte Notizen (Issue #16) - eigener Endpunkt, getrennt vom\u2026",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "rationale",
+      "norm_label": "rueckkanal fuer veredelte notizen (issue #16) - eigener endpunkt, getrennt vom...",
+      "source_file": "brain/main.py",
+      "source_location": "L144"
+    },
+    {
+      "id": "brain_main_rationale_231",
+      "label": "Reine Transkription ohne Kategorisierung/Speicherung -- fuer den Waveshare-\u2026",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "rationale",
+      "norm_label": "reine transkription ohne kategorisierung/speicherung -- fuer den waveshare-...",
+      "source_file": "brain/main.py",
+      "source_location": "L231"
+    },
+    {
+      "id": "brain_main_rationale_288",
+      "label": "Alle mitgeschriebenen Transkripte, aelteste zuerst. Der Unterschied zu den\u2026",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "rationale",
+      "norm_label": "alle mitgeschriebenen transkripte, aelteste zuerst. der unterschied zu den...",
+      "source_file": "brain/main.py",
+      "source_location": "L288"
+    },
+    {
+      "id": "brain_main_rationale_36",
+      "label": "Prueft periodisch, ob seit VEREDELUNG_PAUSE_SEK kein /process mehr kam, und\u2026",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "rationale",
+      "norm_label": "prueft periodisch, ob seit veredelung_pause_sek kein /process mehr kam, und...",
+      "source_file": "brain/main.py",
+      "source_location": "L36"
+    },
+    {
+      "id": "brain_main_rationale_94",
+      "label": "Das Geraet gibt eine Aufnahme ab und bekommt sofort eine Bestaetigung. 202 =\u2026",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "main.py",
+      "file_type": "rationale",
+      "norm_label": "das geraet gibt eine aufnahme ab und bekommt sofort eine bestaetigung. 202 =...",
+      "source_file": "brain/main.py",
+      "source_location": "L94"
     },
     {
       "id": "image",
@@ -1764,6 +2024,17 @@
       "norm_label": "arbeitet die warteschlange aeltestenzuerst ab (dateiname beginnt mit...",
       "source_file": "notebook/app.py",
       "source_location": "L358"
+    },
+    {
+      "id": "notebook_app_rationale_404",
+      "label": "Periodischer Abgleich mit dem Brain (Issue #11/#16), analog zum\u2026",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "App",
+      "file_type": "rationale",
+      "norm_label": "periodischer abgleich mit dem brain (issue #11/#16), analog zum...",
+      "source_file": "notebook/app.py",
+      "source_location": "L404"
     },
     {
       "id": "brain_anleitung",
@@ -2087,6 +2358,17 @@
       "source_location": "L1"
     },
     {
+      "id": "notebook_akku_lernen",
+      "label": "akku_lernen.py",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "code",
+      "norm_label": "akku_lernen.py",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L1"
+    },
+    {
       "id": "notebook_app",
       "label": "app.py",
       "_origin": "ast",
@@ -2109,15 +2391,59 @@
       "source_location": ""
     },
     {
-      "id": "notebook_app_rationale_404",
-      "label": "Periodischer Abgleich mit dem Brain (Issue #11/#16), analog zum\u2026",
+      "id": "notebook_akku_lernen_rationale_1",
+      "label": "Der Akku-Lerner \u2014 sch\u00e4tzt, wie lange der Akku noch h\u00e4lt, rein aus beobachteten\u2026",
       "_origin": "ast",
       "community": 2,
       "community_name": "app.py",
       "file_type": "rationale",
-      "norm_label": "periodischer abgleich mit dem brain (issue #11/#16), analog zum...",
-      "source_file": "notebook/app.py",
-      "source_location": "L404"
+      "norm_label": "der akku-lerner \u2014 schatzt, wie lange der akku noch halt, rein aus beobachteten...",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "notebook_akku_lernen_rationale_109",
+      "label": "Beim Start aufgerufen, bevor der neue Zyklus losgeht: ist der vorige Lauf ohne\u2026",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "rationale",
+      "norm_label": "beim start aufgerufen, bevor der neue zyklus losgeht: ist der vorige lauf ohne...",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L109"
+    },
+    {
+      "id": "notebook_akku_lernen_rationale_47",
+      "label": "Fehlt die Datei, ist das kein Fehler (erster Start \u00fcberhaupt) \u2014 ist sie kaputt,\u2026",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "rationale",
+      "norm_label": "fehlt die datei, ist das kein fehler (erster start uberhaupt) \u2014 ist sie kaputt,...",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L47"
+    },
+    {
+      "id": "notebook_akku_lernen_rationale_74",
+      "label": "Atomar \u2014 der ganze Zweck ist, den letzten Stand \u00fcber einen abrupten\u2026",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "rationale",
+      "norm_label": "atomar \u2014 der ganze zweck ist, den letzten stand uber einen abrupten...",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L74"
+    },
+    {
+      "id": "notebook_akku_lernen_rationale_94",
+      "label": "0..100 aus den gelernten Zyklen, oder `None` ohne jede Historie \u2014 dann zeigt\u2026",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "app.py",
+      "file_type": "rationale",
+      "norm_label": "0..100 aus den gelernten zyklen, oder `none` ohne jede historie \u2014 dann zeigt...",
+      "source_file": "notebook/akku_lernen.py",
+      "source_location": "L94"
     },
     {
       "id": "notebook_app_rationale_86",
@@ -2131,70 +2457,125 @@
       "source_location": "L86"
     },
     {
-      "id": "notebook_akku_lernen",
-      "label": "akku_lernen.py",
+      "id": "brain_kopffrei_archiv",
+      "label": "kopffrei_archiv.py",
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "code",
-      "norm_label": "akku_lernen.py",
-      "source_file": "notebook/akku_lernen.py",
+      "norm_label": "kopffrei_archiv.py",
+      "source_file": "brain/kopffrei_archiv.py",
       "source_location": "L1"
     },
     {
-      "id": "notebook_akku_lernen_rationale_1",
-      "label": "Der Akku-Lerner \u2014 sch\u00e4tzt, wie lange der Akku noch h\u00e4lt, rein aus beobachteten\u2026",
+      "id": "brain_kopffrei_archiv_py_path",
+      "label": "Path",
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "brain_kopffrei_archiv_rationale_1",
+      "label": "kopffrei-Archiv auf dem Pi: Aufnahme und Text nebeneinander, je Aera ein\u2026",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
       "file_type": "rationale",
-      "norm_label": "der akku-lerner \u2014 schatzt, wie lange der akku noch halt, rein aus beobachteten...",
-      "source_file": "notebook/akku_lernen.py",
+      "norm_label": "kopffrei-archiv auf dem pi: aufnahme und text nebeneinander, je aera ein...",
+      "source_file": "brain/kopffrei_archiv.py",
       "source_location": "L1"
     },
     {
-      "id": "notebook_akku_lernen_rationale_109",
-      "label": "Beim Start aufgerufen, bevor der neue Zyklus losgeht: ist der vorige Lauf ohne\u2026",
+      "id": "brain_kopffrei_archiv_rationale_113",
+      "label": "Dauer aus dem 44-Byte-Kopf (16 Bit mono, wie das Geraet sie schickt).",
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "rationale",
-      "norm_label": "beim start aufgerufen, bevor der neue zyklus losgeht: ist der vorige lauf ohne...",
-      "source_file": "notebook/akku_lernen.py",
-      "source_location": "L109"
+      "norm_label": "dauer aus dem 44-byte-kopf (16 bit mono, wie das geraet sie schickt).",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L113"
     },
     {
-      "id": "notebook_akku_lernen_rationale_47",
-      "label": "Fehlt die Datei, ist das kein Fehler (erster Start \u00fcberhaupt) \u2014 ist sie kaputt,\u2026",
+      "id": "brain_kopffrei_archiv_rationale_132",
+      "label": "Legt die Aufnahme ab und bestaetigt sofort. Rueckgabe: (HTTP-Status, Antwort).",
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "rationale",
-      "norm_label": "fehlt die datei, ist das kein fehler (erster start uberhaupt) \u2014 ist sie kaputt,...",
-      "source_file": "notebook/akku_lernen.py",
-      "source_location": "L47"
+      "norm_label": "legt die aufnahme ab und bestaetigt sofort. rueckgabe: (http-status, antwort).",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L132"
     },
     {
-      "id": "notebook_akku_lernen_rationale_74",
-      "label": "Atomar \u2014 der ganze Zweck ist, den letzten Stand \u00fcber einen abrupten\u2026",
+      "id": "brain_kopffrei_archiv_rationale_209",
+      "label": "Alle Texte, die fertig, aber noch nicht zugestellt und nicht verworfen sind.",
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "rationale",
-      "norm_label": "atomar \u2014 der ganze zweck ist, den letzten stand uber einen abrupten...",
-      "source_file": "notebook/akku_lernen.py",
-      "source_location": "L74"
+      "norm_label": "alle texte, die fertig, aber noch nicht zugestellt und nicht verworfen sind.",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L209"
     },
     {
-      "id": "notebook_akku_lernen_rationale_94",
-      "label": "0..100 aus den gelernten Zyklen, oder `None` ohne jede Historie \u2014 dann zeigt\u2026",
+      "id": "brain_kopffrei_archiv_rationale_224",
+      "label": "Ein Zustellversuch. Rueckgabe: HTTP-Status oder 0, wenn das Geraet nicht\u2026",
       "_origin": "ast",
       "community": 3,
-      "community_name": "akku_lernen.py",
+      "community_name": "kopffrei_archiv.py",
       "file_type": "rationale",
-      "norm_label": "0..100 aus den gelernten zyklen, oder `none` ohne jede historie \u2014 dann zeigt...",
-      "source_file": "notebook/akku_lernen.py",
-      "source_location": "L94"
+      "norm_label": "ein zustellversuch. rueckgabe: http-status oder 0, wenn das geraet nicht...",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L224"
+    },
+    {
+      "id": "brain_kopffrei_archiv_rationale_276",
+      "label": "Aufruf aus /api/health: das Geraet ist wach und im WLAN -> jetzt zustellen. Das\u2026",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "file_type": "rationale",
+      "norm_label": "aufruf aus /api/health: das geraet ist wach und im wlan -> jetzt zustellen. das...",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L276"
+    },
+    {
+      "id": "brain_kopffrei_archiv_rationale_295",
+      "label": "Wie steht es um die Nachrichten -- je Aera gezaehlt.",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "file_type": "rationale",
+      "norm_label": "wie steht es um die nachrichten -- je aera gezaehlt.",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L295"
+    },
+    {
+      "id": "brain_kopffrei_archiv_rationale_315",
+      "label": "Einmal beim Start des brain: Liegengebliebenes wieder aufnehmen, Arbeiter\u2026",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "file_type": "rationale",
+      "norm_label": "einmal beim start des brain: liegengebliebenes wieder aufnehmen, arbeiter...",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L315"
+    },
+    {
+      "id": "brain_kopffrei_archiv_rationale_99",
+      "label": "Merkt sich die Adresse des Geraets (fuer die Zustellung), auch ueber Neustarts.",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "file_type": "rationale",
+      "norm_label": "merkt sich die adresse des geraets (fuer die zustellung), auch ueber neustarts.",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L99"
     },
     {
       "id": "brain_mitschrift",
@@ -2895,28 +3276,6 @@
       "source_location": "L1"
     },
     {
-      "id": "request",
-      "label": "Request",
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "request",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "brain_main_rationale_198",
-      "label": "Reine Transkription ohne Kategorisierung/Speicherung -- fuer den Waveshare-\u2026",
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "json",
-      "file_type": "rationale",
-      "norm_label": "reine transkription ohne kategorisierung/speicherung -- fuer den waveshare-...",
-      "source_file": "brain/main.py",
-      "source_location": "L198"
-    },
-    {
       "id": "brain_veredelung_test_iterativ_rationale_1",
       "label": "Vergleichs-Testskript zu veredelung_test.py: statt alle Notizen in einem Rutsch\u2026",
       "_origin": "ast",
@@ -3252,6 +3611,18 @@
       "type": "external"
     },
     {
+      "id": "argparse",
+      "label": "argparse",
+      "_origin": "semantic",
+      "community": 2,
+      "community_name": "app.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "argparse",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "logging",
       "label": "logging",
       "_origin": "semantic",
@@ -3260,6 +3631,18 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "logging",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "os",
+      "label": "os",
+      "_origin": "semantic",
+      "community": 2,
+      "community_name": "app.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "os",
       "source_file": "",
       "type": "external"
     },
@@ -3288,6 +3671,18 @@
       "type": "external"
     },
     {
+      "id": "signal",
+      "label": "signal",
+      "_origin": "semantic",
+      "community": 2,
+      "community_name": "app.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "signal",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "threading",
       "label": "threading",
       "_origin": "semantic",
@@ -3308,42 +3703,6 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "whisplay_client",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "argparse",
-      "label": "argparse",
-      "_origin": "semantic",
-      "community": 3,
-      "community_name": "akku_lernen.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "argparse",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "signal",
-      "label": "signal",
-      "_origin": "semantic",
-      "community": 3,
-      "community_name": "akku_lernen.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "signal",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "os",
-      "label": "os",
-      "_origin": "semantic",
-      "community": 4,
-      "community_name": "mitschrift.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "os",
       "source_file": "",
       "type": "external"
     },
@@ -3502,6 +3861,50 @@
       "norm_label": "time",
       "source_file": "",
       "type": "external"
+    },
+    {
+      "id": "queue",
+      "label": "queue",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "queue",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "re",
+      "label": "re",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "re",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "urllib_error",
+      "label": "urllib_error",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "urllib_error",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "urllib_parse",
+      "label": "urllib_parse",
+      "community": 3,
+      "community_name": "kopffrei_archiv.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "urllib_parse",
+      "source_file": "",
+      "type": "external"
     }
   ],
   "links": [
@@ -3614,6 +4017,354 @@
       "weight": 1.0
     },
     {
+      "source": "brain_kopffrei_archiv_annehmen",
+      "target": "brain_kopffrei_archiv_pfade",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L140",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_annehmen",
+      "target": "brain_kopffrei_archiv_merke_geraet",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L142",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_annehmen",
+      "target": "brain_kopffrei_archiv_schreibe_atomar",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L154",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_annehmen",
+      "target": "brain_kopffrei_archiv_schreibe_stand",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L155",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_annehmen",
+      "target": "brain_kopffrei_archiv_jetzt",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L159",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_arbeiter",
+      "target": "brain_kopffrei_archiv_pfade",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L179",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_arbeiter",
+      "target": "brain_ai_service_transcribe_audio",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L183",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_arbeiter",
+      "target": "brain_kopffrei_archiv_wav_dauer_s",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L185",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_arbeiter",
+      "target": "brain_mitschrift_mitschreiben",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L187",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_arbeiter",
+      "target": "brain_kopffrei_archiv_schreibe_atomar",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L189",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_arbeiter",
+      "target": "brain_kopffrei_archiv_lese_stand",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L191",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_arbeiter",
+      "target": "brain_kopffrei_archiv_jetzt",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L192",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_arbeiter",
+      "target": "brain_kopffrei_archiv_schreibe_stand",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L194",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_ausstehend",
+      "target": "brain_kopffrei_archiv_lese_stand",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L214",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_geraet_meldet_sich",
+      "target": "brain_kopffrei_archiv_ist_lokal",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L283",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_geraet_meldet_sich",
+      "target": "brain_kopffrei_archiv_merke_geraet",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L286",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_merke_geraet",
+      "target": "brain_kopffrei_archiv_ist_lokal",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_merke_geraet",
+      "target": "brain_kopffrei_archiv_jetzt",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L106",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_merke_geraet",
+      "target": "brain_kopffrei_archiv_schreibe_stand",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L106",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_schreibe_stand",
+      "target": "brain_kopffrei_archiv_schreibe_atomar",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_stand",
+      "target": "brain_kopffrei_archiv_lese_stand",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L299",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_starten",
+      "target": "brain_kopffrei_archiv_lese_stand",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L321",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_starten",
+      "target": "brain_kopffrei_archiv_ist_lokal",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L322",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_zusteller",
+      "target": "brain_kopffrei_archiv_ausstehend",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L248",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_zusteller",
+      "target": "brain_kopffrei_archiv_stelle_zu",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L253",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_zusteller",
+      "target": "brain_kopffrei_archiv_lese_stand",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L255",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_zusteller",
+      "target": "brain_kopffrei_archiv_jetzt",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L258",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_zusteller",
+      "target": "brain_kopffrei_archiv_schreibe_stand",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L268",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_aufnahme_stand",
+      "target": "brain_kopffrei_archiv_stand",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/main.py",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
       "source": "brain_main_delete_note",
       "target": "brain_database_delete_note",
       "relation": "calls",
@@ -3622,7 +4373,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L275",
+      "source_location": "L308",
       "weight": 1.0
     },
     {
@@ -3634,7 +4385,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L118",
+      "source_location": "L151",
       "weight": 1.0
     },
     {
@@ -3646,7 +4397,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L92",
+      "source_location": "L125",
       "weight": 1.0
     },
     {
@@ -3658,7 +4409,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L104",
+      "source_location": "L137",
       "weight": 1.0
     },
     {
@@ -3670,7 +4421,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L105",
+      "source_location": "L138",
       "weight": 1.0
     },
     {
@@ -3682,7 +4433,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L106",
+      "source_location": "L139",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_health_check",
+      "target": "brain_kopffrei_archiv_geraet_meldet_sich",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/main.py",
+      "source_location": "L81",
       "weight": 1.0
     },
     {
@@ -3694,7 +4457,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L60",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_lifespan",
+      "target": "brain_kopffrei_archiv_starten",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "brain/main.py",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -3706,7 +4481,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L61",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -3718,7 +4493,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L96",
+      "source_location": "L129",
       "weight": 1.0
     },
     {
@@ -3730,7 +4505,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L114",
+      "source_location": "L147",
       "weight": 1.0
     },
     {
@@ -3742,7 +4517,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L122",
+      "source_location": "L155",
       "weight": 1.0
     },
     {
@@ -3754,7 +4529,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L302",
+      "source_location": "L335",
       "weight": 1.0
     },
     {
@@ -3766,7 +4541,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L311",
+      "source_location": "L344",
       "weight": 1.0
     },
     {
@@ -3778,7 +4553,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L319",
+      "source_location": "L352",
       "weight": 1.0
     },
     {
@@ -3790,7 +4565,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L265",
+      "source_location": "L298",
       "weight": 1.0
     },
     {
@@ -3802,7 +4577,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L288",
+      "source_location": "L321",
       "weight": 1.0
     },
     {
@@ -3814,7 +4589,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L85",
+      "source_location": "L118",
       "weight": 1.0
     },
     {
@@ -3826,7 +4601,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L140",
+      "source_location": "L173",
       "weight": 1.0
     },
     {
@@ -3838,7 +4613,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L144",
+      "source_location": "L177",
       "weight": 1.0
     },
     {
@@ -3850,7 +4625,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L155",
+      "source_location": "L188",
       "weight": 1.0
     },
     {
@@ -3862,7 +4637,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L157",
+      "source_location": "L190",
       "weight": 1.0
     },
     {
@@ -3874,7 +4649,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L160",
+      "source_location": "L193",
       "weight": 1.0
     },
     {
@@ -3886,7 +4661,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L162",
+      "source_location": "L195",
       "weight": 1.0
     },
     {
@@ -3898,7 +4673,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L173",
+      "source_location": "L206",
       "weight": 1.0
     },
     {
@@ -3910,7 +4685,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L214",
+      "source_location": "L247",
       "weight": 1.0
     },
     {
@@ -3922,7 +4697,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "brain/main.py",
-      "source_location": "L244",
+      "source_location": "L277",
       "weight": 1.0
     },
     {
@@ -5126,6 +5901,30 @@
       "weight": 1.0
     },
     {
+      "source": "brain_main_aufnahme_annehmen",
+      "target": "post",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "decorator",
+      "source_file": "brain/main.py",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_aufnahme_stand",
+      "target": "get",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "decorator",
+      "source_file": "brain/main.py",
+      "source_location": "L107",
+      "weight": 1.0
+    },
+    {
       "source": "brain_main_delete_note",
       "target": "delete",
       "relation": "references",
@@ -5134,7 +5933,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L273",
+      "source_location": "L306",
       "weight": 1.0
     },
     {
@@ -5146,7 +5945,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L116",
+      "source_location": "L149",
       "weight": 1.0
     },
     {
@@ -5158,7 +5957,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L90",
+      "source_location": "L123",
       "weight": 1.0
     },
     {
@@ -5170,7 +5969,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L98",
+      "source_location": "L131",
       "weight": 1.0
     },
     {
@@ -5182,7 +5981,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L75",
+      "source_location": "L77",
       "weight": 1.0
     },
     {
@@ -5194,7 +5993,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L94",
+      "source_location": "L127",
       "weight": 1.0
     },
     {
@@ -5206,7 +6005,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L109",
+      "source_location": "L142",
       "weight": 1.0
     },
     {
@@ -5218,7 +6017,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L120",
+      "source_location": "L153",
       "weight": 1.0
     },
     {
@@ -5230,7 +6029,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L300",
+      "source_location": "L333",
       "weight": 1.0
     },
     {
@@ -5242,7 +6041,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L253",
+      "source_location": "L286",
       "weight": 1.0
     },
     {
@@ -5254,7 +6053,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L286",
+      "source_location": "L319",
       "weight": 1.0
     },
     {
@@ -5266,7 +6065,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L79",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
@@ -5278,7 +6077,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L129",
+      "source_location": "L162",
       "weight": 1.0
     },
     {
@@ -5290,7 +6089,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L196",
+      "source_location": "L229",
       "weight": 1.0
     },
     {
@@ -5302,7 +6101,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "brain/main.py",
-      "source_location": "L323",
+      "source_location": "L356",
       "weight": 1.0
     },
     {
@@ -5486,6 +6285,30 @@
       "weight": 1.0
     },
     {
+      "source": "brain_kopffrei_archiv_ausstehend",
+      "target": "brain_kopffrei_archiv_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L208",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_pfade",
+      "target": "brain_kopffrei_archiv_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
       "source": "brain_ai_service",
       "target": "json",
       "relation": "imports",
@@ -5555,6 +6378,138 @@
       "context": "import",
       "source_file": "brain/database.py",
       "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "json",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "os",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "queue",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "re",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "threading",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "time",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "urllib_error",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "urllib_parse",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "urllib_request",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_ai_service",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_mitschrift",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -5639,6 +6594,18 @@
       "context": "import",
       "source_file": "brain/main.py",
       "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_kopffrei_archiv",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/main.py",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -6218,6 +7185,30 @@
       "weight": 1.0
     },
     {
+      "source": "brain_kopffrei_archiv",
+      "target": "datetime",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
       "source": "brain_main",
       "target": "fastapi",
       "relation": "imports_from",
@@ -6482,6 +7473,78 @@
       "weight": 1.0
     },
     {
+      "source": "brain_kopffrei_archiv_lese_stand",
+      "target": "brain_kopffrei_archiv_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_schreibe_atomar",
+      "target": "brain_kopffrei_archiv_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_schreibe_stand",
+      "target": "brain_kopffrei_archiv_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_wav_dauer_s",
+      "target": "brain_kopffrei_archiv_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_aufnahme_annehmen",
+      "target": "request",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "brain/main.py",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_health_check",
+      "target": "request",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "brain/main.py",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
       "source": "brain_main_lifespan",
       "target": "fastapi",
       "relation": "references",
@@ -6490,7 +7553,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "brain/main.py",
-      "source_location": "L59",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -6502,7 +7565,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "brain/main.py",
-      "source_location": "L301",
+      "source_location": "L334",
       "weight": 1.0
     },
     {
@@ -6514,7 +7577,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "brain/main.py",
-      "source_location": "L287",
+      "source_location": "L320",
       "weight": 1.0
     },
     {
@@ -6526,7 +7589,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "brain/main.py",
-      "source_location": "L130",
+      "source_location": "L163",
       "weight": 1.0
     },
     {
@@ -6538,7 +7601,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "brain/main.py",
-      "source_location": "L197",
+      "source_location": "L230",
       "weight": 1.0
     },
     {
@@ -7176,168 +8239,190 @@
       "weight": 1.0
     },
     {
-      "source": "brain_main",
-      "target": "brain_main_list_veredelte",
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_wav_dauer_s",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L110",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
-      "source": "brain_main",
-      "target": "brain_main_get_buendel_vorschlaege",
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_annehmen",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L117",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L131",
       "weight": 1.0
     },
     {
-      "source": "brain_main",
-      "target": "brain_main_loesche_buendel_vorschlag",
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_arbeiter",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L121",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L175",
       "weight": 1.0
     },
     {
-      "source": "brain_main",
-      "target": "brain_main_process_audio",
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_ausstehend",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L130",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L208",
       "weight": 1.0
     },
     {
-      "source": "brain_main",
-      "target": "brain_main_transcribe_raw",
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_stelle_zu",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L197",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L223",
       "weight": 1.0
     },
     {
-      "source": "brain_main",
-      "target": "brain_main_mitschrift_lesen",
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_zusteller",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L254",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L241",
       "weight": 1.0
     },
     {
-      "source": "brain_main",
-      "target": "brain_main_delete_note",
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_geraet_meldet_sich",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L274",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L275",
       "weight": 1.0
     },
     {
-      "source": "brain_main",
-      "target": "brain_main_noteupdate",
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_stand",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L281",
-      "weight": 1.0
-    },
-    {
-      "source": "brain_main",
-      "target": "brain_main_patch_note",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L287",
-      "weight": 1.0
-    },
-    {
-      "source": "brain_main",
-      "target": "brain_main_notemerge",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "brain/main.py",
+      "source_file": "brain/kopffrei_archiv.py",
       "source_location": "L294",
       "weight": 1.0
     },
     {
-      "source": "brain_main",
-      "target": "brain_main_merge_notes",
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_starten",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L301",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L314",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_jetzt",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_pfade",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_schreibe_atomar",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_lese_stand",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_schreibe_stand",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_ist_lokal",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv",
+      "target": "brain_kopffrei_archiv_merke_geraet",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L98",
       "weight": 1.0
     },
     {
       "source": "brain_main",
-      "target": "brain_main_web_ui",
+      "target": "brain_main_aufnahme_stand",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/main.py",
-      "source_location": "L324",
-      "weight": 1.0
-    },
-    {
-      "source": "brain_main",
-      "target": "brain_main_veredelungs_hintergrundschleife",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L34",
-      "weight": 1.0
-    },
-    {
-      "source": "brain_main",
-      "target": "brain_main_lifespan",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L59",
-      "weight": 1.0
-    },
-    {
-      "source": "brain_main",
-      "target": "brain_main_health_check",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L76",
+      "source_location": "L108",
       "weight": 1.0
     },
     {
@@ -7348,7 +8433,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/main.py",
-      "source_location": "L80",
+      "source_location": "L113",
       "weight": 1.0
     },
     {
@@ -7359,7 +8444,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/main.py",
-      "source_location": "L91",
+      "source_location": "L124",
       "weight": 1.0
     },
     {
@@ -7370,7 +8455,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/main.py",
-      "source_location": "L95",
+      "source_location": "L128",
       "weight": 1.0
     },
     {
@@ -7381,7 +8466,183 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/main.py",
-      "source_location": "L99",
+      "source_location": "L132",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_list_veredelte",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L143",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_get_buendel_vorschlaege",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L150",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_loesche_buendel_vorschlag",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L154",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_process_audio",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L163",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_transcribe_raw",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L230",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_mitschrift_lesen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L287",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_delete_note",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L307",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_noteupdate",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L314",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_patch_note",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L320",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_notemerge",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L327",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_merge_notes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L334",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_veredelungs_hintergrundschleife",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_web_ui",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L357",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_lifespan",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_health_check",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main",
+      "target": "brain_main_aufnahme_annehmen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -8426,7 +9687,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/main.py",
-      "source_location": "L294",
+      "source_location": "L327",
       "weight": 1.0
     },
     {
@@ -8437,7 +9698,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/main.py",
-      "source_location": "L281",
+      "source_location": "L314",
       "weight": 1.0
     },
     {
@@ -8837,69 +10098,190 @@
       "weight": 1.0
     },
     {
-      "source": "brain_main_rationale_100",
-      "target": "brain_main_get_counts",
+      "source": "brain_kopffrei_archiv_rationale_1",
+      "target": "brain_kopffrei_archiv",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_rationale_113",
+      "target": "brain_kopffrei_archiv_wav_dauer_s",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_rationale_132",
+      "target": "brain_kopffrei_archiv_annehmen",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L132",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_rationale_209",
+      "target": "brain_kopffrei_archiv_ausstehend",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L209",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_rationale_224",
+      "target": "brain_kopffrei_archiv_stelle_zu",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L224",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_rationale_276",
+      "target": "brain_kopffrei_archiv_geraet_meldet_sich",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L276",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_rationale_295",
+      "target": "brain_kopffrei_archiv_stand",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L295",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_rationale_315",
+      "target": "brain_kopffrei_archiv_starten",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L315",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_rationale_99",
+      "target": "brain_kopffrei_archiv_merke_geraet",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L99",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_rationale_109",
+      "target": "brain_main_aufnahme_stand",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/main.py",
-      "source_location": "L100",
+      "source_location": "L109",
       "weight": 1.0
     },
     {
-      "source": "brain_main_rationale_111",
-      "target": "brain_main_list_veredelte",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L111",
-      "weight": 1.0
-    },
-    {
-      "source": "brain_main_rationale_198",
-      "target": "brain_main_transcribe_raw",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L198",
-      "weight": 1.0
-    },
-    {
-      "source": "brain_main_rationale_255",
-      "target": "brain_main_mitschrift_lesen",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L255",
-      "weight": 1.0
-    },
-    {
-      "source": "brain_main_rationale_35",
-      "target": "brain_main_veredelungs_hintergrundschleife",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "brain/main.py",
-      "source_location": "L35",
-      "weight": 1.0
-    },
-    {
-      "source": "brain_main_rationale_81",
+      "source": "brain_main_rationale_114",
       "target": "brain_main_pi_status_route",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "brain/main.py",
-      "source_location": "L81",
+      "source_location": "L114",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_rationale_133",
+      "target": "brain_main_get_counts",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L133",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_rationale_144",
+      "target": "brain_main_list_veredelte",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L144",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_rationale_231",
+      "target": "brain_main_transcribe_raw",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L231",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_rationale_288",
+      "target": "brain_main_mitschrift_lesen",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L288",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_rationale_36",
+      "target": "brain_main_veredelungs_hintergrundschleife",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_main_rationale_94",
+      "target": "brain_main_aufnahme_annehmen",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "brain/main.py",
+      "source_location": "L94",
       "weight": 1.0
     },
     {
@@ -9365,6 +10747,30 @@
       "weight": 1.0
     },
     {
+      "source": "brain_kopffrei_archiv_starten",
+      "target": "brain_kopffrei_archiv_arbeiter",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L329",
+      "weight": 1.0
+    },
+    {
+      "source": "brain_kopffrei_archiv_starten",
+      "target": "brain_kopffrei_archiv_zusteller",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "brain/kopffrei_archiv.py",
+      "source_location": "L330",
+      "weight": 1.0
+    },
+    {
       "source": "notebook_akku_lernen_main",
       "target": "notebook_akku_lernen_main_anhalten",
       "relation": "indirect_call",
@@ -9426,5 +10832,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "b1b4b30252313558bef6fc10186489039482041b"
+  "built_at_commit": "b82fb741d0d1a8fa4194032cd7c39c4b98dbf8b9"
 }
